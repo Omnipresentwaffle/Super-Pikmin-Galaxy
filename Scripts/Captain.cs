@@ -11,6 +11,8 @@ public partial class Captain : Entity
 
 	public bool gravEmpty = true;
 
+	public int team = 0;
+
 
 	public int gravityIndex = 0;
 	public List<GravityArea> gravityAreas = new List<GravityArea>();
@@ -225,7 +227,7 @@ public partial class Captain : Entity
 					break;
 				}
 
-				if (normalVelocity > 0)
+				if (normalVelocity < 0)
 				{
 					normalVelocity = 0;
 				}

@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://g2g6mmefd64p" path="res://Art/Planets/purpPlanet1.png" id="5_4j07t"]
 [ext_resource type="PackedScene" uid="uid://dugervbg4dcio" path="res://Scenes/platTest.tscn" id="7_j35oj"]
 [ext_resource type="PackedScene" uid="uid://4w07ciedit0b" path="res://Scenes/curved_gravity.tscn" id="7_xesy8"]
-[ext_resource type="Texture2D" uid="uid://c2giessljalgn" path="res://Art/Test/7__leaf1.png" id="8_xesy8"]
 [ext_resource type="Script" uid="uid://c6kxvfqr4ewu1" path="res://addons/rmsmartshape/shapes/shape_closed.gd" id="9_nr0ts"]
 [ext_resource type="Script" uid="uid://byp4h2084wgn2" path="res://addons/rmsmartshape/vertex_properties.gd" id="10_vwfot"]
 [ext_resource type="Script" uid="uid://bwcf4pjgprn0k" path="res://addons/rmsmartshape/shapes/point.gd" id="11_8qmac"]
@@ -17,6 +16,7 @@
 [ext_resource type="Script" uid="uid://dhdc4b8yddyej" path="res://addons/rmsmartshape/shapes/shape.gd" id="14_nr0ts"]
 [ext_resource type="Script" uid="uid://0lhxan4cqrc1" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="15_php5f"]
 [ext_resource type="PackedScene" uid="uid://jjkgef141hlt" path="res://Scenes/chain.tscn" id="18_wb0km"]
+[ext_resource type="PackedScene" uid="uid://dyvls1vk6irj6" path="res://Scenes/player.tscn" id="19_hea4v"]
 [ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="20_67rpx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wb0km"]
@@ -1043,11 +1043,6 @@ angle = 0.0
 visible = false
 polygon = PackedVector2Array(-842.047, 410.818, 853.952, 434.818, 936.01, -2272, -1007.99, -2592)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(5344, -4336)
-texture = ExtResource("8_xesy8")
-
 [node name="Sign1" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(7608, -3536)
@@ -1223,6 +1218,8 @@ polygon = PackedVector2Array(-888.592, 432.634, 911.407, 488.634, 952, 47.9997, 
 [node name="Chain4" parent="." instance=ExtResource("18_wb0km")]
 position = Vector2(14212, -3211)
 points = PackedVector2Array(577.279, 40.0151, -350.721, 40.0151)
+
+[node name="Player" parent="." instance=ExtResource("19_hea4v")]
 
 [editable path="planet"]
 [editable path="planet/GravityArea"]
