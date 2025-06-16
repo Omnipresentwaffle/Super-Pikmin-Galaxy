@@ -10,6 +10,7 @@ resource_local_to_scene = true
 script = ExtResource("1_1rawk")
 
 [node name="ChainArea" type="Area2D" parent="."]
+visible = false
 z_index = 1
 collision_layer = 32
 collision_mask = 0

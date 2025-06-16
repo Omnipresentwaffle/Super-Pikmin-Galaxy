@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://chrsew8jcn3cq"]
+
+[ext_resource type="Texture2D" uid="uid://d3ua23i0fq4df" path="res://Art/Captain/olimarsmalltest.png" id="1_updg0"]
+[ext_resource type="Texture2D" uid="uid://bwsgwi6eqilb" path="res://Art/Planets/sign1.png" id="2_37uri"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fd8qo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_updg0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_37uri")
+}],
+"loop": true,
+"name": &"test",
+"speed": 5.0
+}]
+
+[node name="OlimarAnim" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_fd8qo")

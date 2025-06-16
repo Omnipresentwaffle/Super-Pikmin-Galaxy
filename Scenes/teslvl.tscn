@@ -1,7 +1,6 @@
 [gd_scene load_steps=152 format=3 uid="uid://dk4xhmyu4n7tu"]
 
 [ext_resource type="Texture2D" uid="uid://bwsgwi6eqilb" path="res://Art/Planets/sign1.png" id="1_4j07t"]
-[ext_resource type="PackedScene" uid="uid://dmpd67icmvik4" path="res://Scenes/captain.tscn" id="1_yc6eb"]
 [ext_resource type="PackedScene" uid="uid://d2eh5sh5vm371" path="res://Scenes/planet.tscn" id="4_4j07t"]
 [ext_resource type="Texture2D" uid="uid://batnjs4nhugv3" path="res://Art/Planets/GAHS1U5XgAAWwpT.webp" id="4_gau7x"]
 [ext_resource type="Texture2D" uid="uid://g2g6mmefd64p" path="res://Art/Planets/purpPlanet1.png" id="5_4j07t"]
@@ -15,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://of3qk8twhfxk" path="res://SS2Dpresets/cobbleStoneDef.tres" id="14_8vt1u"]
 [ext_resource type="Script" uid="uid://dhdc4b8yddyej" path="res://addons/rmsmartshape/shapes/shape.gd" id="14_nr0ts"]
 [ext_resource type="Script" uid="uid://0lhxan4cqrc1" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="15_php5f"]
+[ext_resource type="PackedScene" uid="uid://be1q18a2807lq" path="res://Scenes/Captains/olimar.tscn" id="18_hea4v"]
 [ext_resource type="PackedScene" uid="uid://jjkgef141hlt" path="res://Scenes/chain.tscn" id="18_wb0km"]
 [ext_resource type="PackedScene" uid="uid://dyvls1vk6irj6" path="res://Scenes/player.tscn" id="19_hea4v"]
 [ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="20_67rpx"]
@@ -997,16 +997,6 @@ curve_bake_interval = 20.0
 
 [node name="Node" type="Node"]
 
-[node name="Entity" parent="." instance=ExtResource("1_yc6eb")]
-position = Vector2(14219, -3029)
-
-[node name="Camera2D" type="Camera2D" parent="Entity"]
-ignore_rotation = false
-zoom = Vector2(0.5, 0.5)
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
-rotation_smoothing_speed = 3.0
-
 [node name="planet" parent="." instance=ExtResource("4_4j07t")]
 position = Vector2(472, 144)
 
@@ -1220,6 +1210,9 @@ position = Vector2(14212, -3211)
 points = PackedVector2Array(577.279, 40.0151, -350.721, 40.0151)
 
 [node name="Player" parent="." instance=ExtResource("19_hea4v")]
+
+[node name="Olimar" parent="." instance=ExtResource("18_hea4v")]
+position = Vector2(14104.1, -3067.3)
 
 [editable path="planet"]
 [editable path="planet/GravityArea"]

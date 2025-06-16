@@ -14,7 +14,7 @@ ss2d/version="3.2.0"
 
 [application]
 
-config/name="GalaxyTest"
+config/name="Super Pikmin Galaxy"
 run/main_scene="uid://dk4xhmyu4n7tu"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"

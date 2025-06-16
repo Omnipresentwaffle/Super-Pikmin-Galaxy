@@ -6,12 +6,18 @@ using System.Text.RegularExpressions;
 
 public partial class Captain : Entity
 {
+	[Export]
+	public int id = 0;
+	//0 = olimar
+	//1 = louie
+	//2 = prez... etc
+	public int team = 0;
 	public const float JumpVelocity = -700.0f;
 	public GravityArea mainGravity = null;
 
 	public bool gravEmpty = true;
 
-	public int team = 0;
+	
 
 
 	public int gravityIndex = 0;

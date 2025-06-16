@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://be1q18a2807lq"]
+
+[ext_resource type="PackedScene" uid="uid://dmpd67icmvik4" path="res://Scenes/captain.tscn" id="1_hepo1"]
+[ext_resource type="PackedScene" uid="uid://chrsew8jcn3cq" path="res://Scenes/CaptainAnimation/olimar_anim.tscn" id="2_mt6ds"]
+
+[node name="Olimar" instance=ExtResource("1_hepo1")]
+
+[node name="Animation" parent="." index="0" instance=ExtResource("2_mt6ds")]

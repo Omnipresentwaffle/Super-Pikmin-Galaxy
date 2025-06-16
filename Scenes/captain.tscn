@@ -1,29 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmpd67icmvik4"]
+[gd_scene load_steps=7 format=3 uid="uid://dmpd67icmvik4"]
 
 [ext_resource type="PackedScene" uid="uid://dtnqjtbg20b6b" path="res://Scenes/entity.tscn" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://ba1crgmoorl" path="res://Scripts/Captain.cs" id="2_g5jsj"]
-[ext_resource type="Texture2D" uid="uid://d3ua23i0fq4df" path="res://Art/Captain/olimarsmalltest.png" id="3_hv6lm"]
-[ext_resource type="Texture2D" uid="uid://bwsgwi6eqilb" path="res://Art/Planets/sign1.png" id="4_cmh4c"]
 [ext_resource type="PackedScene" uid="uid://cov60xb1qip2m" path="res://Scenes/chain_attach.tscn" id="5_jodsp"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cmh4c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_hv6lm")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_cmh4c")
-}],
-"loop": true,
-"name": &"test",
-"speed": 5.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 radius = 24.0
@@ -42,17 +21,14 @@ floor_max_angle = 1.0472
 platform_floor_layers = 4278190081
 platform_wall_layers = 1
 script = ExtResource("2_g5jsj")
+id = 0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
-texture_filter = 1
-position = Vector2(0, -16)
-sprite_frames = SubResource("SpriteFrames_cmh4c")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+visible = false
 position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_cvnsp")
 
-[node name="GravityDetector" parent="." index="2"]
+[node name="GravityDetector" parent="." index="1"]
 visible = false
 position = Vector2(0, 15)
 monitorable = false
@@ -61,16 +37,17 @@ monitorable = false
 position = Vector2(0, -31)
 shape = SubResource("CircleShape2D_cvnsp")
 
-[node name="NormalDirection" type="Line2D" parent="." index="3"]
+[node name="NormalDirection" type="Line2D" parent="." index="2"]
 default_color = Color(1, 0, 0, 1)
 
-[node name="VelocityDirection" type="Line2D" parent="." index="4"]
+[node name="VelocityDirection" type="Line2D" parent="." index="3"]
 visible = false
 
-[node name="TangentDirection" type="Line2D" parent="." index="5"]
+[node name="TangentDirection" type="Line2D" parent="." index="4"]
 default_color = Color(0, 1, 0, 1)
 
-[node name="ChainDetector" type="Area2D" parent="." index="6"]
+[node name="ChainDetector" type="Area2D" parent="." index="5"]
+visible = false
 collision_layer = 0
 collision_mask = 32
 
@@ -78,7 +55,7 @@ collision_mask = 32
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_cmh4c")
 
-[node name="ChainAttach" parent="." index="7" instance=ExtResource("5_jodsp")]
+[node name="ChainAttach" parent="." index="6" instance=ExtResource("5_jodsp")]
 
 [connection signal="area_entered" from="GravityDetector" to="." method="_on_gravity_area_entered"]
 [connection signal="area_exited" from="GravityDetector" to="." method="_on_gravity_area_exited"]
