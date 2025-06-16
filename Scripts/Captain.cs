@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 
 public partial class Captain : Entity
@@ -12,10 +13,14 @@ public partial class Captain : Entity
 	//1 = louie
 	//2 = prez... etc
 	public int team = 0;
+
+	public bool active = false;
 	public const float JumpVelocity = -700.0f;
 	public GravityArea mainGravity = null;
 
 	public bool gravEmpty = true;
+
+	public bool gravPriorityLocked = false;
 
 	
 
@@ -66,7 +71,6 @@ public partial class Captain : Entity
 	Line2D norLine = null;
 	Line2D tanLine = null;
 
-	public GrooveJoint2D joint = null;
 
 	Line2D velLine = null;
 	UInt16 state = 1;
@@ -79,7 +83,6 @@ public partial class Captain : Entity
 		norLine = GetNode<Line2D>("NormalDirection");
 		tanLine = GetNode<Line2D>("TangentDirection");
 		velLine = GetNode<Line2D>("VelocityDirection");
-		joint = GetNode<GrooveJoint2D>("Joint");
 
 		base._Ready();
 	}
@@ -130,15 +133,28 @@ public partial class Captain : Entity
 
 		prevKeyPress = keyPress;
 		keyPress = Godot.Vector2.Zero;
-		keyPress.X = 0;
-		if (Input.IsActionPressed("right"))
+
+		if (active)
 		{
-			keyPress.X += 1;
+			if (Input.IsActionPressed("right"))
+			{
+				keyPress.X += 1;
+			}
+			if (Input.IsActionPressed("left"))
+			{
+				keyPress.X += -1;
+			}
+			if (Input.IsActionPressed("up"))
+			{
+				keyPress.Y += -1;
+			}
+			if (Input.IsActionPressed("down"))
+			{
+				keyPress.Y += 1;
+			}
 		}
-		if (Input.IsActionPressed("left"))
-		{
-			keyPress.X -= 1;
-		}
+
+		
 
 
 		if (newGravPriority)
@@ -153,6 +169,7 @@ public partial class Captain : Entity
 			{
 				if (Math.Abs(Math.Abs(angleDiff) - 180) <= 15)
 				{
+					GD.Print("xFlipped!");
 					xFlip = -1;
 				}
 			}
@@ -189,7 +206,7 @@ public partial class Captain : Entity
 				}
 
 
-				if (Input.IsActionPressed("jump"))
+				if (keyPress.Y == -1)
 				{
 					jump();
 
@@ -246,10 +263,15 @@ public partial class Captain : Entity
 			case 1:
 				//state jump
 
-				if (keyPress.X != prevKeyPress.X)
+				if (xFlip == -1)
 				{
-					xFlip = 1;
+					if (keyPress.X != prevKeyPress.X)
+					{
+						GD.Print("xUNFLIPPED");
+						xFlip = 1;
+					}
 				}
+			
 
 
 				if (IsOnCeiling())
@@ -261,9 +283,9 @@ public partial class Captain : Entity
 
 				if (!timeOut)
 				{
-					if (Input.IsActionPressed("jump"))
+					if (keyPress.Y == -1)
 					{
-						//holding to jump higher
+						//holding to jump higherdw
 						jumpTimer -= (float)delta;
 						normalVelocity += mainGravity.gravityStrength * 0.3f * (float)delta;
 						if (jumpTimer <= 0)
@@ -284,7 +306,7 @@ public partial class Captain : Entity
 				else
 				{
 					float fallMultiplier = 1f;
-					if (Input.IsActionPressed("down"))
+					if (keyPress.Y == 1)
 					{
 						//enter dive
 						state = 2;
@@ -352,15 +374,28 @@ public partial class Captain : Entity
 			case 3:
 				//state chain attach
 
-				keyPress.X *= xFlip;
+				Int16 chainDirPress = 0;
+				if (hook.state == 0)
+				{
+					//walk
+					chainDirPress = (Int16)keyPress.X;
+				}
+				else
+				{
+					chainDirPress = (Int16)keyPress.Y;
+				}
+
+				chainDirPress *= (Int16)xFlip;
 				//normalVelocity = 0;
 				Godot.Vector2 progressVector = GlobalPosition - chain.start;
 				hook.progress = getProjection(progressVector, chain.chainVectorFull);
-				GD.Print("progress: ", hook.progress);
-				GD.Print("progressVector: ", progressVector);
+				//GD.Print("progress: ", hook.progress);
+				//GD.Print("progressVector: ", progressVector);
+				//GD.Print("chainDirPress: ", chainDirPress);
+				//GD.Print("hookstate: ", hook.state);
 
 
-				if (Input.IsActionPressed("jump"))
+				if (keyPress.Y == -1)
 				{
 					chainDetach();
 					(normalVelocity, tangentVelocity) = getMagnitudes(Velocity, normalDir);
@@ -370,7 +405,7 @@ public partial class Captain : Entity
 					break;
 				}
 
-				velocity = keyPress.X * hook.chainVector * topSpeed * (float)delta;
+				velocity = chainDirPress * hook.chainVector * topSpeed * (float)delta;
 
 
 
@@ -407,7 +442,7 @@ public partial class Captain : Entity
 
 		if (mainGravity != prevGrav)
 		{
-			GD.Print("GRAVAAA");
+			//GD.Print("GRAVAAA");
 		}
 
 
@@ -443,7 +478,7 @@ public partial class Captain : Entity
 		prioritizeGravityArea(gZone);
 
 		
-		GD.Print("gravCount: ", gravityAreas.Count);
+		//GD.Print("gravCount: ", gravityAreas.Count);
 
 
 		return;
@@ -507,8 +542,8 @@ public partial class Captain : Entity
 
 
 
-		GD.Print("gIndex: ", gIndex);
-		GD.Print("gravCountExited: ", gravityAreas.Count);
+		//GD.Print("gIndex: ", gIndex);
+		//GD.Print("gravCountExited: ", gravityAreas.Count);
 
 
 
@@ -559,30 +594,28 @@ public partial class Captain : Entity
 		}
 
 
-		angle = (-UpDirection).AngleTo(lineVector);
+		float checkAngle = (-UpDirection).AngleTo(lineVector);
 
 		float pi = (float)Math.PI;
 		float pi2 = 2 * pi;
 
-		if (angle < 0)
+		if (checkAngle < 0)
 		{
-			angle += pi;
+			checkAngle += pi;
 		}
 
 
-		if (angle > (5 * pi / 6) && angle < (7 * pi / 6))
+		if (checkAngle > (5 * pi / 6) && checkAngle < (7 * pi / 6))
 		{
 			GD.Print("wall");
+			hook.state = 1;
 		}
 		else
 		{
 			GD.Print("floor");
+			hook.state = 0;
+
 		}
-
-
-
-
-
 		chainHit = true;
 	}
 
@@ -609,8 +642,9 @@ public partial class Captain : Entity
 		{
 			xFlip = -1;
 		}
-		GD.Print("prog: ", prog);
+		//GD.Print("prog: ", prog);
 
+		gravPriorityLocked = true;
 		tanLine.ClearPoints();
 		tanLine.Show();
 		tanLine.AddPoint(Godot.Vector2.Zero);

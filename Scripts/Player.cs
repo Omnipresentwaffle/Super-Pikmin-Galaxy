@@ -1,16 +1,56 @@
 using Godot;
 using System;
 
-public partial class Player : Node2D
+public partial class Player : Camera2D
 {
 	// Called when the node enters the scene tree for the first time.
-	public int id = 1;
+	public int id = 0;
+	public uint captainIndex = 0;
+
+	public bool swapPressed = false;
+
+	public Captain currentCaptain = null;
+	public Node currentScene = null;
+	public Godot.Collections.Array<Node> captains = new Godot.Collections.Array<Node> ();
 	public override void _Ready()
 	{
+		currentScene = GetTree().CurrentScene;
+		captains = GetTree().GetNodesInGroup("captain");
+		GD.Print("captains: ", captains);
+		currentCaptain = (Captain)captains[0];
+		currentCaptain.active = true;
+		
+		
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (Input.IsActionJustPressed("swap_captain") && !swapPressed)
+		{
+			swapCaptain();
+			
+		}
+		else
+		{
+			swapPressed = false;
+		}
+		this.Reparent(currentCaptain, false);
+		Vector2 mouseDistance = GetGlobalMousePosition() - currentCaptain.GlobalPosition;
+		Position = Vector2.Zero;
+		GlobalPosition += mouseDistance / 5;
+		
+
+	}
+
+	public void swapCaptain()
+	{
+		swapPressed = true;
+		currentCaptain.active = false;
+		captainIndex += 1;
+		captainIndex %= (uint)captains.Count;
+		currentCaptain = (Captain)captains[(int)captainIndex];
+		currentCaptain.active = true;
 	}
 }

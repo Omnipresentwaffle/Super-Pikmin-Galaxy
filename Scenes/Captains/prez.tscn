@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqvfh6c38jo4"]
+
+[ext_resource type="PackedScene" uid="uid://dmpd67icmvik4" path="res://Scenes/captain.tscn" id="1_1qjmk"]
+[ext_resource type="PackedScene" uid="uid://qwe64jfehfyd" path="res://Scenes/CaptainAnimation/prez_animation.tscn" id="2_v0sbf"]
+
+[node name="Prez" instance=ExtResource("1_1qjmk")]
+
+[node name="PrezAnimation" parent="." index="0" instance=ExtResource("2_v0sbf")]
+position = Vector2(8, -8)

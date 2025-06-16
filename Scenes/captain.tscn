@@ -9,12 +9,12 @@ radius = 24.0
 height = 96.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
-radius = 72.0
+radius = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cmh4c"]
 radius = 40.0
 
-[node name="Entity" instance=ExtResource("1_v0iea")]
+[node name="Entity" groups=["captain"] instance=ExtResource("1_v0iea")]
 z_index = 1
 collision_layer = 2
 floor_max_angle = 1.0472
@@ -25,7 +25,6 @@ id = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 visible = false
-position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_cvnsp")
 
 [node name="GravityDetector" parent="." index="1"]
@@ -34,7 +33,7 @@ position = Vector2(0, 15)
 monitorable = false
 
 [node name="Area2D#CollisionShape2D" type="CollisionShape2D" parent="GravityDetector" index="0"]
-position = Vector2(0, -31)
+position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_cvnsp")
 
 [node name="NormalDirection" type="Line2D" parent="." index="2"]
@@ -52,7 +51,6 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChainDetector" index="0"]
-position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_cmh4c")
 
 [node name="ChainAttach" parent="." index="6" instance=ExtResource("5_jodsp")]

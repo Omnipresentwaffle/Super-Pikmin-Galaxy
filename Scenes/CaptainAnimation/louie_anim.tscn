@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://qe5e5y3edgmn"]
+
+[ext_resource type="Texture2D" uid="uid://de4djwocir2rf" path="res://Art/Captain/louiesmalltest.png" id="1_w6kf6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b4d8v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w6kf6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="LouieAnim" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_b4d8v")
+animation = &"idle"

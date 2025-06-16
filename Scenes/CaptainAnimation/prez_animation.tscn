@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://qwe64jfehfyd"]
+
+[ext_resource type="Texture2D" uid="uid://bo3e6hwxu751p" path="res://Art/Captain/prezsmalltest.png" id="1_i18sn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bg0tu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i18sn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="PrezAnimation" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_bg0tu")
+animation = &"idle"

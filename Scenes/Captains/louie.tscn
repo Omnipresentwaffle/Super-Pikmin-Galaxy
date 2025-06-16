@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm5rlreqr6jrg"]
+
+[ext_resource type="PackedScene" uid="uid://dmpd67icmvik4" path="res://Scenes/captain.tscn" id="1_5c0jf"]
+[ext_resource type="PackedScene" uid="uid://qe5e5y3edgmn" path="res://Scenes/CaptainAnimation/louie_anim.tscn" id="2_56kat"]
+
+[node name="Louie" instance=ExtResource("1_5c0jf")]
+id = 1
+
+[node name="Animation" parent="." index="0" instance=ExtResource("2_56kat")]
+
+[node name="Area2D#CollisionShape2D" parent="GravityDetector" index="0"]
+visible = false

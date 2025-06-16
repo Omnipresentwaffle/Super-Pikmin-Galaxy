@@ -8,7 +8,7 @@ public partial class ChainAttach : Node2D
 	public Vector2 chainVector = Vector2.Up;
 	public Vector2 start = Vector2.Zero;
 
-	public int state = 0;
+	public UInt16 state = 0;
 
 	public override void _Ready()
 	{

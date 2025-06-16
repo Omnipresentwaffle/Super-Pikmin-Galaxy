@@ -6,3 +6,4 @@
 [node name="Olimar" instance=ExtResource("1_hepo1")]
 
 [node name="Animation" parent="." index="0" instance=ExtResource("2_mt6ds")]
+position = Vector2(0, 0)

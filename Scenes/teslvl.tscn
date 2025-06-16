@@ -1147,7 +1147,6 @@ collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D4"]
-visible = false
 modulate = Color(1, 1, 1, 0.3)
 polygon = PackedVector2Array(-179.659, 757.711, -232.404, -271.792, 624.002, -308.783, 649.274, 50.085, 1548.97, 14.7036, 1480.89, -1193.29, 2726.82, -1231.02, 2478.99, 833.528)
 
@@ -1212,7 +1211,24 @@ points = PackedVector2Array(577.279, 40.0151, -350.721, 40.0151)
 [node name="Player" parent="." instance=ExtResource("19_hea4v")]
 
 [node name="Olimar" parent="." instance=ExtResource("18_hea4v")]
-position = Vector2(14104.1, -3067.3)
+position = Vector2(7720, -1944)
+
+[node name="curvedGravity4" parent="." instance=ExtResource("7_xesy8")]
+position = Vector2(11784, -1704)
+
+[node name="curve" parent="curvedGravity4" index="0"]
+points = PackedVector2Array(352, -216, 376, 208)
+
+[node name="CollisionPolygon2D" parent="curvedGravity4" index="1"]
+polygon = PackedVector2Array(48, -160, 360, -240, 392, 192, 8, 152)
+
+[node name="Sign2" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(5832, -2376)
+rotation = -0.118682
+scale = Vector2(3, 3)
+texture = ExtResource("1_4j07t")
 
 [editable path="planet"]
 [editable path="planet/GravityArea"]
@@ -1227,3 +1243,4 @@ position = Vector2(14104.1, -3067.3)
 [editable path="platform2/GravityArea2"]
 [editable path="platform3"]
 [editable path="platform3/GravityArea2"]
+[editable path="curvedGravity4"]
