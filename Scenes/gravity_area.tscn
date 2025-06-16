@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxtdtr26mexlm"]
+
+[ext_resource type="Script" uid="uid://bpy1q274y3mba" path="res://Scripts/GravityArea.cs" id="1_jxtpg"]
+
+[node name="GravityArea" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_jxtpg")

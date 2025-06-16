@@ -1,0 +1,105 @@
+[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=17 format=3 uid="uid://of3qk8twhfxk"]
+
+[ext_resource type="Script" uid="uid://0lhxan4cqrc1" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="1_wmnrx"]
+[ext_resource type="Script" uid="uid://d0xjijisx1woh" path="res://addons/rmsmartshape/materials/edge_material.gd" id="2_527p2"]
+[ext_resource type="Texture2D" uid="uid://w47lbt50dxg3" path="res://Art/Tiles/Stone/stone2.png" id="3_4v5fh"]
+[ext_resource type="Script" uid="uid://d218yx0d1ilsn" path="res://addons/rmsmartshape/normal_range.gd" id="4_22n8t"]
+[ext_resource type="Texture2D" uid="uid://ciq2ymuuxb5d0" path="res://Art/Tiles/Stone/stone3.png" id="5_erkgx"]
+[ext_resource type="Texture2D" uid="uid://7jey15jeujip" path="res://Art/Tiles/Stone/stone1.png" id="6_1p11u"]
+[ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="7_b0qqf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_n4ts7"]
+diffuse_texture = ExtResource("3_4v5fh")
+texture_filter = 1
+texture_repeat = 2
+
+[sub_resource type="Resource" id="Resource_iq8gy"]
+script = ExtResource("2_527p2")
+textures = Array[Texture2D]([SubResource("CanvasTexture_n4ts7")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+textures_taper_corner_left = Array[Texture2D]([])
+textures_taper_corner_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = false
+use_taper_texture = true
+fit_mode = 0
+metadata/_custom_type_script = "uid://d0xjijisx1woh"
+
+[sub_resource type="Resource" id="Resource_4vlce"]
+script = ExtResource("4_22n8t")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_8lmdf"]
+script = ExtResource("1_wmnrx")
+edge_material = SubResource("Resource_iq8gy")
+normal_range = SubResource("Resource_4vlce")
+weld = true
+taper_sharp_corners = false
+render = true
+z_index = 0
+z_as_relative = true
+offset = -1.2
+metadata/_custom_type_script = "uid://0lhxan4cqrc1"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6ieum"]
+diffuse_texture = ExtResource("5_erkgx")
+texture_filter = 1
+texture_repeat = 2
+
+[sub_resource type="Resource" id="Resource_qaaf2"]
+script = ExtResource("2_527p2")
+textures = Array[Texture2D]([SubResource("CanvasTexture_6ieum")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+textures_taper_corner_left = Array[Texture2D]([])
+textures_taper_corner_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = false
+use_taper_texture = true
+fit_mode = 0
+metadata/_custom_type_script = "uid://d0xjijisx1woh"
+
+[sub_resource type="Resource" id="Resource_0c0ba"]
+script = ExtResource("4_22n8t")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_n4ts7"]
+script = ExtResource("1_wmnrx")
+edge_material = SubResource("Resource_qaaf2")
+normal_range = SubResource("Resource_0c0ba")
+weld = true
+taper_sharp_corners = false
+render = true
+z_index = 0
+z_as_relative = true
+offset = -1.3
+metadata/_custom_type_script = "uid://0lhxan4cqrc1"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_gyui7"]
+diffuse_texture = ExtResource("6_1p11u")
+texture_filter = 1
+texture_repeat = 2
+
+[resource]
+script = ExtResource("7_b0qqf")
+_edge_meta_materials = Array[ExtResource("1_wmnrx")]([SubResource("Resource_8lmdf"), SubResource("Resource_n4ts7")])
+fill_textures = Array[Texture2D]([SubResource("CanvasTexture_gyui7")])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_texture_scale = 1.0
+fill_texture_absolute_position = false
+fill_texture_absolute_rotation = false
+fill_texture_offset = Vector2(0, 0)
+fill_texture_angle_offset = 59.0
+fill_mesh_offset = 0.0
+render_offset = 0.0
+metadata/_custom_type_script = "uid://nc5bfedvnpgm"

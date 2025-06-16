@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtnqjtbg20b6b"]
+
+[ext_resource type="Script" uid="uid://p5dkb8x5ea4r" path="res://Scripts/Entity.cs" id="1_l7g7l"]
+
+[node name="Entity" type="CharacterBody2D"]
+slide_on_ceiling = false
+script = ExtResource("1_l7g7l")
+
+[node name="GravityDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16

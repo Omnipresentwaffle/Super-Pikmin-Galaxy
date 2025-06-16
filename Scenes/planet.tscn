@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2eh5sh5vm371"]
+
+[ext_resource type="Texture2D" uid="uid://dae1lrqh0725k" path="res://Art/Planets/planet.png" id="1_vpe2g"]
+[ext_resource type="PackedScene" uid="uid://cxtdtr26mexlm" path="res://Scenes/gravity_area.tscn" id="2_m0iey"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ytj11"]
+radius = 472.271
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vpe2g"]
+resource_local_to_scene = true
+radius = 1208.54
+
+[node name="planet" type="StaticBody2D"]
+collision_mask = 0
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_vpe2g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ytj11")
+
+[node name="GravityArea" parent="." instance=ExtResource("2_m0iey")]
+behaviour = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityArea"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_vpe2g")
+
+[editable path="GravityArea"]

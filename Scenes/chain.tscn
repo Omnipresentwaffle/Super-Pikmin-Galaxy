@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://jjkgef141hlt"]
+
+[ext_resource type="Script" uid="uid://drnju2w2o22ul" path="res://Scripts/Chain.cs" id="1_1rawk"]
+[ext_resource type="Script" uid="uid://rc7b6ufbhsb0" path="res://Scenes/ChainArea.cs" id="2_3k87m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3k87m"]
+resource_local_to_scene = true
+
+[node name="Chain" type="Line2D"]
+script = ExtResource("1_1rawk")
+
+[node name="ChainArea" type="Area2D" parent="."]
+z_index = 1
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("2_3k87m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChainArea"]
+shape = SubResource("RectangleShape2D_3k87m")
+
+[connection signal="area_entered" from="ChainArea" to="." method="_on_chain_area_entered"]
+[connection signal="area_exited" from="ChainArea" to="." method="_on_chain_area_area_exited"]

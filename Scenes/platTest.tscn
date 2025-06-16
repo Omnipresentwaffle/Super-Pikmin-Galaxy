@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dugervbg4dcio"]
+
+[ext_resource type="Texture2D" uid="uid://2n4726gxtdfn" path="res://Art/Planets/platform1.png" id="1_saqnh"]
+[ext_resource type="PackedScene" uid="uid://blujuucnjbx6k" path="res://Scenes/oneDirectionGravity.tscn" id="2_7dhq4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u705f"]
+size = Vector2(644.874, 38.0092)
+
+[node name="platform" type="StaticBody2D"]
+scale = Vector2(2.57059, 2.57059)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -59.1304)
+shape = SubResource("RectangleShape2D_u705f")
+
+[node name="Platform1" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_saqnh")
+
+[node name="GravityArea2" parent="." instance=ExtResource("2_7dhq4")]
+position = Vector2(0, -224.073)
+scale = Vector2(0.389016, 0.389016)
+angle = -90.0
+metadata/_edit_group_ = true
+
+[editable path="GravityArea2"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://blujuucnjbx6k"]
+
+[ext_resource type="PackedScene" uid="uid://cxtdtr26mexlm" path="res://Scenes/gravity_area.tscn" id="1_x8gw6"]
+
+[node name="GravityArea" instance=ExtResource("1_x8gw6")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
+polygon = PackedVector2Array(-208, 128, 216, 128, 216, -168, -216, -168)
