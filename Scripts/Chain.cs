@@ -35,12 +35,7 @@ public partial class Chain : Line2D
 		RectangleShape2D shape = (RectangleShape2D)hitbox.Shape;
 		shape.Size = new Godot.Vector2(hboxWidth, length);
 
-/*
-		StaticBody2D staticBody = GetNode<StaticBody2D>("StaticBody2D");
-		CollisionShape2D staticHitbox = body.GetNode<CollisionShape2D>("CollisionShape2D");
-		RectangleShape2D rigidShape = (RectangleShape2D)staticHitbox.Shape;
-		rigidShape.Size = new Godot.Vector2(staticWidth, length);
-*/
+
 
 		Godot.Vector2 dist = new Godot.Vector2(end.X - start.X, end.Y - start.Y);
 
@@ -48,12 +43,6 @@ public partial class Chain : Line2D
 		body.Position += dist / 2;
 		body.GlobalRotation = start.AngleToPoint(end);
 		body.GlobalRotationDegrees += 90f;
-/*
-		staticBody.GlobalPosition = ToGlobal(start);
-		staticBody.Position += dist / 2;
-		staticBody.GlobalRotation = start.AngleToPoint(end);
-		staticBody.GlobalRotationDegrees += 90f;
-*/
 
 		start = GlobalPosition + GetPointPosition(0);
 
