@@ -16,7 +16,6 @@ public partial class Player : Camera2D
 	{
 		currentScene = GetTree().CurrentScene;
 		captains = GetTree().GetNodesInGroup("captain");
-		GD.Print("captains: ", captains);
 		currentCaptain = (Captain)captains[0];
 		currentCaptain.active = true;
 		
@@ -39,7 +38,7 @@ public partial class Player : Camera2D
 		this.Reparent(currentCaptain, false);
 		Vector2 mouseDistance = GetGlobalMousePosition() - currentCaptain.GlobalPosition;
 		Position = Vector2.Zero;
-		GlobalPosition += mouseDistance / 5;
+		GlobalPosition += mouseDistance / 10;
 		
 
 	}
@@ -47,6 +46,14 @@ public partial class Player : Camera2D
 	public void swapCaptain()
 	{
 		swapPressed = true;
+		if (currentCaptain.state != 0)
+		{
+			return;
+		}
+		if (captains.Count <= 1)
+		{
+			return;
+		}
 		currentCaptain.active = false;
 		captainIndex += 1;
 		captainIndex %= (uint)captains.Count;

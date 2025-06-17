@@ -73,7 +73,7 @@ public partial class Captain : Entity
 
 
 	Line2D velLine = null;
-	UInt16 state = 1;
+	public UInt16 state = 1;
 
 	public Chain chain = null;
 
@@ -592,7 +592,7 @@ public partial class Captain : Entity
 			GD.Print("1");
 
 		}
-
+		GD.Print("closest: ", closest);
 
 		float checkAngle = (-UpDirection).AngleTo(lineVector);
 
@@ -601,9 +601,9 @@ public partial class Captain : Entity
 
 		if (checkAngle < 0)
 		{
-			checkAngle += pi;
+			checkAngle += 2*pi;
 		}
-
+		GD.Print("checkAngle: ", checkAngle*180/(float)Math.PI);
 
 		if (checkAngle > (5 * pi / 6) && checkAngle < (7 * pi / 6))
 		{
@@ -627,7 +627,7 @@ public partial class Captain : Entity
 		//we need to get the "right" direction relative to the rotation of the captain
 		float posXAngle = normalDir.Angle();
 		//posXAngle *= 180 / (float)Math.PI;
-		GD.Print("posXAngle: ", posXAngle);
+		//GD.Print("posXAngle: ", posXAngle);
 
 
 		//rotate the vector by -90 degrees so that it is perpendicular

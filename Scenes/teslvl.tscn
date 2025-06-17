@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=3 uid="uid://dk4xhmyu4n7tu"]
+[gd_scene load_steps=154 format=3 uid="uid://dk4xhmyu4n7tu"]
 
 [ext_resource type="Texture2D" uid="uid://bwsgwi6eqilb" path="res://Art/Planets/sign1.png" id="1_4j07t"]
 [ext_resource type="PackedScene" uid="uid://d2eh5sh5vm371" path="res://Scenes/planet.tscn" id="4_4j07t"]
@@ -17,7 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://be1q18a2807lq" path="res://Scenes/Captains/olimar.tscn" id="18_hea4v"]
 [ext_resource type="PackedScene" uid="uid://jjkgef141hlt" path="res://Scenes/chain.tscn" id="18_wb0km"]
 [ext_resource type="PackedScene" uid="uid://dyvls1vk6irj6" path="res://Scenes/player.tscn" id="19_hea4v"]
+[ext_resource type="PackedScene" uid="uid://dm5rlreqr6jrg" path="res://Scenes/Captains/louie.tscn" id="19_php5f"]
 [ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="20_67rpx"]
+[ext_resource type="PackedScene" uid="uid://dqvfh6c38jo4" path="res://Scenes/Captains/prez.tscn" id="20_php5f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wb0km"]
 resource_local_to_scene = true
@@ -1134,7 +1136,7 @@ points = PackedVector2Array(-339.6, 212.45, 1844.4, -291.547)
 
 [node name="Chain" parent="." instance=ExtResource("18_wb0km")]
 position = Vector2(8325.2, -1786.58)
-points = PackedVector2Array(-741.203, 122.581, 1562.8, 306.581)
+points = PackedVector2Array(-741.203, 122.581, 1562.8, 298.58)
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
 position = Vector2(12388.1, -1630.3)
@@ -1229,6 +1231,12 @@ position = Vector2(5832, -2376)
 rotation = -0.118682
 scale = Vector2(3, 3)
 texture = ExtResource("1_4j07t")
+
+[node name="Prez" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7626.32, -1354)
+
+[node name="Louie" parent="." instance=ExtResource("19_php5f")]
+position = Vector2(13064, 624)
 
 [editable path="planet"]
 [editable path="planet/GravityArea"]
