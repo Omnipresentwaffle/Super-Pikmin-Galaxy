@@ -11,15 +11,15 @@ public partial class Player : Camera2D
 
 	public Captain currentCaptain = null;
 	public Node currentScene = null;
-	public Godot.Collections.Array<Node> captains = new Godot.Collections.Array<Node> ();
+	public Godot.Collections.Array<Node> captains = new Godot.Collections.Array<Node>();
 	public override void _Ready()
 	{
 		currentScene = GetTree().CurrentScene;
 		captains = GetTree().GetNodesInGroup("captain");
 		currentCaptain = (Captain)captains[0];
 		currentCaptain.active = true;
-		
-		
+
+
 
 	}
 
@@ -29,7 +29,7 @@ public partial class Player : Camera2D
 		if (Input.IsActionJustPressed("swap_captain") && !swapPressed)
 		{
 			swapCaptain();
-			
+
 		}
 		else
 		{
@@ -39,7 +39,7 @@ public partial class Player : Camera2D
 		Vector2 mouseDistance = GetGlobalMousePosition() - currentCaptain.GlobalPosition;
 		Position = Vector2.Zero;
 		GlobalPosition += mouseDistance / 10;
-		
+
 
 	}
 
@@ -60,4 +60,10 @@ public partial class Player : Camera2D
 		currentCaptain = (Captain)captains[(int)captainIndex];
 		currentCaptain.active = true;
 	}
+
+	public void cameraLock()
+	{
+		IgnoreRotation = true;
+	}
+
 }

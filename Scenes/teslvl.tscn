@@ -1,4 +1,4 @@
-[gd_scene load_steps=177 format=3 uid="uid://dk4xhmyu4n7tu"]
+[gd_scene load_steps=176 format=3 uid="uid://dk4xhmyu4n7tu"]
 
 [ext_resource type="Texture2D" uid="uid://bwsgwi6eqilb" path="res://Art/Planets/sign1.png" id="1_4j07t"]
 [ext_resource type="PackedScene" uid="uid://d2eh5sh5vm371" path="res://Scenes/planet.tscn" id="4_4j07t"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://dyvls1vk6irj6" path="res://Scenes/player.tscn" id="19_hea4v"]
 [ext_resource type="PackedScene" uid="uid://dm5rlreqr6jrg" path="res://Scenes/Captains/louie.tscn" id="19_php5f"]
 [ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="20_67rpx"]
-[ext_resource type="PackedScene" uid="uid://dqvfh6c38jo4" path="res://Scenes/Captains/prez.tscn" id="20_php5f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wb0km"]
 resource_local_to_scene = true
@@ -1288,6 +1287,7 @@ shape_material = ExtResource("14_8vt1u")
 collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+visible = false
 modulate = Color(1, 1, 1, 0.3)
 polygon = PackedVector2Array(-323.573, -91.8188, 3109.06, -357.762, 3005.64, 868.531, -313.723, 755.259, -274.323, 2016.03, -1791.18, 2006.18, -1761.36, 920.116, -2681.33, 917.162, -2648.83, -155.474, -3614.25, -243.834, -3745.91, -1366.91, -1597.86, -1368.96, -1576.19, -2289.91, 5.94629, -2289.21)
 
@@ -1317,6 +1317,7 @@ collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D4"]
+visible = false
 modulate = Color(1, 1, 1, 0.3)
 polygon = PackedVector2Array(-179.659, 757.711, -232.404, -271.792, 624.002, -308.783, 649.274, 50.085, 1548.97, 14.7036, 1480.89, -1193.29, 2726.82, -1231.02, 2478.99, 833.528)
 
@@ -1380,14 +1381,11 @@ points = PackedVector2Array(577.279, 40.0151, -350.721, 40.0151)
 
 [node name="Player" parent="." instance=ExtResource("19_hea4v")]
 
-[node name="Olimar" parent="." instance=ExtResource("18_hea4v")]
-position = Vector2(1240, -1944)
-
 [node name="curvedGravity4" parent="." instance=ExtResource("7_xesy8")]
 position = Vector2(11784, -1704)
 
 [node name="curve" parent="curvedGravity4" index="0"]
-points = PackedVector2Array(352, -216, 376, 208)
+points = PackedVector2Array(352, -216, 384, 336)
 
 [node name="CollisionPolygon2D" parent="curvedGravity4" index="1"]
 polygon = PackedVector2Array(48, -160, 360, -240, 392, 192, 8, 152)
@@ -1400,11 +1398,8 @@ rotation = -0.118682
 scale = Vector2(3, 3)
 texture = ExtResource("1_4j07t")
 
-[node name="Prez" parent="." instance=ExtResource("20_php5f")]
-position = Vector2(7626.32, -1354)
-
 [node name="Louie" parent="." instance=ExtResource("19_php5f")]
-position = Vector2(12024, -1240)
+position = Vector2(12856, -2056)
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="."]
 position = Vector2(-426.987, -2305.26)
@@ -1420,7 +1415,7 @@ metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D6"]
 visible = false
 modulate = Color(1, 1, 1, 0.3)
-polygon = PackedVector2Array(-570.534, 208.863, -619.037, -318.964, 40.0334, -361.761, 40.0334, -527.241, 750.46, -547.213, 816.081, -2.26776, 493.679, 11.9978, 556.448, 514.146, -242.425, 548.384, -256.691, 223.129)
+polygon = PackedVector2Array(-570.534, 208.863, -619.037, -318.964, 40.0334, -361.761, 40.0334, -527.242, 750.459, -547.214, 816.081, -2.26773, 493.679, 11.9978, 556.447, 514.146, -242.426, 548.384, -256.691, 223.128)
 
 [node name="curvedGravity5" parent="." instance=ExtResource("7_xesy8")]
 position = Vector2(-392, -2448)
@@ -1431,6 +1426,9 @@ closed = true
 
 [node name="CollisionPolygon2D" parent="curvedGravity5" index="1"]
 polygon = PackedVector2Array(-1008, -584, 904, -712, 1216, 824, -936, 792)
+
+[node name="Olimar" parent="." instance=ExtResource("18_hea4v")]
+position = Vector2(7779.31, -1939.51)
 
 [editable path="planet"]
 [editable path="planet/GravityArea"]

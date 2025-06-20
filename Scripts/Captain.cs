@@ -93,6 +93,8 @@ public partial class Captain : Entity
 		Godot.Vector2 velocity = Velocity;
 		GravityArea prevGrav = mainGravity;
 
+	
+
 		if (prevAngle != angle)
 		{
 			if (Math.Abs(angle - prevAngle) >= 15)
@@ -112,23 +114,27 @@ public partial class Captain : Entity
 		Godot.Vector2 prevNormal = normalDir;
 
 
-	
 
-		if (mainGravity != null)
+		if (!gravPriorityLocked)
 		{
-			(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
+			if (mainGravity != null)
+			{
+				(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
+
+			}
+			else
+			{
+				normalDir = Godot.Vector2.Down;
+				angle = -(float)Math.PI / 4;
+			}
 
 		}
-		else
-		{
-			normalDir = Godot.Vector2.Down;
-			angle = -(float)Math.PI / 4;
-		}
-
+		
 		if (state != 3 && state != 3)
 		{
 			(normalVelocity, tangentVelocity) = getMagnitudes(velocity, normalDir);
 		}
+		bool jumpPressed = false;
 
 
 		prevKeyPress = keyPress;
@@ -136,6 +142,8 @@ public partial class Captain : Entity
 
 		if (active)
 		{
+			jumpPressed = Input.IsActionPressed("jump");
+
 			if (Input.IsActionPressed("right"))
 			{
 				keyPress.X += 1;
@@ -206,7 +214,7 @@ public partial class Captain : Entity
 				}
 
 
-				if (keyPress.Y == -1)
+				if (jumpPressed)
 				{
 					jump();
 
@@ -283,7 +291,7 @@ public partial class Captain : Entity
 
 				if (!timeOut)
 				{
-					if (keyPress.Y == -1)
+					if (jumpPressed)
 					{
 						//holding to jump higherdw
 						jumpTimer -= (float)delta;
@@ -327,6 +335,14 @@ public partial class Captain : Entity
 
 						tangentVelocity += dir * diveVelocity;
 						break;
+					}
+					else if (keyPress.Y == -1)
+					{
+						if (chain != null)
+						{
+							chainAttach();
+							return;
+						}
 					}
 					normalVelocity += mainGravity.gravityStrength * fallMultiplier * (float)delta;
 
@@ -373,6 +389,7 @@ public partial class Captain : Entity
 
 			case 3:
 				//state chain attach
+				GD.Print("gravPriorityLocked: ", gravPriorityLocked);
 
 				Int16 chainDirPress = 0;
 				if (hook.state == 0)
@@ -395,7 +412,7 @@ public partial class Captain : Entity
 				//GD.Print("hookstate: ", hook.state);
 
 
-				if (keyPress.Y == -1)
+				if (jumpPressed)
 				{
 					chainDetach();
 					(normalVelocity, tangentVelocity) = getMagnitudes(Velocity, normalDir);
@@ -489,7 +506,8 @@ public partial class Captain : Entity
 
 		//loop through the gravity zones and check their priority levels
 		//start at index 0
-	
+
+		int i = 0;
 		if (gravityAreas.Count == 0)
 		{
 			gravityAreas.Add(gZone);
@@ -497,27 +515,33 @@ public partial class Captain : Entity
 			{
 				mainGravity = gZone;
 				newGravPriority = true;
-				
+
 			}
-			
+
 			return;
 
 		}
 
 
-		for (int i = 0; i < gravityAreas.Count; i += 1)
+		for (i = 0; i < gravityAreas.Count; i += 1)
 		{
 			//if the priority of the new gZone is >= the one in the list
 			if (gZone.priority >= gravityAreas[i].priority)
 			{
 				gravityAreas.Insert(i, gZone);
-				if (i == 0)
-				{
-					mainGravity = gZone;
-					newGravPriority = true;
-				}
-				return;
+
+				break;
 			}
+		}
+		if (gravPriorityLocked)
+		{
+			return;
+		}
+
+		if (i == 0)
+		{
+			mainGravity = gZone;
+			newGravPriority = true;
 		}
 
 
@@ -533,7 +557,11 @@ public partial class Captain : Entity
 		if (gravityAreas.Count >= 2)
 		{
 			gravityAreas.Remove(gZone);
-			mainGravity = gravityAreas[0];
+			if (!gravPriorityLocked)
+			{
+				mainGravity = gravityAreas[0];
+
+			}
 		}
 		else if (gravityAreas.Count == 1)
 		{
@@ -553,12 +581,16 @@ public partial class Captain : Entity
 	{
 		GD.Print("chainEntered");
 		chain = (GetNode<ChainArea>(GetPathTo(area)).GetParent<Chain>());
-		chainCheck();
-		normalVelocity = 0f;
-		tangentVelocity = 0f;
-		hook.chainAttach(chain);
+		if (!chainCheck())
+		{
+			return;
+		}
+
+		GD.Print("chainAttachFrick");
 		chainAttach();
-		GlobalPosition = hook.start + (hook.chainVector * hook.progress);
+		
+
+		
 
 	}
 	public void _on_chain_area_exited(Area2D area)
@@ -570,9 +602,12 @@ public partial class Captain : Entity
 	{
 		chain = null;
 		chainHit = false;
+		gravPriorityLocked = false;
+		mainGravity = gravityAreas[0];
+
 	}
 
-	public void chainCheck()
+	public bool chainCheck()
 	{
 		int closest = 0;
 		if (GlobalPosition.DistanceSquaredTo(chain.Points[0] + chain.GlobalPosition) > GlobalPosition.DistanceSquaredTo(chain.Points[1] + chain.GlobalPosition))
@@ -604,19 +639,21 @@ public partial class Captain : Entity
 			checkAngle += 2*pi;
 		}
 		GD.Print("checkAngle: ", checkAngle*180/(float)Math.PI);
+		//chainHit = true;
 
 		if (checkAngle > (5 * pi / 6) && checkAngle < (7 * pi / 6))
 		{
 			GD.Print("wall");
 			hook.state = 1;
+			return false;
 		}
 		else
 		{
 			GD.Print("floor");
 			hook.state = 0;
+			return true;
 
 		}
-		chainHit = true;
 	}
 
 
@@ -631,10 +668,20 @@ public partial class Captain : Entity
 
 
 		//rotate the vector by -90 degrees so that it is perpendicular
-		posXAngle -= (float)Math.PI / 2;
+		if (hook.state == 0)
+		{
+			posXAngle -= (float)Math.PI / 2;
+
+		}
 
 		//convert the angle to a vector
 		Godot.Vector2 posXvector = new Godot.Vector2((float)Math.Cos(posXAngle), (float)Math.Sin(posXAngle));
+
+		hook.chainAttach(chain);
+		normalVelocity = 0f;
+		tangentVelocity = 0f;
+		GlobalPosition = hook.start + (hook.chainVector * hook.progress);
+
 
 		float prog = 0;
 		prog = getProjection(posXvector, hook.chainVector);
@@ -649,6 +696,8 @@ public partial class Captain : Entity
 		tanLine.Show();
 		tanLine.AddPoint(Godot.Vector2.Zero);
 		tanLine.AddPoint(posXvector * 250);
+		chainHit = true;
+
 
 	}
 
