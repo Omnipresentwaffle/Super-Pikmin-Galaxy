@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=3 uid="uid://dk4xhmyu4n7tu"]
+[gd_scene load_steps=177 format=3 uid="uid://dk4xhmyu4n7tu"]
 
 [ext_resource type="Texture2D" uid="uid://bwsgwi6eqilb" path="res://Art/Planets/sign1.png" id="1_4j07t"]
 [ext_resource type="PackedScene" uid="uid://d2eh5sh5vm371" path="res://Scenes/planet.tscn" id="4_4j07t"]
@@ -997,6 +997,174 @@ tessellation_stages = 3
 tessellation_tolerance = 6.0
 curve_bake_interval = 20.0
 
+[sub_resource type="Resource" id="Resource_6aohg"]
+script = ExtResource("10_vwfot")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_oqapj"]
+script = ExtResource("11_8qmac")
+position = Vector2(-573.521, 247.608)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_6aohg")
+
+[sub_resource type="Resource" id="Resource_sh056"]
+script = ExtResource("10_vwfot")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_3w1da"]
+script = ExtResource("11_8qmac")
+position = Vector2(-622.024, -280.219)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_sh056")
+
+[sub_resource type="Resource" id="Resource_xxvqp"]
+script = ExtResource("10_vwfot")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_er00w"]
+script = ExtResource("11_8qmac")
+position = Vector2(37.046, -323.016)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_xxvqp")
+
+[sub_resource type="Resource" id="Resource_q65fh"]
+script = ExtResource("10_vwfot")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_r364w"]
+script = ExtResource("11_8qmac")
+position = Vector2(37.046, -488.497)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_q65fh")
+
+[sub_resource type="Resource" id="Resource_frp5l"]
+script = ExtResource("10_vwfot")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_lyhmp"]
+script = ExtResource("11_8qmac")
+position = Vector2(747.472, -508.469)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_frp5l")
+
+[sub_resource type="Resource" id="Resource_qesdn"]
+script = ExtResource("10_vwfot")
+texture_idx = -4
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_x5rs4"]
+script = ExtResource("11_8qmac")
+position = Vector2(813.094, 36.4769)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_qesdn")
+
+[sub_resource type="Resource" id="Resource_vxv80"]
+script = ExtResource("10_vwfot")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_q1onb"]
+script = ExtResource("11_8qmac")
+position = Vector2(490.692, 50.7424)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_vxv80")
+
+[sub_resource type="Resource" id="Resource_ac3kq"]
+script = ExtResource("10_vwfot")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_0pym5"]
+script = ExtResource("11_8qmac")
+position = Vector2(553.46, 552.891)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_ac3kq")
+
+[sub_resource type="Resource" id="Resource_dx2v1"]
+script = ExtResource("10_vwfot")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_r7nx8"]
+script = ExtResource("11_8qmac")
+position = Vector2(-245.413, 587.129)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_dx2v1")
+
+[sub_resource type="Resource" id="Resource_v1gcd"]
+script = ExtResource("10_vwfot")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_c81cq"]
+script = ExtResource("11_8qmac")
+position = Vector2(-259.678, 261.873)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_v1gcd")
+
+[sub_resource type="Resource" id="Resource_rvvya"]
+script = ExtResource("10_vwfot")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_dumcj"]
+script = ExtResource("11_8qmac")
+position = Vector2(-573.521, 247.608)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_rvvya")
+
+[sub_resource type="Resource" id="Resource_yo2vw"]
+script = ExtResource("12_8vt1u")
+_points = {
+0: SubResource("Resource_oqapj"),
+1: SubResource("Resource_3w1da"),
+2: SubResource("Resource_er00w"),
+3: SubResource("Resource_r364w"),
+4: SubResource("Resource_lyhmp"),
+5: SubResource("Resource_x5rs4"),
+6: SubResource("Resource_q1onb"),
+7: SubResource("Resource_0pym5"),
+8: SubResource("Resource_r7nx8"),
+9: SubResource("Resource_c81cq"),
+10: SubResource("Resource_dumcj")
+}
+_point_order = PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+_constraints = {
+Vector2i(0, 10): 15
+}
+_next_key = 11
+_material_overrides = {}
+tessellation_stages = 3
+tessellation_tolerance = 6.0
+curve_bake_interval = 20.0
+
 [node name="Node" type="Node"]
 
 [node name="planet" parent="." instance=ExtResource("4_4j07t")]
@@ -1213,7 +1381,7 @@ points = PackedVector2Array(577.279, 40.0151, -350.721, 40.0151)
 [node name="Player" parent="." instance=ExtResource("19_hea4v")]
 
 [node name="Olimar" parent="." instance=ExtResource("18_hea4v")]
-position = Vector2(7720, -1944)
+position = Vector2(1240, -1944)
 
 [node name="curvedGravity4" parent="." instance=ExtResource("7_xesy8")]
 position = Vector2(11784, -1704)
@@ -1236,7 +1404,33 @@ texture = ExtResource("1_4j07t")
 position = Vector2(7626.32, -1354)
 
 [node name="Louie" parent="." instance=ExtResource("19_php5f")]
-position = Vector2(13064, 624)
+position = Vector2(12024, -1240)
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(-426.987, -2305.26)
+
+[node name="SS2D_Shape_Closed2" type="MeshInstance2D" parent="StaticBody2D6"]
+position = Vector2(2.98743, -38.7446)
+script = ExtResource("9_nr0ts")
+_points = SubResource("Resource_yo2vw")
+shape_material = ExtResource("13_xi62q")
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")
+metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D6"]
+visible = false
+modulate = Color(1, 1, 1, 0.3)
+polygon = PackedVector2Array(-570.534, 208.863, -619.037, -318.964, 40.0334, -361.761, 40.0334, -527.241, 750.46, -547.213, 816.081, -2.26776, 493.679, 11.9978, 556.448, 514.146, -242.425, 548.384, -256.691, 223.129)
+
+[node name="curvedGravity5" parent="." instance=ExtResource("7_xesy8")]
+position = Vector2(-392, -2448)
+
+[node name="curve" parent="curvedGravity5" index="0"]
+points = PackedVector2Array(472, 168, 800, 152, 728, -416, -8, -400, -8, -232, -672, -192, -616, 360, -304, 376, -288, 704, 536, 672)
+closed = true
+
+[node name="CollisionPolygon2D" parent="curvedGravity5" index="1"]
+polygon = PackedVector2Array(-1008, -584, 904, -712, 1216, 824, -936, 792)
 
 [editable path="planet"]
 [editable path="planet/GravityArea"]
@@ -1252,3 +1446,4 @@ position = Vector2(13064, 624)
 [editable path="platform3"]
 [editable path="platform3/GravityArea2"]
 [editable path="curvedGravity4"]
+[editable path="curvedGravity5"]
