@@ -1419,12 +1419,14 @@ polygon = PackedVector2Array(-570.534, 208.863, -619.037, -318.964, 40.0334, -36
 
 [node name="curvedGravity5" parent="." instance=ExtResource("7_xesy8")]
 position = Vector2(-392, -2448)
+priority = 1
 
 [node name="curve" parent="curvedGravity5" index="0"]
 points = PackedVector2Array(472, 168, 800, 152, 728, -416, -8, -400, -8, -232, -672, -192, -616, 360, -304, 376, -288, 704, 536, 672)
 closed = true
 
 [node name="CollisionPolygon2D" parent="curvedGravity5" index="1"]
+visible = false
 polygon = PackedVector2Array(-1008, -584, 904, -712, 1216, 824, -936, 792)
 
 [node name="Olimar" parent="." instance=ExtResource("18_hea4v")]
