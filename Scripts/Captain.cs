@@ -692,10 +692,6 @@ public partial class Captain : Entity
 		//GD.Print("prog: ", prog);
 
 		gravPriorityLocked = true;
-		tanLine.ClearPoints();
-		tanLine.Show();
-		tanLine.AddPoint(Godot.Vector2.Zero);
-		tanLine.AddPoint(posXvector * 250);
 		chainHit = true;
 
 
