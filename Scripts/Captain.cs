@@ -30,6 +30,8 @@ public partial class Captain : Entity
 
 	public const float topSpeed = 800f;
 
+	public float displacement = 0f;
+
 	public const float rotateSpeed = 200;
 
 	public const float gravitySnap = 45f;
@@ -76,6 +78,7 @@ public partial class Captain : Entity
 	public UInt16 state = 1;
 
 	public Chain chain = null;
+	public Line2D follow = null;
 
 	public override void _Ready()
 	{
@@ -83,7 +86,7 @@ public partial class Captain : Entity
 		norLine = GetNode<Line2D>("NormalDirection");
 		tanLine = GetNode<Line2D>("TangentDirection");
 		velLine = GetNode<Line2D>("VelocityDirection");
-
+		follow = GetNode<Line2D>("Follow");
 		base._Ready();
 	}
 
@@ -262,7 +265,12 @@ public partial class Captain : Entity
 				{
 					normalVelocity = 0;
 				}
-
+				displacement += normalVelocity;
+				if (Math.Abs(displacement) >= 20)
+				{
+					displacement = 0f;
+					follow.AddPoint(Position);
+				}
 
 
 
@@ -572,6 +580,7 @@ public partial class Captain : Entity
 
 		//GD.Print("gIndex: ", gIndex);
 		//GD.Print("gravCountExited: ", gravityAreas.Count);
+		follow.Position = Godot.Vector2.Zero;
 
 
 
