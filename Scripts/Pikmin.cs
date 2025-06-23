@@ -41,14 +41,14 @@ public partial class Pikmin : Entity
 		{
 			case 0:
 				//state idle
-				
+
 
 				GD.Print("pikpos: ", GlobalPosition);
 				GD.Print("mainGravpik: ", normalVelocity);
 				if (mainGravity != null)
 				{
 					(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
-					
+
 
 				}
 				else
@@ -62,10 +62,18 @@ public partial class Pikmin : Entity
 				(normalVelocity, tangentVelocity) = getMagnitudes(velocity, normalDir);
 
 				normalVelocity += mainGravity.gravityStrength * (float)delta;
-				
+
 				velocity = normalDir * normalVelocity;
 				velocity += tangentDir * tangentVelocity;
-				
+
+				if()
+
+
+				break;
+
+			case 1:
+				//state follow
+			
 
 				break;
 		}
