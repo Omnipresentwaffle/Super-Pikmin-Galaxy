@@ -16,11 +16,8 @@ public partial class Captain : Entity
 
 	public bool active = false;
 	public const float JumpVelocity = -700.0f;
-	public GravityArea mainGravity = null;
 
-	public bool gravEmpty = true;
 
-	public bool gravPriorityLocked = false;
 
 	public int gravityIndex = 0;
 
@@ -38,7 +35,6 @@ public partial class Captain : Entity
 
 	public int yFlip = 1;
 
-	public bool newGravPriority = false;
 
 	public const float groundRez = 300f;
 
@@ -493,106 +489,10 @@ public partial class Captain : Entity
 	}
 
 
-	public void _on_gravity_area_entered(Area2D area)
-	{
-		//get the path to the gravity and 
-		NodePath path = GetPathTo(area);
-		GravityArea gZone = GetNode<GravityArea>(path);
-
-		if (gravEmpty)
-		{
-			gravityAreas.Clear();
-			gravEmpty = false;
-
-		}
-
-		//add the gravity area to the zones
-
-		prioritizeGravityArea(gZone);
-
-		
-		//GD.Print("gravCount: ", gravityAreas.Count);
 
 
-		return;
-	}
-
-	public void prioritizeGravityArea(GravityArea gZone)
-	{
-
-		//loop through the gravity zones and check their priority levels
-		//start at index 0
-
-		int i = 0;
-		if (gravityAreas.Count == 0)
-		{
-			gravityAreas.Add(gZone);
-			if (mainGravity != gZone)
-			{
-				mainGravity = gZone;
-				newGravPriority = true;
-
-			}
-
-			return;
-
-		}
-
-
-		for (i = 0; i < gravityAreas.Count; i += 1)
-		{
-			//if the priority of the new gZone is >= the one in the list
-			if (gZone.priority >= gravityAreas[i].priority)
-			{
-				gravityAreas.Insert(i, gZone);
-
-				break;
-			}
-		}
-		if (gravPriorityLocked)
-		{
-			return;
-		}
-
-		if (i == 0)
-		{
-			mainGravity = gZone;
-			newGravPriority = true;
-		}
-
-
-	}
-	public void _on_gravity_area_exited(Area2D area)
-	{
-		NodePath path = GetPathTo(area);
-		GravityArea gZone = GetNode<GravityArea>(path);
-
-		int gIndex = 0;
-
-
-		if (gravityAreas.Count >= 2)
-		{
-			gravityAreas.Remove(gZone);
-			if (!gravPriorityLocked)
-			{
-				mainGravity = gravityAreas[0];
-
-			}
-		}
-		else if (gravityAreas.Count == 1)
-		{
-			gravEmpty = true;
-		}
-
-
-
-		//GD.Print("gIndex: ", gIndex);
-		//GD.Print("gravCountExited: ", gravityAreas.Count);
 	
-
-
-
-	}
+	
 
 	public void _on_chain_area_entered(Area2D area)
 	{

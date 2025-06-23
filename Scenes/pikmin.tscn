@@ -23,3 +23,6 @@ shape = SubResource("CapsuleShape2D_7t67h")
 shape = SubResource("CircleShape2D_7t67h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+
+[connection signal="area_entered" from="GravityDetector" to="." method="_on_gravity_area_entered"]
+[connection signal="area_exited" from="GravityDetector" to="." method="_on_gravity_area_exited"]

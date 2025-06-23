@@ -1429,6 +1429,10 @@ polygon = PackedVector2Array(-1008, -584, 904, -712, 1216, 824, -936, 792)
 [node name="Olimar" parent="." instance=ExtResource("18_hea4v")]
 position = Vector2(7432, -2416)
 
+[node name="Chain5" parent="." instance=ExtResource("18_wb0km")]
+position = Vector2(11330.9, -1669.45)
+points = PackedVector2Array(-890.919, -66.5503, 885.081, -34.5503)
+
 [node name="Pikmin" parent="." instance=ExtResource("20_php5f")]
 position = Vector2(7222.29, -2412.71)
 

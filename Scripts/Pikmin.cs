@@ -36,16 +36,42 @@ public partial class Pikmin : Entity
 	public override void _PhysicsProcess(double delta)
 	{
 		Godot.Vector2 velocity = Velocity;
-		
+
 		switch (state)
 		{
 			case 0:
+				//state idle
+				
 
+				GD.Print("pikpos: ", GlobalPosition);
+				GD.Print("mainGravpik: ", normalVelocity);
+				if (mainGravity != null)
+				{
+					(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
+					
+
+				}
+				else
+				{
+					normalDir = Godot.Vector2.Down;
+					tangentDir = getPerp(normalDir);
+					angle = -(float)Math.PI / 4;
+				}
+
+
+				(normalVelocity, tangentVelocity) = getMagnitudes(velocity, normalDir);
+
+				normalVelocity += mainGravity.gravityStrength * (float)delta;
+				
+				velocity = normalDir * normalVelocity;
+				velocity += tangentDir * tangentVelocity;
+				
 
 				break;
 		}
 
-
+		Velocity = velocity;
+		MoveAndSlide();
 
 
 	}

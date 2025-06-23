@@ -16,7 +16,7 @@ script = ExtResource("1_8pp82")
 visible = false
 shape = SubResource("CircleShape2D_5d6g1")
 
-[node name="WhistleHitbox" type="Area2D" parent="."]
+[node name="WhistleHitbox" type="Area2D" parent="." groups=["whistle"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WhistleHitbox"]
 shape = SubResource("CircleShape2D_8pp82")
