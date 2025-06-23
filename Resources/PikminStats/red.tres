@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PikminData" load_steps=3 format=3 uid="uid://u3782obctwxk"]
+
+[ext_resource type="PackedScene" uid="uid://bx5feyt2dxa4s" path="res://Scenes/PikminAnim/Red/red_animation.tscn" id="1_oa5wj"]
+[ext_resource type="Script" uid="uid://dkvtncnnl6d3t" path="res://Scripts/PikminData.cs" id="2_fom8e"]
+
+[resource]
+script = ExtResource("2_fom8e")
+animation = ExtResource("1_oa5wj")
+type = 0
+typeName = "red"
+attack = 5
+strength = 1
+throwHeight = 200.0
+throwDistance = 200.0
+generation = 1
+immunities = []

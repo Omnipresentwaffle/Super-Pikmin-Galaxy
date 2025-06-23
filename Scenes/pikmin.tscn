@@ -1,14 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2qxyrj0frttm"]
+[gd_scene load_steps=6 format=3 uid="uid://c2qxyrj0frttm"]
 
 [ext_resource type="PackedScene" uid="uid://dtnqjtbg20b6b" path="res://Scenes/entity.tscn" id="1_7t67h"]
 [ext_resource type="Script" uid="uid://cplcs05br85lb" path="res://Scripts/Pikmin.cs" id="2_i7vx7"]
-[ext_resource type="Script" uid="uid://dkvtncnnl6d3t" path="res://Scripts/PikminData.cs" id="3_wp6wy"]
+[ext_resource type="Resource" uid="uid://u3782obctwxk" path="res://Resources/PikminStats/red.tres" id="3_7t67h"]
 
-[sub_resource type="Resource" id="Resource_bxml4"]
-script = ExtResource("3_wp6wy")
-attack = 5
-strength = 1
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7t67h"]
+radius = 16.0
+height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7t67h"]
+radius = 8.0
 
 [node name="Pikmin" instance=ExtResource("1_7t67h")]
+collision_layer = 4
 script = ExtResource("2_i7vx7")
-pikminData = SubResource("Resource_bxml4")
+pikminData = ExtResource("3_7t67h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_7t67h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector" index="0"]
+shape = SubResource("CircleShape2D_7t67h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]

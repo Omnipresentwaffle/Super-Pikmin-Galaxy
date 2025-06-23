@@ -5,7 +5,6 @@
 
 [node name="Player" type="Camera2D"]
 ignore_rotation = false
-zoom = Vector2(0.75, 0.75)
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 3.0
 script = ExtResource("1_cvnsp")

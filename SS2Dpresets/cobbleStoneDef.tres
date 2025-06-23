@@ -43,7 +43,7 @@ taper_sharp_corners = false
 render = true
 z_index = 0
 z_as_relative = true
-offset = -1.2
+offset = -1.5
 metadata/_custom_type_script = "uid://0lhxan4cqrc1"
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_6ieum"]

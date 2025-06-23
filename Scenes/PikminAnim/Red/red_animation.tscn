@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx5feyt2dxa4s"]
+
+[ext_resource type="Texture2D" uid="uid://do2raaamjv6d1" path="res://Art/PikminAnim/red/redpiktest.png" id="1_2jefv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fc1go"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2jefv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="RedAnimation" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_fc1go")
+animation = &"idle"

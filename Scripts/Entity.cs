@@ -15,6 +15,8 @@ public partial class Entity : CharacterBody2D
 	public float tangentVelocity = 0f;
 	public float angle = 0f;
 
+	public List<GravityArea> gravityAreas = new List<GravityArea>();
+
 	
 
 

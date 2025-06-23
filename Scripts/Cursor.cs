@@ -11,7 +11,7 @@ public partial class Cursor : Area2D
 	public bool timeOut = false;
 
 	public const float minRad = 64f;
-	private const float maxRad = 450f;
+	private const float maxRad = 250f;
 
 	public float slope = 0f;
 
@@ -46,6 +46,7 @@ public partial class Cursor : Area2D
 		CircleShape2D shape = (CircleShape2D)whistleHbox.Shape;
 		if (!Input.IsActionPressed("whistle"))
 		{
+			whistleArea.Monitorable = false;
 			shape.Radius = minRad;
 			whistlePress = false;
 			timeOut = false;
@@ -53,10 +54,12 @@ public partial class Cursor : Area2D
 		}
 		if (timeOut)
 		{
+			whistleArea.Monitorable = false;
 			return;
 		}
 		if (!whistlePress)
 		{
+			whistleArea.Monitorable = true;
 			shape.Radius = minRad;
 			timer = 0f;
 			whistlePress = true;

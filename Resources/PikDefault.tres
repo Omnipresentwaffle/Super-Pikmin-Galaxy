@@ -1,9 +1,9 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dc80bkmy8jcj0"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dc80bkmy8jcj0"]
 
-[ext_resource type="Script" path="res://Scripts/Pikmin.cs" id="1_05nhj"]
+[ext_resource type="Resource" uid="uid://u3782obctwxk" path="res://Resources/PikminStats/red.tres" id="1_4r86g"]
+[ext_resource type="Script" uid="uid://cplcs05br85lb" path="res://Scripts/Pikmin.cs" id="1_05nhj"]
 
 [resource]
 script = ExtResource("1_05nhj")
-attack = null
-strength = null
+pikminData = ExtResource("1_4r86g")
 metadata/_custom_type_script = "uid://dkvtncnnl6d3t"
