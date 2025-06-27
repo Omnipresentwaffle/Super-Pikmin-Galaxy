@@ -5,7 +5,9 @@ public partial class FollowPath : Line2D
 {
 	// Called when the node enters the scene tree for the first time.
 
-	public const float pointDistance = 50f;
+	public const float pointDistance = 1f;
+
+	public UInt16 followers = 0;
 	public override void _Ready()
 	{
 	}
@@ -22,7 +24,7 @@ public partial class FollowPath : Line2D
 		AddPoint(parent.GlobalPosition, index);
 		parent.displacement = Vector2.Zero;
 		
-		if (Points.Length >= 200)
+		if (Points.Length >= 1500)
 		{
 			RemovePoint(0);
 		}

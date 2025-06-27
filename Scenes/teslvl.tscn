@@ -1434,7 +1434,19 @@ position = Vector2(11330.9, -1669.45)
 points = PackedVector2Array(-890.919, -66.5503, 885.081, -34.5503)
 
 [node name="Pikmin" parent="." instance=ExtResource("20_php5f")]
-position = Vector2(7222.29, -2412.71)
+position = Vector2(7224, -2384)
+
+[node name="Pikmin2" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7160, -2384)
+
+[node name="Pikmin3" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7092.55, -2398.73)
+
+[node name="Pikmin" parent="Pikmin3" instance=ExtResource("20_php5f")]
+position = Vector2(-68.1816, 38.1819)
+
+[node name="Pikmin" parent="Pikmin3/Pikmin" instance=ExtResource("20_php5f")]
+position = Vector2(-7.27295, -70)
 
 [editable path="planet"]
 [editable path="planet/GravityArea"]

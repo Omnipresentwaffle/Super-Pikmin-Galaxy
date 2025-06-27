@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmpd67icmvik4"]
+[gd_scene load_steps=9 format=3 uid="uid://dmpd67icmvik4"]
 
 [ext_resource type="PackedScene" uid="uid://dtnqjtbg20b6b" path="res://Scenes/entity.tscn" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://ba1crgmoorl" path="res://Scripts/Captain.cs" id="2_g5jsj"]
 [ext_resource type="Script" uid="uid://c25xykha4om02" path="res://Scripts/FollowPath.cs" id="4_cmh4c"]
+[ext_resource type="PackedScene" uid="uid://xe2nl7ylrdq3" path="res://Scenes/follower.tscn" id="5_csn5b"]
 [ext_resource type="PackedScene" uid="uid://cov60xb1qip2m" path="res://Scenes/chain_attach.tscn" id="5_jodsp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
@@ -57,8 +58,12 @@ shape = SubResource("CircleShape2D_cmh4c")
 [node name="ChainAttach" parent="." index="6" instance=ExtResource("5_jodsp")]
 
 [node name="Follow" type="Line2D" parent="." index="7"]
+visible = false
+z_index = -1
 default_color = Color(1, 0, 1, 1)
 script = ExtResource("4_cmh4c")
+
+[node name="Follower" parent="." index="8" instance=ExtResource("5_csn5b")]
 
 [connection signal="area_entered" from="GravityDetector" to="." method="_on_gravity_area_entered"]
 [connection signal="area_exited" from="GravityDetector" to="." method="_on_gravity_area_exited"]

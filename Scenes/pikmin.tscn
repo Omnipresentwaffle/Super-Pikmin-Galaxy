@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2qxyrj0frttm"]
+[gd_scene load_steps=8 format=3 uid="uid://c2qxyrj0frttm"]
 
 [ext_resource type="PackedScene" uid="uid://dtnqjtbg20b6b" path="res://Scenes/entity.tscn" id="1_7t67h"]
 [ext_resource type="Script" uid="uid://cplcs05br85lb" path="res://Scripts/Pikmin.cs" id="2_i7vx7"]
 [ext_resource type="Resource" uid="uid://u3782obctwxk" path="res://Resources/PikminStats/red.tres" id="3_7t67h"]
+[ext_resource type="PackedScene" uid="uid://xe2nl7ylrdq3" path="res://Scenes/follower.tscn" id="4_i7vx7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7t67h"]
 radius = 16.0
@@ -10,6 +11,9 @@ height = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7t67h"]
 radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7t67h"]
+size = Vector2(32, 32)
 
 [node name="Pikmin" instance=ExtResource("1_7t67h")]
 collision_layer = 4
@@ -20,9 +24,20 @@ pikminData = ExtResource("3_7t67h")
 shape = SubResource("CapsuleShape2D_7t67h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector" index="0"]
+visible = false
 shape = SubResource("CircleShape2D_7t67h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+
+[node name="WhistleDetector" type="Area2D" parent="." index="3"]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WhistleDetector" index="0"]
+shape = SubResource("RectangleShape2D_7t67h")
+
+[node name="Follower" parent="." index="4" instance=ExtResource("4_i7vx7")]
 
 [connection signal="area_entered" from="GravityDetector" to="." method="_on_gravity_area_entered"]
 [connection signal="area_exited" from="GravityDetector" to="." method="_on_gravity_area_exited"]

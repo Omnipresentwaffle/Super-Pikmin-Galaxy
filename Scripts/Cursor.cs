@@ -5,6 +5,7 @@ public partial class Cursor : Area2D
 {
 	// Called when the node enters the scene tree for the first time.
 
+
 	public const float whistleTime = 2f;
 	public const float timeToFull = 0.5f;
 
@@ -28,6 +29,7 @@ public partial class Cursor : Area2D
 		whistleHbox = whistleArea.GetNode<CollisionShape2D>("CollisionShape2D");
 		slope = maxRad - minRad;
 		slope /= (float)timeToFull;
+		whistleArea.Monitoring = false;
 
 
 	}
@@ -46,7 +48,7 @@ public partial class Cursor : Area2D
 		CircleShape2D shape = (CircleShape2D)whistleHbox.Shape;
 		if (!Input.IsActionPressed("whistle"))
 		{
-			whistleArea.Monitorable = false;
+			whistleArea.Monitoring = false;
 			shape.Radius = minRad;
 			whistlePress = false;
 			timeOut = false;
@@ -54,16 +56,16 @@ public partial class Cursor : Area2D
 		}
 		if (timeOut)
 		{
-			whistleArea.Monitorable = false;
+			whistleArea.Monitoring = false;
 			return;
 		}
 		if (!whistlePress)
 		{
-			whistleArea.Monitorable = true;
+			whistleArea.Monitoring = true;
 			shape.Radius = minRad;
 			timer = 0f;
 			whistlePress = true;
-			
+
 		}
 
 		timer += delta;
@@ -74,6 +76,7 @@ public partial class Cursor : Area2D
 			timeOut = true;
 			shape.Radius = minRad;
 			timer = 0f;
+			return;
 		}
 		else if (timer >= timeToFull)
 		{
@@ -88,6 +91,9 @@ public partial class Cursor : Area2D
 
 
 
+
+
 	}
+
 	
 }

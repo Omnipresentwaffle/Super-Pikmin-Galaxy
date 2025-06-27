@@ -23,6 +23,16 @@ public partial class Pikmin : Entity
 
 	public AnimatedSprite2D animation = null;
 
+	public Area2D whistleHitbox = null;
+
+	public bool joinFollow = false;
+	
+	public Follower follower = null;
+
+
+
+
+
 
 
 	public override void _Ready()
@@ -30,6 +40,9 @@ public partial class Pikmin : Entity
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		AnimatedSprite2D loadAnim = (AnimatedSprite2D)pikminData.animation.Instantiate();
 		animation.SpriteFrames = loadAnim.SpriteFrames;
+		whistleHitbox = GetNode<Area2D>("WhistleDetector");
+		follower = GetNode<Follower>("Follower");
+
 
 	}
 
@@ -37,14 +50,19 @@ public partial class Pikmin : Entity
 	{
 		Godot.Vector2 velocity = Velocity;
 
+		if (joinFollow)
+		{
+			state = 1;
+		}
+
 		switch (state)
 		{
 			case 0:
 				//state idle
 
 
-				GD.Print("pikpos: ", GlobalPosition);
-				GD.Print("mainGravpik: ", normalVelocity);
+				//GD.Print("pikpos: ", GlobalPosition);
+				//GD.Print("mainGravpik: ", normalVelocity);
 				if (mainGravity != null)
 				{
 					(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
@@ -62,6 +80,7 @@ public partial class Pikmin : Entity
 				(normalVelocity, tangentVelocity) = getMagnitudes(velocity, normalDir);
 
 				normalVelocity += mainGravity.gravityStrength * (float)delta;
+				GlobalRotationDegrees = angle;
 
 				velocity = normalDir * normalVelocity;
 				velocity += tangentDir * tangentVelocity;
@@ -72,7 +91,14 @@ public partial class Pikmin : Entity
 
 			case 1:
 				//state follow
-			
+				FollowPath followPath = follower.leader.followPath;
+				GlobalPosition = follower.leader.followPath.GetPointPosition((int)(followPath.Points.Length - follower.targetIndex));
+				velocity = Vector2.Zero;
+
+				(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
+				GlobalRotationDegrees = angle;
+
+
 
 				break;
 		}

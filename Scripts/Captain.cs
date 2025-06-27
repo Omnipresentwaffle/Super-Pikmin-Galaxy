@@ -17,6 +17,8 @@ public partial class Captain : Entity
 	public bool active = false;
 	public const float JumpVelocity = -700.0f;
 
+	public Area2D chainDetector = null;
+
 
 
 	public int gravityIndex = 0;
@@ -24,6 +26,8 @@ public partial class Captain : Entity
 	public const float topSpeed = 800f;
 
 	public Godot.Vector2 displacement = Godot.Vector2.Zero;
+
+	public float displacement1D = 0;
 
 	public const float rotateSpeed = 200;
 
@@ -70,7 +74,9 @@ public partial class Captain : Entity
 	public UInt16 state = 1;
 
 	public Chain chain = null;
-	public FollowPath follow = null;
+	public FollowPath followPath = null;
+
+	public Follower follower = null;
 
 	public override void _Ready()
 	{
@@ -78,7 +84,9 @@ public partial class Captain : Entity
 		norLine = GetNode<Line2D>("NormalDirection");
 		tanLine = GetNode<Line2D>("TangentDirection");
 		velLine = GetNode<Line2D>("VelocityDirection");
-		follow = GetNode<FollowPath>("Follow");
+		followPath = GetNode<FollowPath>("Follow");
+		follower = GetNode<Follower>("Follower");
+		chainDetector = GetNode<Area2D>("ChainDetector");
 		base._Ready();
 	}
 
@@ -190,7 +198,7 @@ public partial class Captain : Entity
 		UpDirection = -normalDir;
 		RotationDegrees = angle;
 
-
+		chainDetector.Monitorable = true;
 		if (chainHit)
 		{
 			state = 3;
@@ -200,7 +208,7 @@ public partial class Captain : Entity
 		switch (state)
 		{
 			case 0:
-				//walking
+				//state walk
 
 
 				if (keyPress.X != prevKeyPress.X)
@@ -257,10 +265,10 @@ public partial class Captain : Entity
 				{
 					normalVelocity = 0;
 				}
-				displacement.X += tangentVelocity;
+				displacement.X += tangentVelocity  * (float)delta;
 				if (Math.Abs(displacement.X) >= FollowPath.pointDistance)
 				{
-					follow.addFollowPoint();
+					followPath.addFollowPoint();
 				}
 
 
@@ -372,7 +380,7 @@ public partial class Captain : Entity
 
 				if (Math.Pow(displacement.X, 2) + Math.Pow(displacement.Y, 2) >= FollowPath.pointDistance)
 				{
-					follow.addFollowPoint();
+					followPath.addFollowPoint();
 				}
 				
 
@@ -414,10 +422,7 @@ public partial class Captain : Entity
 				//normalVelocity = 0;
 				Godot.Vector2 progressVector = GlobalPosition - chain.start;
 				hook.progress = getProjection(progressVector, chain.chainVectorFull);
-				//GD.Print("progress: ", hook.progress);
-				//GD.Print("progressVector: ", progressVector);
-				//GD.Print("chainDirPress: ", chainDirPress);
-				//GD.Print("hookstate: ", hook.state);
+
 
 
 				if (jumpPressed)
@@ -431,7 +436,12 @@ public partial class Captain : Entity
 				}
 
 				velocity = chainDirPress * hook.chainVector * topSpeed * (float)delta;
+				displacement += velocity;
 
+				if (Math.Pow(displacement.X, 2) + Math.Pow(displacement.Y, 2) >= FollowPath.pointDistance)
+				{
+					followPath.addFollowPoint();
+				}
 
 
 				break;
@@ -444,6 +454,12 @@ public partial class Captain : Entity
 		{
 			velocity = normalDir * normalVelocity;
 			velocity += tangentDir * tangentVelocity;
+		}
+		displacement += velocity;
+
+		if (Math.Pow(displacement.X, 2) + Math.Pow(displacement.Y, 2) >= FollowPath.pointDistance)
+		{
+			followPath.addFollowPoint();
 		}
 
 
@@ -472,8 +488,8 @@ public partial class Captain : Entity
 			//GD.Print("GRAVAAA");
 		}
 
-	follow.GlobalPosition = Godot.Vector2.Zero;
-	follow.GlobalRotationDegrees = 0f;
+	followPath.GlobalPosition = Godot.Vector2.Zero;
+	followPath.GlobalRotationDegrees = 0f;
 
 
 
@@ -521,10 +537,15 @@ public partial class Captain : Entity
 
 	public void chainDetach()
 	{
+		if (hook.state == 0)
+		{
+			chainDetector.Monitorable = false;
+		}
 		chain = null;
 		chainHit = false;
 		gravPriorityLocked = false;
 		mainGravity = gravityAreas[0];
+		
 
 	}
 

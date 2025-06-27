@@ -10,6 +10,7 @@ radius = 64.0
 radius = 64.0
 
 [node name="Cursor" type="Area2D"]
+collision_mask = 5
 script = ExtResource("1_8pp82")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,6 +18,8 @@ visible = false
 shape = SubResource("CircleShape2D_5d6g1")
 
 [node name="WhistleHitbox" type="Area2D" parent="." groups=["whistle"]]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WhistleHitbox"]
 shape = SubResource("CircleShape2D_8pp82")

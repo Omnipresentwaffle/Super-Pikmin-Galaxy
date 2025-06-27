@@ -59,11 +59,37 @@ public partial class Player : Camera2D
 		captainIndex %= (uint)captains.Count;
 		currentCaptain = (Captain)captains[(int)captainIndex];
 		currentCaptain.active = true;
+		GlobalRotationDegrees = currentCaptain.GlobalRotationDegrees;
 	}
 
 	public void cameraLock()
 	{
 		IgnoreRotation = true;
+	}
+
+
+	public void _on_pikmin_whistled(Area2D area)
+	{
+		Pikmin pikmin = GetNode<Area2D>(GetPathTo(area)).GetParent<Pikmin>();
+		if (pikmin.state != 0)
+		{
+			return;
+		}
+		GD.Print("pikmin");
+
+		FollowPath followPath = currentCaptain.GetNode<FollowPath>("Follow");
+
+		pikmin.follower.leader = currentCaptain;
+
+		//increase followers and set the follower id
+		followPath.followers += 1;
+		pikmin.follower.id = followPath.followers;
+		pikmin.follower.targetIndex = (ushort)(5 * pikmin.follower.id);
+		pikmin.Reparent(this);
+		pikmin.joinFollow = true;
+		
+		
+
 	}
 
 }
