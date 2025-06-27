@@ -66,7 +66,6 @@ public partial class Pikmin : Entity
 				velocity = normalDir * normalVelocity;
 				velocity += tangentDir * tangentVelocity;
 
-				if()
 
 
 				break;
