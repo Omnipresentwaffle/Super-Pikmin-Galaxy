@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bx5feyt2dxa4s"]
 
-[ext_resource type="Texture2D" uid="uid://do2raaamjv6d1" path="res://Art/PikminAnim/red/redpiktest.png" id="1_2jefv"]
+[ext_resource type="Texture2D" uid="uid://e4uvys31ergh" path="res://Art/PikminAnim/red/redsmall.png" id="1_2jefv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fc1go"]
 animations = [{

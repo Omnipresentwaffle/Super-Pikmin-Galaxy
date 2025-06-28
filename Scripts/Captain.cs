@@ -14,6 +14,8 @@ public partial class Captain : Entity
 	//2 = prez... etc
 	public int team = 0;
 
+
+
 	public bool active = false;
 	public const float JumpVelocity = -700.0f;
 
@@ -27,11 +29,11 @@ public partial class Captain : Entity
 
 	public Godot.Vector2 displacement = Godot.Vector2.Zero;
 
-	public float displacement1D = 0;
-
 	public const float rotateSpeed = 200;
 
 	public const float gravitySnap = 45f;
+
+	public bool joinFollow = false;
 
 	public bool targetAnglePositive = true;
 
@@ -56,6 +58,9 @@ public partial class Captain : Entity
 	public bool timeOut = false;
 	public float prevAngle = 0f;
 
+	public bool landed = false;
+	public uint landedAdd = 0;
+
 	public Godot.Vector2 prevKeyPress = Godot.Vector2.Zero;
 	public Godot.Vector2 keyPress = Godot.Vector2.Zero;
 
@@ -72,6 +77,7 @@ public partial class Captain : Entity
 
 	Line2D velLine = null;
 	public UInt16 state = 1;
+	
 
 	public Chain chain = null;
 	public FollowPath followPath = null;
@@ -204,6 +210,12 @@ public partial class Captain : Entity
 			state = 3;
 		}
 
+		if (joinFollow)
+		{
+			joinFollow = false;
+			state = 4;
+		}
+
 
 		switch (state)
 		{
@@ -250,6 +262,15 @@ public partial class Captain : Entity
 					tangentVelocity = Math.Clamp(tangentVelocity, -800, 800);
 				}
 
+				if (landedAdd > 0)
+				{
+					followPath.addFollowPoint();
+				}
+				else
+				{
+					landed = false;
+				}
+
 
 
 
@@ -265,7 +286,7 @@ public partial class Captain : Entity
 				{
 					normalVelocity = 0;
 				}
-				displacement.X += tangentVelocity  * (float)delta;
+				displacement.X += tangentVelocity * (float)delta;
 				if (Math.Abs(displacement.X) >= FollowPath.pointDistance)
 				{
 					followPath.addFollowPoint();
@@ -371,18 +392,21 @@ public partial class Captain : Entity
 				if (IsOnFloor())
 				{
 					//enter walk
+					landed = true;
+					landedAdd = (uint)(followPath.followers * 5) + 20;
 					state = 0;
 					break;
 				}
 
 				displacement.Y += normalVelocity;
 				displacement.X += tangentVelocity;
+				
 
-				if (Math.Pow(displacement.X, 2) + Math.Pow(displacement.Y, 2) >= FollowPath.pointDistance)
+				if (displacement.Length() >= FollowPath.pointDistance)
 				{
 					followPath.addFollowPoint();
 				}
-				
+
 
 
 
@@ -438,11 +462,15 @@ public partial class Captain : Entity
 				velocity = chainDirPress * hook.chainVector * topSpeed * (float)delta;
 				displacement += velocity;
 
-				if (Math.Pow(displacement.X, 2) + Math.Pow(displacement.Y, 2) >= FollowPath.pointDistance)
+				if (displacement.Length() >= FollowPath.pointDistance)
 				{
 					followPath.addFollowPoint();
 				}
 
+
+				break;
+
+			case 4:
 
 				break;
 
@@ -455,12 +483,7 @@ public partial class Captain : Entity
 			velocity = normalDir * normalVelocity;
 			velocity += tangentDir * tangentVelocity;
 		}
-		displacement += velocity;
-
-		if (Math.Pow(displacement.X, 2) + Math.Pow(displacement.Y, 2) >= FollowPath.pointDistance)
-		{
-			followPath.addFollowPoint();
-		}
+		
 
 
 		velLine.ClearPoints();
@@ -488,8 +511,10 @@ public partial class Captain : Entity
 			//GD.Print("GRAVAAA");
 		}
 
-	followPath.GlobalPosition = Godot.Vector2.Zero;
-	followPath.GlobalRotationDegrees = 0f;
+		followPath.GlobalPosition = Godot.Vector2.Zero;
+		followPath.GlobalRotationDegrees = 0f;
+
+		GD.Print("landedAdd: ", landedAdd);
 
 
 

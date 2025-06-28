@@ -91,9 +91,8 @@ public partial class Pikmin : Entity
 
 			case 1:
 				//state follow
-				FollowPath followPath = follower.leader.followPath;
-				GlobalPosition = follower.leader.followPath.GetPointPosition((int)(followPath.Points.Length - follower.targetIndex));
-				velocity = Vector2.Zero;
+
+				follower.follow();
 
 				(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
 				GlobalRotationDegrees = angle;

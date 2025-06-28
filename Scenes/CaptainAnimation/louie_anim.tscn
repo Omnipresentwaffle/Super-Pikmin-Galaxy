@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qe5e5y3edgmn"]
 
-[ext_resource type="Texture2D" uid="uid://de4djwocir2rf" path="res://Art/Captain/louiesmalltest.png" id="1_w6kf6"]
+[ext_resource type="Texture2D" uid="uid://bnbwxq6c5yvsc" path="res://Art/Captain/louietest2.png" id="1_w6kf6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b4d8v"]
 animations = [{

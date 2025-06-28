@@ -7,7 +7,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7t67h"]
 radius = 16.0
-height = 64.0
+height = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7t67h"]
 radius = 8.0
@@ -16,18 +16,24 @@ radius = 8.0
 size = Vector2(32, 32)
 
 [node name="Pikmin" instance=ExtResource("1_7t67h")]
+z_index = 1
 collision_layer = 4
 script = ExtResource("2_i7vx7")
 pikminData = ExtResource("3_7t67h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+visible = false
 shape = SubResource("CapsuleShape2D_7t67h")
+
+[node name="GravityDetector" parent="." index="1"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityDetector" index="0"]
 visible = false
 shape = SubResource("CircleShape2D_7t67h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(0, -15)
 
 [node name="WhistleDetector" type="Area2D" parent="." index="3"]
 visible = false
@@ -38,6 +44,7 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_7t67h")
 
 [node name="Follower" parent="." index="4" instance=ExtResource("4_i7vx7")]
+visible = false
 
 [connection signal="area_entered" from="GravityDetector" to="." method="_on_gravity_area_entered"]
 [connection signal="area_exited" from="GravityDetector" to="." method="_on_gravity_area_exited"]

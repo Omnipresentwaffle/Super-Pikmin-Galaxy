@@ -85,7 +85,6 @@ public partial class Player : Camera2D
 		followPath.followers += 1;
 		pikmin.follower.id = followPath.followers;
 		pikmin.follower.targetIndex = (ushort)(5 * pikmin.follower.id);
-		pikmin.Reparent(this);
 		pikmin.joinFollow = true;
 		
 		

@@ -7,6 +7,7 @@ public partial class FollowPath : Line2D
 
 	public const float pointDistance = 1f;
 
+
 	public UInt16 followers = 0;
 	public override void _Ready()
 	{
@@ -18,11 +19,28 @@ public partial class FollowPath : Line2D
 	}
 
 
-	public void addFollowPoint(int index = -1)
+	public void addFollowPoint(bool reset = true, int index = -1)
 	{
+		
 		Captain parent = GetParent<Captain>();
+		Vector2 displacement = parent.displacement;
+
+		if (parent.landedAdd > 0)
+		{
+			parent.landedAdd -= 1;
+		}
+		if (reset)
+		{
+			parent.displacement = Vector2.Zero;
+		}
+		else
+		{
+			parent.displacement.X += -Math.Sign(displacement.X) * pointDistance;
+			parent.displacement.Y += -Math.Sign(displacement.Y) * pointDistance;
+		}
+		
 		AddPoint(parent.GlobalPosition, index);
-		parent.displacement = Vector2.Zero;
+		
 		
 		if (Points.Length >= 1500)
 		{

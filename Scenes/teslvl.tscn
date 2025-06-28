@@ -1,4 +1,4 @@
-[gd_scene load_steps=176 format=3 uid="uid://dk4xhmyu4n7tu"]
+[gd_scene load_steps=178 format=3 uid="uid://dk4xhmyu4n7tu"]
 
 [ext_resource type="Texture2D" uid="uid://bwsgwi6eqilb" path="res://Art/Planets/sign1.png" id="1_4j07t"]
 [ext_resource type="PackedScene" uid="uid://d2eh5sh5vm371" path="res://Scenes/planet.tscn" id="4_4j07t"]
@@ -17,8 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://be1q18a2807lq" path="res://Scenes/Captains/olimar.tscn" id="18_hea4v"]
 [ext_resource type="PackedScene" uid="uid://jjkgef141hlt" path="res://Scenes/chain.tscn" id="18_wb0km"]
 [ext_resource type="PackedScene" uid="uid://dyvls1vk6irj6" path="res://Scenes/player.tscn" id="19_hea4v"]
+[ext_resource type="PackedScene" uid="uid://dm5rlreqr6jrg" path="res://Scenes/Captains/louie.tscn" id="20_6ieum"]
 [ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="20_67rpx"]
 [ext_resource type="PackedScene" uid="uid://c2qxyrj0frttm" path="res://Scenes/pikmin.tscn" id="20_php5f"]
+[ext_resource type="PackedScene" uid="uid://dqvfh6c38jo4" path="res://Scenes/Captains/prez.tscn" id="21_6ieum"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wb0km"]
 resource_local_to_scene = true
@@ -1204,9 +1206,8 @@ polygon = PackedVector2Array(-842.047, 410.818, 853.952, 434.818, 936.01, -2272,
 
 [node name="Sign1" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(7608, -3536)
+position = Vector2(7616, -3664)
 rotation = 3.12414
-scale = Vector2(3, 3)
 texture = ExtResource("1_4j07t")
 
 [node name="Gahs1u5XgAaWwpT" type="Sprite2D" parent="."]
@@ -1393,9 +1394,8 @@ polygon = PackedVector2Array(48, -160, 360, -240, 392, 192, 8, 152)
 [node name="Sign2" type="Sprite2D" parent="."]
 z_index = -1
 texture_filter = 1
-position = Vector2(5832, -2376)
+position = Vector2(6112, -2296)
 rotation = -0.118682
-scale = Vector2(3, 3)
 texture = ExtResource("1_4j07t")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="."]
@@ -1447,6 +1447,12 @@ position = Vector2(-68.1816, 38.1819)
 
 [node name="Pikmin" parent="Pikmin3/Pikmin" instance=ExtResource("20_php5f")]
 position = Vector2(-7.27295, -70)
+
+[node name="Louie" parent="." instance=ExtResource("20_6ieum")]
+position = Vector2(6662.6, -2373.47)
+
+[node name="Prez" parent="." instance=ExtResource("21_6ieum")]
+position = Vector2(6862.07, -2420.17)
 
 [editable path="planet"]
 [editable path="planet/GravityArea"]

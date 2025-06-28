@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qwe64jfehfyd"]
 
-[ext_resource type="Texture2D" uid="uid://bo3e6hwxu751p" path="res://Art/Captain/prezsmalltest.png" id="1_i18sn"]
+[ext_resource type="Texture2D" uid="uid://dsdg7ervaiyde" path="res://Art/Captain/preztest2.png" id="1_i18sn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bg0tu"]
 animations = [{
