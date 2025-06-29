@@ -18,6 +18,7 @@ public partial class Player : Camera2D
 		captains = GetTree().GetNodesInGroup("captain");
 		currentCaptain = (Captain)captains[0];
 		currentCaptain.active = true;
+		currentCaptain.whistleLocked = true;
 
 
 
@@ -55,11 +56,13 @@ public partial class Player : Camera2D
 			return;
 		}
 		currentCaptain.active = false;
+		currentCaptain.whistleLocked = false;
 		captainIndex += 1;
 		captainIndex %= (uint)captains.Count;
 		currentCaptain = (Captain)captains[(int)captainIndex];
 		currentCaptain.active = true;
-		GlobalRotationDegrees = currentCaptain.GlobalRotationDegrees;
+		currentCaptain.whistleLocked = true;
+		//GlobalRotationDegrees = currentCaptain.GlobalRotationDegrees;
 	}
 
 	public void cameraLock()
@@ -68,24 +71,34 @@ public partial class Player : Camera2D
 	}
 
 
-	public void _on_pikmin_whistled(Area2D area)
+	public void _on_follower_whistled(Area2D area)
 	{
-		Pikmin pikmin = GetNode<Area2D>(GetPathTo(area)).GetParent<Pikmin>();
-		if (pikmin.state != 0)
+		Passive follower = GetNode<Area2D>(GetPathTo(area)).GetParent<Passive>();
+
+		if (follower.whistleLocked)
+		{
+			return;
+		}
+
+		if (follower.state != 0)
 		{
 			return;
 		}
 		GD.Print("pikmin");
 
-		FollowPath followPath = currentCaptain.GetNode<FollowPath>("Follow");
+		FollowPath followPath = currentCaptain.GetNode<FollowPath>("FollowPath");
 
-		pikmin.follower.leader = currentCaptain;
+		follower.leader = currentCaptain;
 
 		//increase followers and set the follower id
+		follower.targetIndex = followPath.followers;
+		follower.id = followPath.followers;
 		followPath.followers += 1;
-		pikmin.follower.id = followPath.followers;
-		pikmin.follower.targetIndex = (ushort)(5 * pikmin.follower.id);
-		pikmin.joinFollow = true;
+
+		
+		follower.joinFollow = true;
+
+		followPath.setSquadLine();
 		
 		
 

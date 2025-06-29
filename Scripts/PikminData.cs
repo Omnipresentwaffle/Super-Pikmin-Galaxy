@@ -14,6 +14,8 @@ public partial class PikminData : Resource
     [Export] public string typeName = "";
     [Export] public UInt16 attack = 5;
     [Export] public UInt16 strength = 1;
+
+    [Export] public float speed = 200f;
     [Export] public float throwHeight = 200f;
     [Export] public float throwDistance = 200f;
 

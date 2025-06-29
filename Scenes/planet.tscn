@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cxtdtr26mexlm" path="res://Scenes/gravity_area.tscn" id="2_m0iey"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ytj11"]
+resource_local_to_scene = true
 radius = 472.271
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vpe2g"]
@@ -11,6 +12,7 @@ resource_local_to_scene = true
 radius = 1208.54
 
 [node name="planet" type="StaticBody2D"]
+disable_mode = 1
 collision_mask = 0
 
 [node name="sprite" type="Sprite2D" parent="."]
@@ -20,6 +22,7 @@ texture = ExtResource("1_vpe2g")
 shape = SubResource("CircleShape2D_ytj11")
 
 [node name="GravityArea" parent="." instance=ExtResource("2_m0iey")]
+visible = false
 behaviour = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityArea"]

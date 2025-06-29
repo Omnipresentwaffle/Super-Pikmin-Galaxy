@@ -5,24 +5,18 @@ using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 
-public partial class Captain : Entity
+public partial class Captain : Passive
 {
 	[Export]
 	public int id = 0;
 	//0 = olimar
 	//1 = louie
 	//2 = prez... etc
-	public int team = 0;
-
-
 
 	public bool active = false;
 	public const float JumpVelocity = -700.0f;
 
 	public Area2D chainDetector = null;
-
-
-
 	public int gravityIndex = 0;
 
 	public const float topSpeed = 800f;
@@ -32,9 +26,6 @@ public partial class Captain : Entity
 	public const float rotateSpeed = 200;
 
 	public const float gravitySnap = 45f;
-
-	public bool joinFollow = false;
-
 	public bool targetAnglePositive = true;
 
 	public int xFlip = 1;
@@ -76,13 +67,11 @@ public partial class Captain : Entity
 
 
 	Line2D velLine = null;
-	public UInt16 state = 1;
+	
 	
 
 	public Chain chain = null;
-	public FollowPath followPath = null;
 
-	public Follower follower = null;
 
 	public override void _Ready()
 	{
@@ -90,9 +79,10 @@ public partial class Captain : Entity
 		norLine = GetNode<Line2D>("NormalDirection");
 		tanLine = GetNode<Line2D>("TangentDirection");
 		velLine = GetNode<Line2D>("VelocityDirection");
-		followPath = GetNode<FollowPath>("Follow");
+		followPath = GetNode<FollowPath>("FollowPath");
 		follower = GetNode<Follower>("Follower");
 		chainDetector = GetNode<Area2D>("ChainDetector");
+		state = 1;
 		base._Ready();
 	}
 
@@ -261,10 +251,15 @@ public partial class Captain : Entity
 					//limit the speed
 					tangentVelocity = Math.Clamp(tangentVelocity, -800, 800);
 				}
+				if (landed)
+				{
+					followPath.setSquadLine();
+					landed = false;
+				}
 
 				if (landedAdd > 0)
 				{
-					followPath.addFollowPoint();
+					followPath.followPathUpdate();
 				}
 				else
 				{
@@ -282,14 +277,23 @@ public partial class Captain : Entity
 					break;
 				}
 
-				if (normalVelocity < 0)
+				if (normalVelocity < -10)
 				{
-					normalVelocity = 0;
+					normalVelocity = -10;
 				}
+				if (Math.Abs(tangentVelocity) >= 150f)
+				{
+					if (normalVelocity < 0)
+					{
+						normalVelocity = 0;
+					}
+				}
+
+
 				displacement.X += tangentVelocity * (float)delta;
 				if (Math.Abs(displacement.X) >= FollowPath.pointDistance)
 				{
-					followPath.addFollowPoint();
+					followPath.followPathUpdate();
 				}
 
 
@@ -394,17 +398,18 @@ public partial class Captain : Entity
 					//enter walk
 					landed = true;
 					landedAdd = (uint)(followPath.followers * 5) + 20;
+					
 					state = 0;
 					break;
 				}
 
 				displacement.Y += normalVelocity;
 				displacement.X += tangentVelocity;
-				
+
 
 				if (displacement.Length() >= FollowPath.pointDistance)
 				{
-					followPath.addFollowPoint();
+					followPath.followPathUpdate();
 				}
 
 
@@ -464,7 +469,7 @@ public partial class Captain : Entity
 
 				if (displacement.Length() >= FollowPath.pointDistance)
 				{
-					followPath.addFollowPoint();
+					followPath.followPathUpdate();
 				}
 
 
@@ -478,12 +483,13 @@ public partial class Captain : Entity
 
 
 
+
 		if (state != 3)
 		{
 			velocity = normalDir * normalVelocity;
 			velocity += tangentDir * tangentVelocity;
 		}
-		
+
 
 
 		velLine.ClearPoints();
@@ -513,8 +519,11 @@ public partial class Captain : Entity
 
 		followPath.GlobalPosition = Godot.Vector2.Zero;
 		followPath.GlobalRotationDegrees = 0f;
+		followPath.squadLine.GlobalPosition = Godot.Vector2.Zero;
+		followPath.squadLine.GlobalRotationDegrees = 0f;
 
-		GD.Print("landedAdd: ", landedAdd);
+
+		//GD.Print("landedAdd: ", landedAdd);
 
 
 

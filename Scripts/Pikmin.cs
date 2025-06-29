@@ -2,10 +2,9 @@ using Godot;
 using System;
 
 
-public partial class Pikmin : Entity
+public partial class Pikmin : Passive
 {
 
-	public UInt16 state = 0;
 	//0 = idle
 	//1 = follow
 	//2 = thrown
@@ -13,21 +12,13 @@ public partial class Pikmin : Entity
 	//4 = attack/attached
 	//5 = 
 
-	public UInt16 subState = 0;
 
 	[Export] public PikminData pikminData = new PikminData();
 
-	public FollowPath follow = null;
-
-	public UInt16 team = 0;
-
 	public AnimatedSprite2D animation = null;
 
-	public Area2D whistleHitbox = null;
-
-	public bool joinFollow = false;
+	public Area2D whistleHitbox = null;	
 	
-	public Follower follower = null;
 
 
 
@@ -53,6 +44,7 @@ public partial class Pikmin : Entity
 		if (joinFollow)
 		{
 			state = 1;
+			joinFollow = false;
 		}
 
 		switch (state)
@@ -92,10 +84,9 @@ public partial class Pikmin : Entity
 			case 1:
 				//state follow
 
-				follower.follow();
+				velocity = follow((float)delta);
 
-				(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
-				GlobalRotationDegrees = angle;
+				
 
 
 

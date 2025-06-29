@@ -5,12 +5,13 @@
 
 [node name="Player" type="Camera2D"]
 ignore_rotation = false
+zoom = Vector2(1.2, 1.2)
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 3.0
 script = ExtResource("1_cvnsp")
 
 [node name="Cursor" parent="." instance=ExtResource("1_v0iea")]
 
-[connection signal="area_entered" from="Cursor/WhistleHitbox" to="." method="_on_pikmin_whistled"]
+[connection signal="area_entered" from="Cursor/WhistleHitbox" to="." method="_on_follower_whistled"]
 
 [editable path="Cursor"]

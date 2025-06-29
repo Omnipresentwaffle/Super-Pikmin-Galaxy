@@ -12,6 +12,12 @@ public partial class Entity : CharacterBody2D
 	public bool newGravPriority = false;
 	public bool gravPriorityLocked = false;
 
+	public UInt16 state = 0;
+
+	public UInt16 subState = 0;
+
+
+
 
 
 

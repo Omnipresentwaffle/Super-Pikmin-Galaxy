@@ -7,6 +7,10 @@
 id = 1
 
 [node name="Animation" parent="." index="0" instance=ExtResource("2_56kat")]
+position = Vector2(0, -13)
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = true
 
 [node name="Area2D#CollisionShape2D" parent="GravityDetector" index="0"]
 visible = false

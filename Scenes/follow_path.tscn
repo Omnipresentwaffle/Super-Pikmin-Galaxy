@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhlqim1d2825j"]
+
+[ext_resource type="Script" uid="uid://c25xykha4om02" path="res://Scripts/FollowPath.cs" id="1_u0n8p"]
+
+[sub_resource type="Curve" id="Curve_u0n8p"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="FollowPath" type="Line2D"]
+z_index = -1
+default_color = Color(1, 0, 1, 1)
+joint_mode = 2
+script = ExtResource("1_u0n8p")
+
+[node name="SquadLine" type="Line2D" parent="."]
+points = PackedVector2Array(232, 272, 472, 168)
+width_curve = SubResource("Curve_u0n8p")
+default_color = Color(0.164706, 1, 0, 1)
