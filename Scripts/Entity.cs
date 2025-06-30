@@ -64,13 +64,9 @@ public partial class Entity : CharacterBody2D
 	public float getProjection(Godot.Vector2 projected, Godot.Vector2 projDir)
 	{
 		//projected is the vector we want to project onto projDir
-		float projection = 0;
-		float dotProd = projected.Dot(projDir);
-		float magnitude = projDir.Length();
-
-		projection = dotProd / magnitude;
-
-		return projection;
+		//this works
+		//trust me bro
+		return (projected.Dot(projDir)) / (projDir.Dot(projDir));
 	}
 
 	public (float, float) getMagnitudes(Godot.Vector2 velocity, Godot.Vector2 normalDir)

@@ -6,7 +6,11 @@ public partial class FollowPath : Line2D
 {
 	// Called when the node enters the scene tree for the first time.
 	Godot.Vector2 prevPointPos = new Godot.Vector2(0, 0);
-	public const float pointDistance = 5f;
+
+	public bool squadLineLocked = false;
+
+	public Godot.Vector2 squadLockedPos = new Godot.Vector2(0, 0);
+	public const float pointDistance = 10f;
 
 	public List<Passive.State> stateList = new List<Passive.State>();
 
@@ -43,12 +47,23 @@ public partial class FollowPath : Line2D
 			return;
 		}
 		Captain parent = GetParent<Captain>();
-		Godot.Vector2 squadVector = squadLine.GetPointPosition(Points.Length - 1) - squadLine.GetPointPosition(0);
-		Godot.Vector2 posToFront = parent.GlobalPosition - squadLine.GetPointPosition(0);
+		Godot.Vector2 squadVector = squadLine.GetPointPosition(squadLine.Points.Length - 1) - squadLine.GetPointPosition(0);
+		Godot.Vector2 posToFront = parent.GlobalPosition - (squadLine.GetPointPosition(0) + squadLine.GlobalPosition);
 		float t = parent.getProjection(posToFront, squadVector);
-		if (t > 1)
+		Line2D norline = parent.GetNode<Line2D>("NormalDirection");
+		norline.ClearPoints();
+		norline.RotationDegrees = 0;
+		norline.GlobalPosition = squadLine.GetPointPosition(0) + squadLine.GlobalPosition;
+		norline.AddPoint(Vector2.Zero);
+		norline.AddPoint(posToFront);
+		if (t < 0 || t > 1)
 		{
-			//addSquadPoint(parent.GlobalPosition, -1);
+			squadLockedPos = parent.GlobalPosition;
+			if (t >= 1)
+			{
+				squadLockedPos -= squadVector;
+			}
+			squadLine.GlobalPosition = squadLockedPos;
 		}
 
 	}
@@ -71,7 +86,7 @@ public partial class FollowPath : Line2D
 
 	public void addSquadPoint(Vector2 pos, int idx = 0)
 	{
-		
+		squadLine.AddPoint(pos, idx);
 	}
 
 	public void setSquadLine()
@@ -81,9 +96,11 @@ public partial class FollowPath : Line2D
 			return;
 		}
 		Captain parent = GetParent<Captain>();
-		Godot.Vector2 pos = parent.GlobalPosition;
+		Godot.Vector2 pos = Vector2.Zero;
 		spacing = squadLineLength / followers;
+
 		uint repeat = followers;
+
 		spacing = maxSpacing;
 
 		GD.Print("followers: ", followers);
@@ -106,12 +123,29 @@ public partial class FollowPath : Line2D
 				GD.Print("uhOh");
 			}
 			pos += posAdd;
-			
+
 
 
 		}
-		GlobalPosition = Vector2.Zero;
-		GlobalRotationDegrees = 0f;
+		squadLineLocked = true;
+		squadLockedPos = parent.GlobalPosition;
+		GlobalPosition = parent.GlobalPosition;
+		//GlobalRotationDegrees = 0f;
+	}
+	public void landed()
+	{
+		if (followers <= 0)
+		{
+			return;
+		}
+		Captain parent = GetParent<Captain>();
+		Godot.Vector2 squadVector = squadLine.GetPointPosition(squadLine.Points.Length - 1) - squadLine.GetPointPosition(0);
+		Godot.Vector2 posToFront = parent.GlobalPosition - (squadLine.GetPointPosition(0) + squadLine.GlobalPosition);
+		float t = parent.getProjection(posToFront, squadVector);
+		if (t < 0 || t > 1)
+		{
+			setSquadLine();
+		}
 	}
 	
 }

@@ -50,7 +50,6 @@ public partial class Captain : Passive
 	public float prevAngle = 0f;
 
 	public bool landed = false;
-	public uint landedAdd = 0;
 
 	public Godot.Vector2 prevKeyPress = Godot.Vector2.Zero;
 	public Godot.Vector2 keyPress = Godot.Vector2.Zero;
@@ -253,18 +252,10 @@ public partial class Captain : Passive
 				}
 				if (landed)
 				{
-					followPath.setSquadLine();
+					followPath.landed();
 					landed = false;
 				}
 
-				if (landedAdd > 0)
-				{
-					followPath.followPathUpdate();
-				}
-				else
-				{
-					landed = false;
-				}
 
 
 
@@ -397,7 +388,6 @@ public partial class Captain : Passive
 				{
 					//enter walk
 					landed = true;
-					landedAdd = (uint)(followPath.followers * 5) + 20;
 					
 					state = 0;
 					break;
@@ -409,7 +399,7 @@ public partial class Captain : Passive
 
 				if (displacement.Length() >= FollowPath.pointDistance)
 				{
-					followPath.followPathUpdate();
+					followPath.addFollowPoint(GlobalPosition);
 				}
 
 
@@ -519,11 +509,10 @@ public partial class Captain : Passive
 
 		followPath.GlobalPosition = Godot.Vector2.Zero;
 		followPath.GlobalRotationDegrees = 0f;
-		followPath.squadLine.GlobalPosition = Godot.Vector2.Zero;
-		followPath.squadLine.GlobalRotationDegrees = 0f;
+		followPath.squadLine.GlobalPosition = followPath.squadLockedPos;
+		
 
 
-		//GD.Print("landedAdd: ", landedAdd);
 
 
 

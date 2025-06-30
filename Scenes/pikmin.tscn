@@ -35,7 +35,7 @@ visible = false
 visible = false
 shape = SubResource("CircleShape2D_7t67h")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+[node name="Animation" type="AnimatedSprite2D" parent="." index="3"]
 position = Vector2(0, -15)
 
 [node name="WhistleDetector" type="Area2D" parent="." index="4"]

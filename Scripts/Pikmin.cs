@@ -28,7 +28,7 @@ public partial class Pikmin : Passive
 
 	public override void _Ready()
 	{
-		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		animation = GetNode<AnimatedSprite2D>("Animation");
 		AnimatedSprite2D loadAnim = (AnimatedSprite2D)pikminData.animation.Instantiate();
 		animation.SpriteFrames = loadAnim.SpriteFrames;
 		whistleHitbox = GetNode<Area2D>("WhistleDetector");

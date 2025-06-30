@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmpd67icmvik4"]
+[gd_scene load_steps=10 format=3 uid="uid://dmpd67icmvik4"]
 
 [ext_resource type="PackedScene" uid="uid://dtnqjtbg20b6b" path="res://Scenes/entity.tscn" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://ba1crgmoorl" path="res://Scripts/Captain.cs" id="2_g5jsj"]
@@ -12,6 +12,10 @@ height = 64.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
 radius = 48.0
+
+[sub_resource type="Curve" id="Curve_jodsp"]
+_data = [Vector2(0, 0.444972), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cmh4c"]
 radius = 40.0
@@ -40,6 +44,7 @@ position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_cvnsp")
 
 [node name="NormalDirection" type="Line2D" parent="." index="2"]
+width_curve = SubResource("Curve_jodsp")
 default_color = Color(1, 0, 0, 1)
 
 [node name="VelocityDirection" type="Line2D" parent="." index="3"]

@@ -10,6 +10,7 @@ public partial class Passive : Entity
 	public Follower follower = null;
 	public UInt16 team = 0;
 
+
 	public UInt16 id = 0;
 	//the number of the follower
 	public uint targetIndex = 0;
@@ -26,6 +27,8 @@ public partial class Passive : Entity
 	public State followState = State.walk;
 
 	public Line2D line = null;
+
+	public AnimatedSprite2D anim = null;
 
 	public enum State
 	{
@@ -58,25 +61,30 @@ public partial class Passive : Entity
 		{
 			case State.walk:
 				line = GetNode<Line2D>("NormalDirection");
-				GD.Print("id: ", id);
+				//distance = v * t = m/s * s = m
 
-				targetPos = squadLine.GetPointPosition((int)(id)+1);
+				targetPos = squadLine.GetPointPosition((int)(id)+1) + squadLine.GlobalPosition;
 				dirVector = targetPos - GlobalPosition;
 
 				(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
 				tangentDir = getPerp(normalDir);
 				GlobalRotationDegrees = angle;
-
 				float t = getProjection(dirVector, tangentDir);
-				dirVector = tangentDir * t;
-				if (speed > dirVector.Length())
-				{
-					speed = dirVector.Length();
-				}
-				dirVector = dirVector.Normalized();
-				
+				Godot.Vector2 targetVector = tangentDir * t;
+				Godot.Vector2 velocityVector = tangentDir * Math.Sign(t) * speed;
+			
 
-				return dirVector * speed;
+				Godot.Vector2 moveVector = velocityVector * delta;
+
+
+				if (moveVector.Length() > targetVector.Length())
+				{
+					speed = targetVector.Length() / delta;
+					velocityVector = tangentDir * Math.Sign(t) * speed;
+
+				}
+
+				return velocityVector;
 
 
 		}
