@@ -1182,7 +1182,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_id5fq"]
 script = ExtResource("11_8qmac")
-position = Vector2(-180.052, 90.5359)
+position = Vector2(-188.05, 90.54)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_rpkma")
@@ -1195,7 +1195,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_543wg"]
 script = ExtResource("11_8qmac")
-position = Vector2(-180.052, 90.5359)
+position = Vector2(-188.05, 90.54)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_8owys")
@@ -1590,8 +1590,9 @@ polygon = PackedVector2Array(48, -160, 360, -240, 392, 192, 8, 152)
 [node name="Sign2" type="Sprite2D" parent="."]
 z_index = -1
 texture_filter = 1
-position = Vector2(6112, -2296)
+position = Vector2(6208, -2368)
 rotation = -0.118682
+scale = Vector2(3, 3)
 texture = ExtResource("1_4j07t")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="."]
@@ -1623,7 +1624,7 @@ polygon = PackedVector2Array(-1008, -584, 904, -712, 1008, 320, 792, 368, 852.36
 
 [node name="Olimar" parent="." instance=ExtResource("18_hea4v")]
 z_index = 1
-position = Vector2(6944, -2360)
+position = Vector2(6616, -2473.27)
 floor_snap_length = 1.0
 
 [node name="Chain5" parent="." instance=ExtResource("18_wb0km")]
@@ -1631,19 +1632,19 @@ position = Vector2(11330.9, -1669.45)
 points = PackedVector2Array(-890.919, -66.5503, 885.081, -34.5503)
 
 [node name="Pikmin" parent="." instance=ExtResource("20_php5f")]
-position = Vector2(7224, -2384)
+position = Vector2(6896, -2497.27)
 
 [node name="Pikmin2" parent="." instance=ExtResource("20_php5f")]
-position = Vector2(7160, -2384)
+position = Vector2(6832, -2497.27)
 
 [node name="Pikmin3" parent="." instance=ExtResource("20_php5f")]
-position = Vector2(7092.55, -2398.73)
+position = Vector2(6764.55, -2512)
 
 [node name="Pikmin5" parent="." instance=ExtResource("20_php5f")]
-position = Vector2(6864, -2344)
+position = Vector2(6536, -2457.27)
 
 [node name="Pikmin4" parent="." instance=ExtResource("20_php5f")]
-position = Vector2(7024.37, -2360.55)
+position = Vector2(6696.37, -2473.82)
 
 [node name="Louie" parent="." instance=ExtResource("20_6ieum")]
 z_index = 1
@@ -1668,7 +1669,7 @@ metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D7"]
 visible = false
 modulate = Color(1, 1, 1, 0.3)
-polygon = PackedVector2Array(-180.052, 90.5359, 51.9482, 90.5359, 339.948, -229.464, 475.948, -309.464, 643.948, -357.464, 755.948, -557.464, 1139.95, -557.464, 1185.38, -87.1146, 1359.42, -87.1146, 1667.95, 362.536, -188.052, 362.536)
+polygon = PackedVector2Array(-188.05, 90.54, 51.9482, 90.5359, 339.948, -229.464, 475.948, -309.464, 643.948, -357.464, 755.948, -557.464, 1139.95, -557.464, 1185.38, -87.1146, 1359.42, -87.1146, 1667.95, 362.536, -188.052, 362.536)
 
 [node name="curvedGravity6" parent="." instance=ExtResource("7_xesy8")]
 position = Vector2(9552, 2848)
@@ -1678,6 +1679,7 @@ points = PackedVector2Array(-928, 176, -920, -128, -439.021, -123.462, -4.47742,
 closed = true
 
 [node name="CollisionPolygon2D" parent="curvedGravity6" index="1"]
+visible = false
 polygon = PackedVector2Array(-1312, -888, 1064, -1008, 1176, 368, -1224, 376)
 
 [node name="platform4" parent="." instance=ExtResource("7_j35oj")]
@@ -1689,6 +1691,103 @@ position = Vector2(-295.05, -81.003)
 
 [node name="CollisionPolygon2D" parent="platform4/GravityArea2" index="0"]
 polygon = PackedVector2Array(-208, 128, 1584, 112, 1696, -584, -264, -632)
+
+[node name="platform5" parent="." instance=ExtResource("7_j35oj")]
+position = Vector2(13360.6, 1135.37)
+scale = Vector2(5, 2.571)
+metadata/_edit_group_ = true
+
+[node name="GravityArea2" parent="platform5" index="2"]
+visible = false
+
+[node name="CollisionPolygon2D" parent="platform5/GravityArea2" index="0"]
+polygon = PackedVector2Array(-888.592, 432.634, 911.407, 488.634, 943.407, -127.365, -920.592, -79.3654)
+
+[node name="platform6" parent="." instance=ExtResource("7_j35oj")]
+position = Vector2(13384, 72)
+rotation = 3.14159
+scale = Vector2(5, 2.571)
+
+[node name="Platform1" parent="platform6" index="1"]
+position = Vector2(-609.6, -0.00300554)
+
+[node name="GravityArea2" parent="platform6" index="2"]
+visible = false
+angle = 90.0
+
+[node name="CollisionPolygon2D" parent="platform6/GravityArea2" index="0"]
+polygon = PackedVector2Array(-888.592, 432.634, 911.407, 488.634, 952, 47.9997, -919.999, 7.99982)
+
+[node name="platform7" parent="." instance=ExtResource("7_j35oj")]
+position = Vector2(16512, 1135.37)
+scale = Vector2(5, 2.571)
+metadata/_edit_group_ = true
+
+[node name="GravityArea2" parent="platform7" index="2"]
+visible = false
+
+[node name="CollisionPolygon2D" parent="platform7/GravityArea2" index="0"]
+polygon = PackedVector2Array(-888.592, 432.634, 911.407, 488.634, 943.407, -127.365, -920.592, -79.3654)
+
+[node name="Pikmin6" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(6768, -2416)
+
+[node name="Pikmin7" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(6768, -2416)
+
+[node name="Pikmin8" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(6768, -2416)
+
+[node name="Pikmin9" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(6768, -2416)
+
+[node name="Pikmin11" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(6949.55, -2412.28)
+
+[node name="Pikmin12" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(6949.55, -2412.28)
+
+[node name="Pikmin13" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(6949.55, -2412.28)
+
+[node name="Pikmin14" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(6949.55, -2412.28)
+
+[node name="Pikmin16" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7022.28, -2425.01)
+
+[node name="Pikmin17" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7022.28, -2425.01)
+
+[node name="Pikmin18" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7022.28, -2425.01)
+
+[node name="Pikmin19" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7022.28, -2425.01)
+
+[node name="Pikmin10" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(6768, -2416)
+
+[node name="Pikmin21" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7091.37, -2439.55)
+
+[node name="Pikmin22" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7091.37, -2439.55)
+
+[node name="Pikmin23" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7091.37, -2439.55)
+
+[node name="Pikmin24" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7091.37, -2439.55)
+
+[node name="Pikmin25" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7091.37, -2439.55)
+
+[node name="Pikmin20" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(7022.28, -2425.01)
+
+[node name="Pikmin15" parent="." instance=ExtResource("20_php5f")]
+position = Vector2(6949.55, -2412.28)
 
 [editable path="planet"]
 [editable path="planet/GravityArea"]
@@ -1708,3 +1807,9 @@ polygon = PackedVector2Array(-208, 128, 1584, 112, 1696, -584, -264, -632)
 [editable path="curvedGravity6"]
 [editable path="platform4"]
 [editable path="platform4/GravityArea2"]
+[editable path="platform5"]
+[editable path="platform5/GravityArea2"]
+[editable path="platform6"]
+[editable path="platform6/GravityArea2"]
+[editable path="platform7"]
+[editable path="platform7/GravityArea2"]

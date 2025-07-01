@@ -66,8 +66,8 @@ public partial class Captain : Passive
 
 
 	Line2D velLine = null;
-	
-	
+
+
 
 	public Chain chain = null;
 
@@ -82,6 +82,8 @@ public partial class Captain : Passive
 		follower = GetNode<Follower>("Follower");
 		chainDetector = GetNode<Area2D>("ChainDetector");
 		state = 1;
+		anim = GetNode<AnimatedSprite2D>("Animation");
+
 		base._Ready();
 	}
 
@@ -252,9 +254,10 @@ public partial class Captain : Passive
 				}
 				if (landed)
 				{
-					followPath.landed();
+					followPath.landed(anim.FlipH);
 					landed = false;
 				}
+				handleAnimation();
 
 
 
@@ -384,11 +387,13 @@ public partial class Captain : Passive
 
 				tangentVelocity = Math.Clamp(tangentVelocity, -1000, 1000);
 
+				handleAnimation();
+
 				if (IsOnFloor())
 				{
 					//enter walk
 					landed = true;
-					
+
 					state = 0;
 					break;
 				}
@@ -441,6 +446,8 @@ public partial class Captain : Passive
 				//normalVelocity = 0;
 				Godot.Vector2 progressVector = GlobalPosition - chain.start;
 				hook.progress = getProjection(progressVector, chain.chainVectorFull);
+
+				handleAnimation();
 
 
 
@@ -510,7 +517,7 @@ public partial class Captain : Passive
 		followPath.GlobalPosition = Godot.Vector2.Zero;
 		followPath.GlobalRotationDegrees = 0f;
 		followPath.squadLine.GlobalPosition = followPath.squadLockedPos;
-		
+		followPath.squadLine.GlobalRotationDegrees = 0f;
 
 
 
@@ -525,13 +532,14 @@ public partial class Captain : Passive
 		normalVelocity -= Math.Abs(tangentVelocity) * 0.3f;
 		jumpTimer = jumpTime;
 		timeOut = false;
+		followPath.newPath();
 	}
 
 
 
 
-	
-	
+
+
 
 	public void _on_chain_area_entered(Area2D area)
 	{
@@ -544,9 +552,9 @@ public partial class Captain : Passive
 
 		GD.Print("chainAttachFrick");
 		chainAttach();
-		
 
-		
+
+
 
 	}
 	public void _on_chain_area_exited(Area2D area)
@@ -568,7 +576,7 @@ public partial class Captain : Passive
 		chainHit = false;
 		gravPriorityLocked = false;
 		mainGravity = gravityAreas[0];
-		
+
 
 	}
 
@@ -601,9 +609,9 @@ public partial class Captain : Passive
 
 		if (checkAngle < 0)
 		{
-			checkAngle += 2*pi;
+			checkAngle += 2 * pi;
 		}
-		GD.Print("checkAngle: ", checkAngle*180/(float)Math.PI);
+		GD.Print("checkAngle: ", checkAngle * 180 / (float)Math.PI);
 		//chainHit = true;
 
 		if (checkAngle > (5 * pi / 6) && checkAngle < (7 * pi / 6))
@@ -665,14 +673,31 @@ public partial class Captain : Passive
 
 	public void smoothAngle(float delta)
 	{
-		
+
 	}
 
-	public float angleCorrected(float enterAngle) {
+	public float angleCorrected(float enterAngle)
+	{
 		if (enterAngle < 0)
 		{
 			enterAngle += 360;
 		}
 		return enterAngle;
+	}
+
+	public void handleAnimation()
+	{
+		if (Math.Abs(tangentVelocity) <= 5)
+		{
+			return;
+		}
+		if (tangentVelocity < 0)
+		{
+			anim.FlipH = false;
+		}
+		else if (tangentVelocity > 0)
+		{
+			anim.FlipH = true;
+		}
 	}
 }

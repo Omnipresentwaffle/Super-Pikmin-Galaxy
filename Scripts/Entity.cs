@@ -16,6 +16,8 @@ public partial class Entity : CharacterBody2D
 
 	public UInt16 subState = 0;
 
+	public AnimatedSprite2D anim = null;
+
 
 
 
@@ -34,7 +36,10 @@ public partial class Entity : CharacterBody2D
 	public List<GravityArea> gravityAreas = new List<GravityArea>();
 
 
+public override void _Ready()
 
+	{
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{

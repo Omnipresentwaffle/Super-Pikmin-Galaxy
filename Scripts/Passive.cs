@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Drawing;
 using System.Numerics;
 
 public partial class Passive : Entity
@@ -18,7 +19,12 @@ public partial class Passive : Entity
 
 	public Godot.Vector2 targetPos =  Godot.Vector2.Zero;
 
+
 	public UInt16 order = 0;
+
+	public UInt16 nextPathIdx = 0;
+
+	public JumpPath nextPath = null;
 
 	public float speedConst = 800f;
 
@@ -28,12 +34,12 @@ public partial class Passive : Entity
 
 	public Line2D line = null;
 
-	public AnimatedSprite2D anim = null;
 
 	public enum State
 	{
 		walk,
-		jump
+		jump,
+		fall
 	}
 
 	public bool whistleLocked = false;
@@ -63,7 +69,7 @@ public partial class Passive : Entity
 				line = GetNode<Line2D>("NormalDirection");
 				//distance = v * t = m/s * s = m
 
-				targetPos = squadLine.GetPointPosition((int)(id)+1) + squadLine.GlobalPosition;
+				targetPos = squadLine.GetPointPosition((int)(id) + 1) + squadLine.GlobalPosition;
 				dirVector = targetPos - GlobalPosition;
 
 				(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
@@ -72,7 +78,7 @@ public partial class Passive : Entity
 				float t = getProjection(dirVector, tangentDir);
 				Godot.Vector2 targetVector = tangentDir * t;
 				Godot.Vector2 velocityVector = tangentDir * Math.Sign(t) * speed;
-			
+
 
 				Godot.Vector2 moveVector = velocityVector * delta;
 
@@ -84,7 +90,67 @@ public partial class Passive : Entity
 
 				}
 
+				if (leader.state == 1)
+				{
+					nextPathIdx = (ushort)((ushort)followPath.jumpPaths.Count - 1);
+					nextPath = followPath.jumpPaths[nextPathIdx];
+
+				}
+				if (nextPath != null)
+				{
+					targetIndex = (uint)(5 * ((int)(id) + 1));
+
+					if (nextPath.Points.Length >= targetIndex)
+					{
+						followState = State.jump;
+						break;
+					}
+					if (nextPath.complete)
+					{
+						followState = State.fall;
+						break;
+
+					}
+					else
+					{
+					}
+						
+				}
+				velocityVector += normalDir * 500f;
 				return velocityVector;
+
+			case State.jump:
+				targetPos = nextPath.GetPointPosition((int)targetIndex);
+
+				GlobalPosition = targetPos;
+
+				if (leader.state == 0)
+				{
+					followState = State.fall;
+
+				}
+
+
+				return Godot.Vector2.Zero;
+
+			case State.fall:
+				targetIndex -= 1;
+				if (targetIndex > nextPath.Points.Length)
+				{
+					return Godot.Vector2.Zero;
+				}
+
+				if (targetIndex <= 0)
+				{
+					followState = State.walk;
+					nextPath = null;
+					return Godot.Vector2.Zero;
+				}
+				targetPos = nextPath.GetPointPosition((int)targetIndex);
+				GlobalPosition = targetPos;
+				
+				return Godot.Vector2.Zero;
+
 
 
 		}

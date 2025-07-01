@@ -41,7 +41,20 @@ public partial class Player : Camera2D
 		Position = Vector2.Zero;
 		GlobalPosition += mouseDistance / 10;
 
+		squadShow();
 
+	}
+
+	public void squadShow()
+	{
+		Line2D squadLine = currentCaptain.followPath.squadLine;
+		if (squadLine.Points.Length == 0)
+		{
+			return;
+		}
+		Godot.Vector2 squadVector = squadLine.GetPointPosition(squadLine.Points.Length - 1) - squadLine.GetPointPosition(0);
+		//GlobalPosition += squadVector / 5;
+		
 	}
 
 	public void swapCaptain()

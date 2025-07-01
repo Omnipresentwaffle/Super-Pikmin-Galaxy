@@ -5,5 +5,5 @@
 
 [node name="Prez" instance=ExtResource("1_1qjmk")]
 
-[node name="PrezAnimation" parent="." index="0" instance=ExtResource("2_v0sbf")]
+[node name="Animation" parent="." index="0" instance=ExtResource("2_v0sbf")]
 position = Vector2(8, -8)

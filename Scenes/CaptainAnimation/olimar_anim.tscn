@@ -24,6 +24,6 @@ animations = [{
 
 [node name="OlimarAnim" type="AnimatedSprite2D"]
 texture_filter = 1
-position = Vector2(0, -16)
+position = Vector2(8, -16)
 sprite_frames = SubResource("SpriteFrames_fd8qo")
 animation = &"idle"
