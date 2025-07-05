@@ -1375,9 +1375,6 @@ shape = SubResource("CircleShape2D_wb0km")
 [node name="planet2" parent="." instance=ExtResource("4_4j07t")]
 position = Vector2(-2800, 128)
 
-[node name="sprite" parent="planet2" index="0"]
-visible = false
-
 [node name="CollisionShape2D" parent="planet2" index="1"]
 shape = SubResource("CircleShape2D_qaaf2")
 
@@ -1653,7 +1650,7 @@ floor_snap_length = 1.0
 
 [node name="Prez" parent="." instance=ExtResource("21_6ieum")]
 z_index = 1
-position = Vector2(4624, -1072)
+position = Vector2(1048, 40)
 floor_snap_length = 1.0
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="."]
