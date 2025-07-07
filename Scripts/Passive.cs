@@ -90,7 +90,7 @@ public partial class Passive : Entity
 
 				}
 
-				if (leader.state == 1)
+				if (followPath.jumpPaths.Count > nextPathIdx)
 				{
 					nextPathIdx = (ushort)((ushort)followPath.jumpPaths.Count - 1);
 					nextPath = followPath.jumpPaths[nextPathIdx];
@@ -100,7 +100,7 @@ public partial class Passive : Entity
 				{
 					targetIndex = (uint)(5 * ((int)(id) + 1));
 
-					if (nextPath.Points.Length >= targetIndex)
+					if (nextPath.Points.Length > targetIndex)
 					{
 						followState = State.jump;
 						break;
@@ -135,7 +135,7 @@ public partial class Passive : Entity
 
 			case State.fall:
 				targetIndex -= 1;
-				if (targetIndex > nextPath.Points.Length)
+				if (targetIndex >= nextPath.Points.Length)
 				{
 					return Godot.Vector2.Zero;
 				}

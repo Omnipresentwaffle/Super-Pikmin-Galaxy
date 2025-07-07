@@ -51,7 +51,7 @@ public partial class Pikmin : Passive
 		{
 			case 0:
 				//state idle
-
+			
 
 				//GD.Print("pikpos: ", GlobalPosition);
 				//GD.Print("mainGravpik: ", normalVelocity);
@@ -69,8 +69,7 @@ public partial class Pikmin : Passive
 				}
 
 
-				(normalVelocity, tangentVelocity) = getMagnitudes(velocity, normalDir);
-
+				
 				normalVelocity += mainGravity.gravityStrength * (float)delta;
 				GlobalRotationDegrees = angle;
 
