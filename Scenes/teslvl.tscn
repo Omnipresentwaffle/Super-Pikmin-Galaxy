@@ -1615,7 +1615,7 @@ metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D6"]
 visible = false
 modulate = Color(1, 1, 1, 0.3)
-polygon = PackedVector2Array(-570.534, 208.863, -619.037, -318.964, 40.0333, -361.761, 40.0333, -527.242, 750.459, -547.214, 816.081, -2.26773, 493.679, 11.9978, 556.447, 514.146, -242.426, 548.384, -256.691, 223.128)
+polygon = PackedVector2Array(-570.533, 208.863, -619.036, -318.964, 40.0336, -361.761, 40.0336, -527.242, 750.46, -547.214, 816.082, -2.26773, 493.68, 11.9978, 556.448, 514.146, -242.425, 548.384, -256.69, 223.128)
 
 [node name="curvedGravity5" parent="StaticBody2D6" instance=ExtResource("7_xesy8")]
 position = Vector2(34.987, -142.74)

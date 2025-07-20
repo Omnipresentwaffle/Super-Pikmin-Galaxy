@@ -157,7 +157,7 @@ public partial class Passive : Entity
 
 			case State.held:
 				GlobalPosition = leader.GlobalPosition;
-				break;
+				return Godot.Vector2.Zero;
 
 
 

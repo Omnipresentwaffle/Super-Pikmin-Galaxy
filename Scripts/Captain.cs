@@ -25,6 +25,7 @@ public partial class Captain : Passive
 
 	public Godot.Vector2 displacement = Godot.Vector2.Zero;
 
+
 	public const float rotateSpeed = 200;
 
 	public const float gravitySnap = 45f;
@@ -686,6 +687,12 @@ public partial class Captain : Passive
 			enterAngle += 360;
 		}
 		return enterAngle;
+	}
+
+	public void grabFollower(Passive follower)
+	{
+		throwHold = true;
+		follower.followState = Passive.State.held;
 	}
 
 	public void handleAnimation()

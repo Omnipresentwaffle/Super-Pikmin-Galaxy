@@ -7,7 +7,7 @@ public partial class FollowPath : Line2D
 	// Called when the node enters the scene tree for the first time.
 	Godot.Vector2 prevPointPos = new Godot.Vector2(0, 0);
 
-
+	public List<Passive> followerList = new List<Passive>();
 
 	public bool squadLineLocked = false;
 
