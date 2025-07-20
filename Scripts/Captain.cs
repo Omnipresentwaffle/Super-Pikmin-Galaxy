@@ -16,6 +16,8 @@ public partial class Captain : Passive
 	public bool active = false;
 	public const float JumpVelocity = -700.0f;
 
+	public bool throwHold = false;
+
 	public Area2D chainDetector = null;
 	public int gravityIndex = 0;
 
@@ -268,6 +270,7 @@ public partial class Captain : Passive
 				{
 					jumpTimer = 0f;
 					state = 1;
+					followPath.newPath();
 					break;
 				}
 

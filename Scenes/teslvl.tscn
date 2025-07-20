@@ -1,4 +1,4 @@
-[gd_scene load_steps=205 format=3 uid="uid://dk4xhmyu4n7tu"]
+[gd_scene load_steps=206 format=3 uid="uid://dk4xhmyu4n7tu"]
 
 [ext_resource type="Texture2D" uid="uid://bwsgwi6eqilb" path="res://Art/Planets/sign1.png" id="1_4j07t"]
 [ext_resource type="PackedScene" uid="uid://d2eh5sh5vm371" path="res://Scenes/planet.tscn" id="4_4j07t"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://dhdc4b8yddyej" path="res://addons/rmsmartshape/shapes/shape.gd" id="14_nr0ts"]
 [ext_resource type="Script" uid="uid://0lhxan4cqrc1" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="15_php5f"]
 [ext_resource type="PackedScene" uid="uid://be1q18a2807lq" path="res://Scenes/Captains/olimar.tscn" id="18_hea4v"]
+[ext_resource type="PackedScene" uid="uid://bc6al12m0lvao" path="res://Scenes/AutoRotate.tscn" id="18_qaaf2"]
 [ext_resource type="PackedScene" uid="uid://jjkgef141hlt" path="res://Scenes/chain.tscn" id="18_wb0km"]
 [ext_resource type="PackedScene" uid="uid://dyvls1vk6irj6" path="res://Scenes/player.tscn" id="19_hea4v"]
 [ext_resource type="PackedScene" uid="uid://dm5rlreqr6jrg" path="res://Scenes/Captains/louie.tscn" id="20_6ieum"]
@@ -1592,8 +1593,16 @@ rotation = -0.118682
 scale = Vector2(3, 3)
 texture = ExtResource("1_4j07t")
 
+[node name="curve" type="Line2D" parent="."]
+z_index = 10
+position = Vector2(5648, -3320)
+points = PackedVector2Array(472, 168, 800, 152, 728, -416, -8, -400, -8, -232, -672, -192, -616, 360, -304, 376, -288, 704, 536, 672)
+closed = true
+default_color = Color(1, 0.286275, 1, 1)
+
 [node name="StaticBody2D6" type="StaticBody2D" parent="."]
-position = Vector2(-426.987, -2305.26)
+position = Vector2(3576, -5720)
+metadata/_edit_group_ = true
 
 [node name="SS2D_Shape_Closed2" type="MeshInstance2D" parent="StaticBody2D6"]
 position = Vector2(2.98743, -38.7446)
@@ -1606,22 +1615,26 @@ metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D6"]
 visible = false
 modulate = Color(1, 1, 1, 0.3)
-polygon = PackedVector2Array(-570.534, 208.863, -619.037, -318.964, 40.0334, -361.761, 40.0334, -527.242, 750.459, -547.214, 816.081, -2.26773, 493.679, 11.9978, 556.447, 514.146, -242.426, 548.384, -256.691, 223.128)
+polygon = PackedVector2Array(-570.534, 208.863, -619.037, -318.964, 40.0333, -361.761, 40.0333, -527.242, 750.459, -547.214, 816.081, -2.26773, 493.679, 11.9978, 556.447, 514.146, -242.426, 548.384, -256.691, 223.128)
 
-[node name="curvedGravity5" parent="." instance=ExtResource("7_xesy8")]
-position = Vector2(-392, -2448)
+[node name="curvedGravity5" parent="StaticBody2D6" instance=ExtResource("7_xesy8")]
+position = Vector2(34.987, -142.74)
 priority = 1
 
-[node name="curve" parent="curvedGravity5" index="0"]
+[node name="curve" parent="StaticBody2D6/curvedGravity5" index="0"]
 points = PackedVector2Array(472, 168, 800, 152, 728, -416, -8, -400, -8, -232, -672, -192, -616, 360, -304, 376, -288, 704, 536, 672)
 closed = true
 
-[node name="CollisionPolygon2D" parent="curvedGravity5" index="1"]
+[node name="CollisionPolygon2D" parent="StaticBody2D6/curvedGravity5" index="1"]
+visible = false
 polygon = PackedVector2Array(-1008, -584, 904, -712, 1008, 320, 792, 368, 852.366, 818.593, -936, 792)
+
+[node name="Node" parent="StaticBody2D6" instance=ExtResource("18_qaaf2")]
+speed = 5.0
 
 [node name="Olimar" parent="." instance=ExtResource("18_hea4v")]
 z_index = 1
-position = Vector2(6616, -2473.27)
+position = Vector2(5656, -2352)
 floor_snap_length = 1.0
 
 [node name="Chain5" parent="." instance=ExtResource("18_wb0km")]
@@ -1629,19 +1642,19 @@ position = Vector2(11330.9, -1669.45)
 points = PackedVector2Array(-890.919, -66.5503, 885.081, -34.5503)
 
 [node name="Pikmin" parent="." instance=ExtResource("20_php5f")]
-position = Vector2(6896, -2497.27)
+position = Vector2(6624, -2320)
 
 [node name="Pikmin2" parent="." instance=ExtResource("20_php5f")]
-position = Vector2(6832, -2497.27)
+position = Vector2(6544, -2328)
 
 [node name="Pikmin3" parent="." instance=ExtResource("20_php5f")]
-position = Vector2(6764.55, -2512)
+position = Vector2(6472, -2328)
 
 [node name="Pikmin5" parent="." instance=ExtResource("20_php5f")]
 position = Vector2(6536, -2457.27)
 
 [node name="Pikmin4" parent="." instance=ExtResource("20_php5f")]
-position = Vector2(6696.37, -2473.82)
+position = Vector2(6384, -2336)
 
 [node name="Louie" parent="." instance=ExtResource("20_6ieum")]
 z_index = 1
@@ -1800,7 +1813,7 @@ position = Vector2(6949.55, -2412.28)
 [editable path="platform3"]
 [editable path="platform3/GravityArea2"]
 [editable path="curvedGravity4"]
-[editable path="curvedGravity5"]
+[editable path="StaticBody2D6/curvedGravity5"]
 [editable path="curvedGravity6"]
 [editable path="platform4"]
 [editable path="platform4/GravityArea2"]

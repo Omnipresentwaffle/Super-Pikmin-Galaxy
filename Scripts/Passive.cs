@@ -39,7 +39,8 @@ public partial class Passive : Entity
 	{
 		walk,
 		jump,
-		fall
+		fall,
+		held
 	}
 
 	public bool whistleLocked = false;
@@ -57,10 +58,8 @@ public partial class Passive : Entity
 
 	public Godot.Vector2 follow(float delta)
 	{
-		//Passive entity = this;
 		FollowPath followPath = leader.followPath;
 		Line2D squadLine = followPath.squadLine;
-		//targetPos = leader.followPath.GetPointPosition((int)(followPath.Points.Length - targetIndex));
 		Godot.Vector2 dirVector = targetPos - GlobalPosition;
 		float speed = speedConst;
 		switch (followState)
@@ -71,10 +70,11 @@ public partial class Passive : Entity
 
 				targetPos = squadLine.GetPointPosition((int)(id) + 1) + squadLine.GlobalPosition;
 				dirVector = targetPos - GlobalPosition;
-
+				//add gravity
 				(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
 				tangentDir = getPerp(normalDir);
 				GlobalRotationDegrees = angle;
+				//get the tangent direction
 				float t = getProjection(dirVector, tangentDir);
 				Godot.Vector2 targetVector = tangentDir * t;
 				Godot.Vector2 velocityVector = tangentDir * Math.Sign(t) * speed;
@@ -87,11 +87,13 @@ public partial class Passive : Entity
 				{
 					speed = targetVector.Length() / delta;
 					velocityVector = tangentDir * Math.Sign(t) * speed;
-
+					//limit the moveVector so that the pikmin doesn't overshoot its destination
 				}
 
-				if (followPath.jumpPaths.Count > nextPathIdx)
+				if (followPath.jumpPaths.Count > nextPathIdx && nextPath == null)
 				{
+					//if the pikmin is not following a path
+					//and a new path appears, then queue that path
 					nextPathIdx = (ushort)((ushort)followPath.jumpPaths.Count - 1);
 					nextPath = followPath.jumpPaths[nextPathIdx];
 
@@ -114,7 +116,7 @@ public partial class Passive : Entity
 					else
 					{
 					}
-						
+
 				}
 				velocityVector += normalDir * 500f;
 				return velocityVector;
@@ -144,12 +146,18 @@ public partial class Passive : Entity
 				{
 					followState = State.walk;
 					nextPath = null;
+					nextPathIdx += 1;
 					return Godot.Vector2.Zero;
 				}
 				targetPos = nextPath.GetPointPosition((int)targetIndex);
 				GlobalPosition = targetPos;
-				
+
 				return Godot.Vector2.Zero;
+
+
+			case State.held:
+				GlobalPosition = leader.GlobalPosition;
+				break;
 
 
 

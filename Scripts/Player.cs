@@ -43,6 +43,17 @@ public partial class Player : Camera2D
 
 		squadShow();
 
+
+		if (Input.IsActionPressed("throw"))
+		{
+			currentCaptain.throwHold = true;
+		}
+		else
+		{
+			currentCaptain.throwHold = false;
+		}
+		
+
 	}
 
 	public void squadShow()

@@ -75,6 +75,10 @@ public partial class Pikmin : Passive
 
 				velocity = normalDir * normalVelocity;
 				velocity += tangentDir * tangentVelocity;
+				if (IsOnFloor())
+				{
+					velocity = Vector2.Zero;
+				}
 
 
 
