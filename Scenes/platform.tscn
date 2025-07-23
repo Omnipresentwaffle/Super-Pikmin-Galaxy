@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddch1f6jy82ma"]
+
+[ext_resource type="Script" uid="uid://baqekkue2hf6x" path="res://Scripts/Platform.cs" id="1_1rc8e"]
+
+[node name="Platform" type="Node2D" node_paths=PackedStringArray("surface")]
+script = ExtResource("1_1rc8e")
+surface = NodePath("Surface")
+
+[node name="Surface" type="Line2D" parent="."]
+default_color = Color(0.243501, 0.000368297, 0.667752, 1)

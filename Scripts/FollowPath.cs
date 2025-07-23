@@ -25,7 +25,7 @@ public partial class FollowPath : Line2D
 	
 
 	public float spacing = 5f;
-	public const float maxSpacing = 50f;
+	public const float maxSpacing = 25f;
 
 
 

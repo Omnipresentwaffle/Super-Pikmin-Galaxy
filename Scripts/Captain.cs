@@ -13,6 +13,8 @@ public partial class Captain : Passive
 	//1 = louie
 	//2 = prez... etc
 
+	public StaticBody2D platform = null;
+
 	public bool active = false;
 	public const float JumpVelocity = -700.0f;
 
@@ -511,6 +513,7 @@ public partial class Captain : Passive
 
 		}
 
+		GD.Print("platform: ", platform);
 		ApplyFloorSnap();
 
 		if (mainGravity != prevGrav)
@@ -709,5 +712,16 @@ public partial class Captain : Passive
 		{
 			anim.FlipH = true;
 		}
+	}
+
+	public void _on_floor_entered(Node2D body)
+	{
+		platform = GetNode<StaticBody2D>(GetPathTo(body));
+		
+		//GD.Print("*********************PLATFORM****************** : ");
+	}
+	public void _on_floor_exited(Node2D body)
+	{
+		platform = null;
 	}
 }

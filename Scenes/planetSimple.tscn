@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://btwg7ymbkyl3h"]
+
+[ext_resource type="PackedScene" uid="uid://rqgjk45doaux" path="res://Scenes/planet.tscn" id="1_fs8am"]
+[ext_resource type="Texture2D" uid="uid://bseijm5r1jevk" path="res://Art/Planets/coolplanet.png" id="2_20cb4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_20cb4"]
+resource_local_to_scene = true
+radius = 216.148
+
+[node name="Planet" instance=ExtResource("1_fs8am")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_20cb4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_20cb4")

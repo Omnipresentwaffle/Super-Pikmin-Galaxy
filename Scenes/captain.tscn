@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmpd67icmvik4"]
+[gd_scene load_steps=11 format=3 uid="uid://dmpd67icmvik4"]
 
 [ext_resource type="PackedScene" uid="uid://dtnqjtbg20b6b" path="res://Scenes/entity.tscn" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://ba1crgmoorl" path="res://Scripts/Captain.cs" id="2_g5jsj"]
@@ -19,6 +19,9 @@ point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cmh4c"]
 radius = 40.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jodsp"]
+size = Vector2(16, 4)
 
 [node name="Entity" groups=["captain"] instance=ExtResource("1_v0iea")]
 z_index = -1
@@ -54,11 +57,11 @@ visible = false
 default_color = Color(0, 1, 0, 1)
 
 [node name="ChainDetector" type="Area2D" parent="." index="5"]
-visible = false
 collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChainDetector" index="0"]
+visible = false
 shape = SubResource("CircleShape2D_cmh4c")
 
 [node name="ChainAttach" parent="." index="6" instance=ExtResource("5_jodsp")]
@@ -67,7 +70,16 @@ shape = SubResource("CircleShape2D_cmh4c")
 
 [node name="FollowPath" parent="." index="8" instance=ExtResource("5_k88r2")]
 
+[node name="FloorDetector" type="Area2D" parent="." index="9"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorDetector" index="0"]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_jodsp")
+
 [connection signal="area_entered" from="GravityDetector" to="." method="_on_gravity_area_entered"]
 [connection signal="area_exited" from="GravityDetector" to="." method="_on_gravity_area_exited"]
 [connection signal="area_entered" from="ChainDetector" to="." method="_on_chain_area_entered"]
 [connection signal="area_exited" from="ChainDetector" to="." method="_on_chain_area_exited"]
+[connection signal="body_entered" from="FloorDetector" to="." method="_on_floor_entered"]
+[connection signal="body_exited" from="FloorDetector" to="." method="_on_floor_exited"]
