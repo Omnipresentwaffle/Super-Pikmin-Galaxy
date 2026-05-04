@@ -6,11 +6,11 @@ public partial class Pikmin : Passive
 {
 
 	//0 = idle
-	//1 = follow
-	//2 = thrown
-	//3 = carry
-	//4 = attack/attached
-	//5 = 
+	//1 = join
+	//2 = follow
+	//3 = thrown
+	//4 = carry
+	//5 = attack
 
 
 	[Export] public PikminData pikminData = new PikminData();
@@ -85,7 +85,7 @@ public partial class Pikmin : Passive
 				break;
 
 			case 1:
-				//state follow
+				//state join
 
 				velocity = follow((float)delta);
 

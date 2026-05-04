@@ -12,7 +12,7 @@ public partial class Passive : Entity
 	public UInt16 team = 0;
 
 
-	public UInt16 id = 0;
+	public UInt16 followerId = 0;
 	//the number of the follower
 	public uint targetIndex = 0;
 	//the point the follower prioritizes
@@ -65,10 +65,11 @@ public partial class Passive : Entity
 		switch (followState)
 		{
 			case State.walk:
+				//in this state, the pikmin are grounded and follow the captain just by walking
 				line = GetNode<Line2D>("NormalDirection");
 				//distance = v * t = m/s * s = m
 
-				targetPos = squadLine.GetPointPosition((int)(id) + 1) + squadLine.GlobalPosition;
+				targetPos = squadLine.GetPointPosition((int)(followerId) + 1) + squadLine.GlobalPosition;
 				dirVector = targetPos - GlobalPosition;
 				//add gravity
 				(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
@@ -89,18 +90,17 @@ public partial class Passive : Entity
 					velocityVector = tangentDir * Math.Sign(t) * speed;
 					//limit the moveVector so that the pikmin doesn't overshoot its destination
 				}
+				if (nextPath == null){
+					if (followPath.jumpPaths.Count > nextPathIdx){
+						//if the pikmin is not following a path
+						//and a new path appears, then queue that path
+						nextPathIdx = (ushort)((ushort)followPath.jumpPaths.Count - 1);
+						nextPath = followPath.jumpPaths[nextPathIdx];
 
-				if (followPath.jumpPaths.Count > nextPathIdx && nextPath == null)
-				{
-					//if the pikmin is not following a path
-					//and a new path appears, then queue that path
-					nextPathIdx = (ushort)((ushort)followPath.jumpPaths.Count - 1);
-					nextPath = followPath.jumpPaths[nextPathIdx];
-
+					}
 				}
-				if (nextPath != null)
-				{
-					targetIndex = (uint)(5 * ((int)(id) + 1));
+				else{
+					targetIndex = (uint)(5 * ((int)(followerId) + 1));
 
 					if (nextPath.Points.Length > targetIndex)
 					{
@@ -122,6 +122,8 @@ public partial class Passive : Entity
 				return velocityVector;
 
 			case State.jump:
+				//in this state, a jump path has been created and the pikmin teleports to a certain position in the jumpPath
+				//this assumes that the captain is constantly creating points
 				targetPos = nextPath.GetPointPosition((int)targetIndex);
 
 				GlobalPosition = targetPos;
@@ -136,6 +138,7 @@ public partial class Passive : Entity
 				return Godot.Vector2.Zero;
 
 			case State.fall:
+				//in this state, the pikmin is on the jump path but the jump path has ended
 				targetIndex -= 1;
 				if (targetIndex >= nextPath.Points.Length)
 				{

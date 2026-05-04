@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c25xykha4om02" path="res://Scripts/FollowPath.cs" id="1_u0n8p"]
 
 [sub_resource type="Curve" id="Curve_u0n8p"]
-_data = [Vector2(0, 0.617647), 0.0, 0.382353, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.177064), 0.0, 0.382353, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="FollowPath" type="Line2D"]
@@ -14,4 +14,4 @@ script = ExtResource("1_u0n8p")
 
 [node name="SquadLine" type="Line2D" parent="."]
 width_curve = SubResource("Curve_u0n8p")
-default_color = Color(0.164706, 1, 0, 1)
+default_color = Color(0, 0.997432, 0.36293, 1)

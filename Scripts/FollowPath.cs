@@ -53,7 +53,11 @@ public partial class FollowPath : Line2D
 			return;
 		}
 		Captain parent = GetParent<Captain>();
+		//this is a vector that represents the vector from start to end
+		//(starts at front and ends at index 0)
 		Godot.Vector2 squadVector = squadLine.GetPointPosition(squadLine.Points.Length - 1) - squadLine.GetPointPosition(0);
+		
+
 		Godot.Vector2 posToFront = parent.GlobalPosition - (squadLine.GetPointPosition(0) + squadLine.GlobalPosition);
 		float t = parent.getProjection(posToFront, squadVector);
 		Line2D norline = parent.GetNode<Line2D>("NormalDirection");
@@ -117,13 +121,13 @@ public partial class FollowPath : Line2D
 
 	public void setSquadLine(bool flip = false)
 	{
+		//here is the code where we set the squad line
 		if (followers == 0)
 		{
 			return;
 		}
 		Captain parent = GetParent<Captain>();
 		Godot.Vector2 pos = Vector2.Zero;
-		//spacing = squadLineLength / followers;
 
 		uint repeat = (uint)(followers + 2);
 
@@ -150,21 +154,13 @@ public partial class FollowPath : Line2D
 		for (int i = 0; i < repeat; i += 1)
 		{
 			squadLine.AddPoint(pos);
-			if (flip)
-			{
-				pos -= posAdd;
-			}
-			else
-			{
-				pos += posAdd;
-			
-			}
+			pos += posAdd;
 		}
 
 		squadLineLocked = true;
 		squadLockedPos = parent.GlobalPosition;
 		GlobalPosition = parent.GlobalPosition;
-		//GlobalRotationDegrees = 0f;
+
 	}
 	public void landed(bool flip = false)
 	{
@@ -173,10 +169,13 @@ public partial class FollowPath : Line2D
 			return;
 		}
 		Captain parent = GetParent<Captain>();
-		Godot.Vector2 squadVector = squadLine.GetPointPosition(squadLine.Points.Length - 1) - squadLine.GetPointPosition(0);
-		Godot.Vector2 posToFront = parent.GlobalPosition - (squadLine.GetPointPosition(0) + squadLine.GlobalPosition);
+		//we want it to be that index 0 is right behind the captain
+		//so the larger the index the further away from the captain
+		Godot.Vector2 squadVector = ToGlobal(squadLine.GetPointPosition(squadLine.Points.Length - 1)) - ToGlobal(squadLine.GetPointPosition(0));
+
+		Godot.Vector2 posToFront = parent.GlobalPosition - ToGlobal((squadLine.GetPointPosition(0)));
 		float t = parent.getProjection(posToFront, squadVector);
-		setSquadLine(flip);
+		setSquadLine();
 		jumpPaths[jumpPaths.Count - 1].complete = true;
 		return;
 		if (t < 0 || t > 1)

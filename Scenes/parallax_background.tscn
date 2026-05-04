@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://donpvqpt77q0y"]
+
+[ext_resource type="Texture2D" uid="uid://cdpdeu06mexpd" path="res://Art/Backgrounds/OIP (6).jpg" id="1_0fo66"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+
+[node name="Oip(6)" type="Sprite2D" parent="ParallaxLayer"]
+texture = ExtResource("1_0fo66")

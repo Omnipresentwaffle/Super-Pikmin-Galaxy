@@ -4,6 +4,5 @@
 [ext_resource type="PackedScene" uid="uid://chrsew8jcn3cq" path="res://Scenes/CaptainAnimation/olimar_anim.tscn" id="2_r0fq1"]
 
 [node name="Olimar" instance=ExtResource("1_x6drs")]
-id = 0
 
 [node name="Animation" parent="." index="0" instance=ExtResource("2_r0fq1")]

@@ -29,7 +29,7 @@ project/assembly_name="GalaxyTest"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/rmsmartshape/plugin.cfg")
+enabled=PackedStringArray("res://addons/ExecuteSurface/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg")
 
 [input]
 

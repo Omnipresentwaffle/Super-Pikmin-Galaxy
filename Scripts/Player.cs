@@ -128,7 +128,7 @@ public partial class Player : Camera2D
 
 		//increase followers and set the follower id
 		follower.targetIndex = followPath.followers;
-		follower.id = followPath.followers;
+		//follower.id = followPath.followers;
 		followPath.followers += 1;
 		followPath.followerList.Add(follower);
 

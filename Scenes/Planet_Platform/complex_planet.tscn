@@ -1,0 +1,126 @@
+[gd_scene load_steps=20 format=3 uid="uid://wx13bioq5c14"]
+
+[ext_resource type="Script" uid="uid://baqekkue2hf6x" path="res://Scripts/Platform.cs" id="1_32h31"]
+[ext_resource type="Script" uid="uid://dhdc4b8yddyej" path="res://addons/rmsmartshape/shapes/shape.gd" id="2_ryyjf"]
+[ext_resource type="Script" uid="uid://byp4h2084wgn2" path="res://addons/rmsmartshape/vertex_properties.gd" id="3_3pjba"]
+[ext_resource type="Script" uid="uid://bo5f7qe27jfje" path="res://addons/rmsmartshape/shapes/point_array.gd" id="3_qug4l"]
+[ext_resource type="Script" uid="uid://0lhxan4cqrc1" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="4_3pjba"]
+[ext_resource type="Script" uid="uid://bwcf4pjgprn0k" path="res://addons/rmsmartshape/shapes/point.gd" id="4_tdrak"]
+[ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="5_tdrak"]
+
+[sub_resource type="Resource" id="Resource_qug4l"]
+script = ExtResource("3_3pjba")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_yyqfs"]
+script = ExtResource("4_tdrak")
+position = Vector2(96, 128)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_qug4l")
+
+[sub_resource type="Resource" id="Resource_3pjba"]
+script = ExtResource("3_3pjba")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_rmr0s"]
+script = ExtResource("4_tdrak")
+position = Vector2(104, 16)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_3pjba")
+
+[sub_resource type="Resource" id="Resource_tdrak"]
+script = ExtResource("3_3pjba")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_de4l4"]
+script = ExtResource("4_tdrak")
+position = Vector2(216, 16)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_tdrak")
+
+[sub_resource type="Resource" id="Resource_q8386"]
+script = ExtResource("3_3pjba")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_mqta5"]
+script = ExtResource("4_tdrak")
+position = Vector2(224, 120)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_q8386")
+
+[sub_resource type="Resource" id="Resource_urymb"]
+script = ExtResource("3_3pjba")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_a537c"]
+script = ExtResource("4_tdrak")
+position = Vector2(96, 128)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_urymb")
+
+[sub_resource type="Resource" id="Resource_32h31"]
+script = ExtResource("3_qug4l")
+_points = {
+0: SubResource("Resource_yyqfs"),
+1: SubResource("Resource_rmr0s"),
+2: SubResource("Resource_de4l4"),
+3: SubResource("Resource_mqta5"),
+4: SubResource("Resource_a537c")
+}
+_point_order = PackedInt32Array(0, 1, 2, 3, 4)
+_constraints = {
+Vector2i(0, 4): 15
+}
+_next_key = 5
+_material_overrides = {}
+tessellation_stages = 3
+tessellation_tolerance = 6.0
+curve_bake_interval = 20.0
+
+[sub_resource type="Resource" id="Resource_ryyjf"]
+script = ExtResource("5_tdrak")
+_edge_meta_materials = Array[ExtResource("4_3pjba")]([])
+fill_textures = Array[Texture2D]([])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_texture_scale = 1.0
+fill_texture_absolute_position = false
+fill_texture_absolute_rotation = false
+fill_texture_offset = Vector2(0, 0)
+fill_texture_angle_offset = 0.0
+fill_mesh_offset = 0.0
+render_offset = 0.0
+
+[node name="ComplexPlanet" type="Node2D" node_paths=PackedStringArray("surface")]
+script = ExtResource("1_32h31")
+surface = NodePath("Surface")
+
+[node name="Surface" type="Line2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="SS2D_Shape" type="MeshInstance2D" parent="StaticBody2D"]
+script = ExtResource("2_ryyjf")
+_points = SubResource("Resource_32h31")
+shape_material = SubResource("Resource_ryyjf")
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")
+metadata/_custom_type_script = "uid://dhdc4b8yddyej"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+modulate = Color(1, 1, 1, 0.3)
+polygon = PackedVector2Array(96, 128, 104, 16, 216, 16, 224, 120)

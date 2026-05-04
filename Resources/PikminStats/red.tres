@@ -10,6 +10,7 @@ type = 0
 typeName = "red"
 attack = 5
 strength = 1
+speed = 200.0
 throwHeight = 200.0
 throwDistance = 200.0
 generation = 1

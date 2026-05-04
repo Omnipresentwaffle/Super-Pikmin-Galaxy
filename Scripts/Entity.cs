@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 public partial class Entity : CharacterBody2D
 {
 	//entites are moving bodies that are affected by gravity
+	//this is the base class for enemies, pikmin and captains
 
 	public GravityArea mainGravity = null;
 	public bool newGravPriority = false;
@@ -17,9 +18,6 @@ public partial class Entity : CharacterBody2D
 	public UInt16 subState = 0;
 
 	public AnimatedSprite2D anim = null;
-
-
-
 
 
 
@@ -98,9 +96,6 @@ public override void _Ready()
 		//add the gravity area to the zones
 
 		prioritizeGravityArea(gZone);
-
-
-		//GD.Print("gravCount: ", gravityAreas.Count);
 
 
 		return;

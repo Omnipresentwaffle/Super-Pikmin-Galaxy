@@ -23,6 +23,8 @@ public partial class Captain : Passive
 	public Area2D chainDetector = null;
 	public int gravityIndex = 0;
 
+	public const float walkSpeed = 500f;
+
 	public const float topSpeed = 800f;
 
 	public Godot.Vector2 displacement = Godot.Vector2.Zero;
@@ -104,7 +106,6 @@ public partial class Captain : Passive
 		{
 			if (Math.Abs(angle - prevAngle) >= 15)
 			{
-				//GD.Print("hugeChange");
 
 			}
 			prevAngle = angle;
@@ -237,25 +238,14 @@ public partial class Captain : Passive
 				if (keyPress.X == 0)
 				{
 					//not accelerating in any direction
-					tangentVelocity = (float)Mathf.MoveToward(tangentVelocity, 0, groundRez * delta);
+					tangentVelocity = 0f;
 					//reset the xFLip
 					xFlip = 1;
 				}
 				else
 				{
-					keyPress.X *= xFlip;
-					if (Math.Sign(tangentVelocity) == Math.Sign(keyPress.X))
-					{
-						//accelerating in the same direction
-						tangentVelocity += 500f * (float)keyPress.X * (float)delta;
-					}
-					else
-					{
-						//turning
-						tangentVelocity += 1200f * (float)keyPress.X * (float)delta;
-					}
-					//limit the speed
-					tangentVelocity = Math.Clamp(tangentVelocity, -800, 800);
+					tangentVelocity = keyPress.X * walkSpeed;
+					
 				}
 				if (landed)
 				{
@@ -398,6 +388,7 @@ public partial class Captain : Passive
 				if (IsOnFloor())
 				{
 					//enter walk
+					//just landed
 					landed = true;
 
 					state = 0;
