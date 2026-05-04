@@ -8,7 +8,7 @@ public partial class CarryNode : Node2D
 {
 
 	[Export]
-	public Godot.Collections.Array<NodePath> nextPaths;
+	public Godot.Collections.Array<CarryNode> linkedNodes;
 
 	private PikType _exclusiveTo;
 
