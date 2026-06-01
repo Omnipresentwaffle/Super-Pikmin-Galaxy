@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dui2okf6o1x6e"]
+
+[ext_resource type="Script" path="res://Scenes/Navigation/NavLine.cs" id="2_v7c1c"]
+
+[node name="NavLine" type="Line2D" unique_id=1643458707]
+texture_repeat = 2
+width = 5.0
+texture_mode = 1
+script = ExtResource("2_v7c1c")

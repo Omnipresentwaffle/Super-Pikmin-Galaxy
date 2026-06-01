@@ -1,30 +1,47 @@
 using Godot;
 using System;
+using System.Drawing;
 
 
 public partial class Pikmin : Passive
 {
 
-	//0 = idle
-	//1 = join
-	//2 = follow
-	//3 = thrown
-	//4 = carry
-	//5 = attack
+	public enum ActionState
+	{
+		idle,
+		join,
+		follow,
+		thrown,
+		carry,
+		attack
+	} 
+	
+
+	private PikminData _pikminData;
 
 
-	[Export] public PikminData pikminData = new PikminData();
+	[Export]
+	public PikminData pikminData{ 
+		get => _pikminData;
+		set
+		{
+			_pikminData = value;
+			CallDeferred(nameof(updatePikmin));
+		}
+	}
+
+	public void updatePikmin()
+	{
+		
+		
+
+	}
+	
+
 
 	public AnimatedSprite2D animation = null;
 
 	public Area2D whistleHitbox = null;	
-	
-
-
-
-
-
-
 
 	public override void _Ready()
 	{
@@ -39,6 +56,10 @@ public partial class Pikmin : Passive
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if(gravEmpty)
+		{
+			return;
+		}
 		Godot.Vector2 velocity = Velocity;
 
 		if (joinFollow)

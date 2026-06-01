@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyvls1vk6irj6"]
+[gd_scene format=3 uid="uid://dyvls1vk6irj6"]
 
 [ext_resource type="Script" uid="uid://bui1wqwyxcxvk" path="res://Scripts/Player.cs" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://c0hrkgi7w8k32" path="res://Scenes/cursor.tscn" id="1_v0iea"]
 
-[node name="Player" type="Camera2D"]
+[node name="Player" type="Camera2D" unique_id=923474182]
 ignore_rotation = false
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 3.0
 script = ExtResource("1_cvnsp")
 
-[node name="Cursor" parent="." instance=ExtResource("1_v0iea")]
+[node name="Cursor" parent="." unique_id=153470399 instance=ExtResource("1_v0iea")]
 
 [connection signal="area_entered" from="Cursor/WhistleHitbox" to="." method="_on_follower_whistled"]
 

@@ -1,0 +1,687 @@
+[gd_scene format=3 uid="uid://cklximvagdg6d"]
+
+[ext_resource type="PackedScene" uid="uid://c2qxyrj0frttm" path="res://Scenes/pikmin.tscn" id="1_43pys"]
+[ext_resource type="PackedScene" uid="uid://dyvls1vk6irj6" path="res://Scenes/player.tscn" id="1_hhcbu"]
+[ext_resource type="PackedScene" uid="uid://be1q18a2807lq" path="res://Scenes/Captains/olimar.tscn" id="2_fwj01"]
+[ext_resource type="Script" uid="uid://fvul7uybkvfy" path="res://Scenes/Planet/Planet.cs" id="3_7gxq4"]
+[ext_resource type="Script" uid="uid://c6kxvfqr4ewu1" path="res://addons/rmsmartshape/shapes/shape_closed.gd" id="4_1u2s8"]
+[ext_resource type="Script" uid="uid://bpy1q274y3mba" path="res://Scripts/GravityArea.cs" id="4_bb516"]
+[ext_resource type="Script" uid="uid://byp4h2084wgn2" path="res://addons/rmsmartshape/vertex_properties.gd" id="5_7gxq4"]
+[ext_resource type="Script" uid="uid://bwcf4pjgprn0k" path="res://addons/rmsmartshape/shapes/point.gd" id="6_bb516"]
+[ext_resource type="Script" uid="uid://bo5f7qe27jfje" path="res://addons/rmsmartshape/shapes/point_array.gd" id="7_31mqn"]
+[ext_resource type="Resource" uid="uid://jxwtcmsmfseb" path="res://SS2Dpresets/grassDef.tres" id="8_1u2s8"]
+[ext_resource type="PackedScene" uid="uid://dmxeksskfliow" path="res://Scenes/Navigation/NavNode.tscn" id="10_31mqn"]
+[ext_resource type="Script" uid="uid://3lqnjv7mjhcu" path="res://Scenes/Navigation/NavNode.cs" id="11_232tk"]
+[ext_resource type="PackedScene" uid="uid://cn8dkqh4rkhkl" path="res://Scenes/Navigation/NodeConnection.tscn" id="12_xyqkx"]
+[ext_resource type="Script" uid="uid://0lhxan4cqrc1" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="13_232tk"]
+[ext_resource type="Script" uid="uid://bs4wh3tutsrqt" path="res://Scenes/Navigation/NodeConnection.cs" id="13_vqkae"]
+[ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="14_xyqkx"]
+
+[sub_resource type="Resource" id="Resource_xyqkx"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_tdrak"]
+script = ExtResource("6_bb516")
+position = Vector2(-506.026, 341.1013)
+properties = SubResource("Resource_xyqkx")
+
+[sub_resource type="Resource" id="Resource_0ypy5"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_yyqfs"]
+script = ExtResource("6_bb516")
+position = Vector2(-498.026, -162.89871)
+properties = SubResource("Resource_0ypy5")
+
+[sub_resource type="Resource" id="Resource_3xx8c"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_rmr0s"]
+script = ExtResource("6_bb516")
+position = Vector2(285.974, -530.8987)
+properties = SubResource("Resource_3xx8c")
+
+[sub_resource type="Resource" id="Resource_bnjuh"]
+script = ExtResource("5_7gxq4")
+texture_idx = -4
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_de4l4"]
+script = ExtResource("6_bb516")
+position = Vector2(453.974, 637.1013)
+properties = SubResource("Resource_bnjuh")
+
+[sub_resource type="Resource" id="Resource_k3gu1"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_mqta5"]
+script = ExtResource("6_bb516")
+position = Vector2(-506.026, 341.1013)
+properties = SubResource("Resource_k3gu1")
+
+[sub_resource type="Resource" id="Resource_oyfdo"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_bb516"]
+script = ExtResource("6_bb516")
+position = Vector2(189.974, -170.89871)
+properties = SubResource("Resource_oyfdo")
+
+[sub_resource type="Resource" id="Resource_fuskt"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_43pys"]
+script = ExtResource("6_bb516")
+position = Vector2(797.974, -250.89871)
+properties = SubResource("Resource_fuskt")
+
+[sub_resource type="Resource" id="Resource_jmr51"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_232tk"]
+script = ExtResource("6_bb516")
+position = Vector2(589.974, 21.101288)
+properties = SubResource("Resource_jmr51")
+
+[sub_resource type="Resource" id="Resource_tpsxm"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_vqkae"]
+script = ExtResource("6_bb516")
+position = Vector2(805.974, 373.1013)
+properties = SubResource("Resource_tpsxm")
+
+[sub_resource type="Resource" id="Resource_g0yx6"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_6l2qe"]
+script = ExtResource("6_bb516")
+position = Vector2(84.45593, -139.83618)
+properties = SubResource("Resource_g0yx6")
+
+[sub_resource type="Resource" id="Resource_8egfb"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_d2dvr"]
+script = ExtResource("6_bb516")
+position = Vector2(563.77966, 125.503784)
+properties = SubResource("Resource_8egfb")
+
+[sub_resource type="Resource" id="Resource_wpt8g"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_5pg0x"]
+script = ExtResource("6_bb516")
+position = Vector2(95.86841, 245.33472)
+properties = SubResource("Resource_wpt8g")
+
+[sub_resource type="Resource" id="Resource_jd6qd"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_inekd"]
+script = ExtResource("6_bb516")
+position = Vector2(209.99316, 290.98462)
+properties = SubResource("Resource_jd6qd")
+
+[sub_resource type="Resource" id="Resource_ryyjf"]
+script = ExtResource("7_31mqn")
+_points = {
+0: SubResource("Resource_tdrak"),
+1: SubResource("Resource_yyqfs"),
+2: SubResource("Resource_rmr0s"),
+3: SubResource("Resource_de4l4"),
+4: SubResource("Resource_mqta5"),
+5: SubResource("Resource_bb516"),
+6: SubResource("Resource_43pys"),
+8: SubResource("Resource_232tk"),
+9: SubResource("Resource_vqkae"),
+10: SubResource("Resource_6l2qe"),
+11: SubResource("Resource_d2dvr"),
+12: SubResource("Resource_5pg0x"),
+13: SubResource("Resource_inekd")
+}
+_point_order = PackedInt32Array(0, 1, 10, 5, 2, 6, 8, 11, 9, 3, 13, 12, 4)
+_constraints = {
+Vector2i(0, 4): 15
+}
+_next_key = 14
+
+[sub_resource type="Resource" id="Resource_05v23"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_ugmbf"]
+script = ExtResource("6_bb516")
+position = Vector2(80, 152)
+properties = SubResource("Resource_05v23")
+
+[sub_resource type="Resource" id="Resource_dj4jy"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_eclep"]
+script = ExtResource("6_bb516")
+position = Vector2(80, 152)
+properties = SubResource("Resource_dj4jy")
+
+[sub_resource type="Resource" id="Resource_lkxl7"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_qvdjl"]
+script = ExtResource("6_bb516")
+position = Vector2(-432, 648)
+properties = SubResource("Resource_lkxl7")
+
+[sub_resource type="Resource" id="Resource_ruvrh"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_7c5ph"]
+script = ExtResource("6_bb516")
+position = Vector2(-912, 408)
+properties = SubResource("Resource_ruvrh")
+
+[sub_resource type="Resource" id="Resource_6f6mr"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_lh8gb"]
+script = ExtResource("6_bb516")
+position = Vector2(-760, -144)
+properties = SubResource("Resource_6f6mr")
+
+[sub_resource type="Resource" id="Resource_3cp1a"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_0do3q"]
+script = ExtResource("6_bb516")
+position = Vector2(-992, -712)
+properties = SubResource("Resource_3cp1a")
+
+[sub_resource type="Resource" id="Resource_f5bsu"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_3dhpq"]
+script = ExtResource("6_bb516")
+position = Vector2(-96, -1608)
+properties = SubResource("Resource_f5bsu")
+
+[sub_resource type="Resource" id="Resource_havp5"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_6syhi"]
+script = ExtResource("6_bb516")
+position = Vector2(1296, -696)
+properties = SubResource("Resource_havp5")
+
+[sub_resource type="Resource" id="Resource_3qsmu"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_08ly1"]
+script = ExtResource("6_bb516")
+position = Vector2(864, 152)
+properties = SubResource("Resource_3qsmu")
+
+[sub_resource type="Resource" id="Resource_5q0xg"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_l1b2r"]
+script = ExtResource("6_bb516")
+position = Vector2(1062.6655, -1247.5383)
+properties = SubResource("Resource_5q0xg")
+
+[sub_resource type="Resource" id="Resource_ddn08"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_whusg"]
+script = ExtResource("6_bb516")
+position = Vector2(-776, -1312)
+properties = SubResource("Resource_ddn08")
+
+[sub_resource type="Resource" id="Resource_io2w7"]
+script = ExtResource("7_31mqn")
+_points = {
+0: SubResource("Resource_ugmbf"),
+8: SubResource("Resource_eclep"),
+16: SubResource("Resource_qvdjl"),
+17: SubResource("Resource_7c5ph"),
+18: SubResource("Resource_lh8gb"),
+19: SubResource("Resource_0do3q"),
+20: SubResource("Resource_3dhpq"),
+21: SubResource("Resource_6syhi"),
+22: SubResource("Resource_08ly1"),
+24: SubResource("Resource_l1b2r"),
+25: SubResource("Resource_whusg")
+}
+_point_order = PackedInt32Array(8, 16, 17, 18, 19, 25, 20, 24, 21, 22, 0)
+_constraints = {
+Vector2i(8, 0): 15
+}
+_next_key = 26
+
+[sub_resource type="Resource" id="Resource_1n3en"]
+script = ExtResource("5_7gxq4")
+texture_idx = -2
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_unyu3"]
+script = ExtResource("6_bb516")
+position = Vector2(458.3678, -265.85974)
+properties = SubResource("Resource_1n3en")
+
+[sub_resource type="Resource" id="Resource_fdy7b"]
+script = ExtResource("6_bb516")
+position = Vector2(458.3678, -265.85974)
+properties = SubResource("Resource_1n3en")
+
+[sub_resource type="Resource" id="Resource_4m8r0"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_g5046"]
+script = ExtResource("6_bb516")
+position = Vector2(458.3678, 262.14026)
+properties = SubResource("Resource_4m8r0")
+
+[sub_resource type="Resource" id="Resource_rgpap"]
+script = ExtResource("5_7gxq4")
+texture_idx = -1
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_5v3ml"]
+script = ExtResource("6_bb516")
+position = Vector2(-445.6322, 118.14026)
+properties = SubResource("Resource_rgpap")
+
+[sub_resource type="Resource" id="Resource_r7r3h"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_7dpj3"]
+script = ExtResource("6_bb516")
+position = Vector2(-437.6322, 438.14026)
+properties = SubResource("Resource_r7r3h")
+
+[sub_resource type="Resource" id="Resource_scvbn"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_njjmm"]
+script = ExtResource("6_bb516")
+position = Vector2(-693.6322, 646.14026)
+properties = SubResource("Resource_scvbn")
+
+[sub_resource type="Resource" id="Resource_hxwlv"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_ntkrs"]
+script = ExtResource("6_bb516")
+position = Vector2(-1381.6322, 646.14026)
+properties = SubResource("Resource_hxwlv")
+
+[sub_resource type="Resource" id="Resource_qs3lo"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_fdf5r"]
+script = ExtResource("6_bb516")
+position = Vector2(-1789.6322, 278.14026)
+properties = SubResource("Resource_qs3lo")
+
+[sub_resource type="Resource" id="Resource_4i53b"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_abgct"]
+script = ExtResource("6_bb516")
+position = Vector2(-1789.6322, -193.85974)
+properties = SubResource("Resource_4i53b")
+
+[sub_resource type="Resource" id="Resource_htcng"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_mhg75"]
+script = ExtResource("6_bb516")
+position = Vector2(-1381.6322, -593.85974)
+properties = SubResource("Resource_htcng")
+
+[sub_resource type="Resource" id="Resource_p2wia"]
+script = ExtResource("5_7gxq4")
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_2ke6t"]
+script = ExtResource("6_bb516")
+position = Vector2(18.367798, -705.85974)
+properties = SubResource("Resource_p2wia")
+
+[sub_resource type="Resource" id="Resource_v8x0y"]
+script = ExtResource("7_31mqn")
+_points = {
+0: SubResource("Resource_unyu3"),
+1: SubResource("Resource_fdy7b"),
+14: SubResource("Resource_g5046"),
+15: SubResource("Resource_5v3ml"),
+16: SubResource("Resource_7dpj3"),
+17: SubResource("Resource_njjmm"),
+18: SubResource("Resource_ntkrs"),
+19: SubResource("Resource_fdf5r"),
+20: SubResource("Resource_abgct"),
+21: SubResource("Resource_mhg75"),
+22: SubResource("Resource_2ke6t")
+}
+_point_order = PackedInt32Array(1, 14, 15, 16, 17, 18, 19, 20, 21, 22, 0)
+_constraints = {
+Vector2i(1, 0): 15
+}
+_next_key = 25
+
+[sub_resource type="Resource" id="Resource_qug4l"]
+script = ExtResource("14_xyqkx")
+
+[node name="Node" type="Node" unique_id=1854484529]
+
+[node name="Player" parent="." unique_id=1649858745 instance=ExtResource("1_hhcbu")]
+position = Vector2(272.16895, 119.665085)
+
+[node name="Olimar" parent="." unique_id=1740261935 instance=ExtResource("2_fwj01")]
+z_index = 1
+position = Vector2(-16, 208)
+
+[node name="ComplexPlanet" type="Node2D" parent="." unique_id=1442694699 node_paths=PackedStringArray("surface")]
+position = Vector2(202.026, 490.8987)
+script = ExtResource("3_7gxq4")
+surface = NodePath("Surface")
+
+[node name="Surface" type="Line2D" parent="ComplexPlanet" unique_id=543531469]
+
+[node name="complexGravity" type="Area2D" parent="ComplexPlanet" unique_id=293974200]
+collision_layer = 16
+script = ExtResource("4_bb516")
+behaviour = 2
+
+[node name="curve" type="Line2D" parent="ComplexPlanet/complexGravity" unique_id=573822331]
+visible = false
+points = PackedVector2Array(-506.026, 341.1013, -498.026, -162.89871, 84.45593, -139.83618, 189.974, -170.89871, 285.974, -530.8987, 797.974, -250.89871, 589.974, 21.101288, 563.77966, 125.503784, 805.974, 373.1013, 453.974, 637.1013, 209.99316, 290.98462, 95.86841, 245.33472)
+closed = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ComplexPlanet/complexGravity" unique_id=1450482869]
+polygon = PackedVector2Array(-562.026, -354.8987, 229.974, -634.8987, 941.974, -290.8987, 1429.974, 133.10129, 997.974, 957.1013, -394.026, 965.1013, -634.026, 469.1013)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ComplexPlanet" unique_id=774695861]
+visible = false
+
+[node name="SS2D_Shape_Closed" type="MeshInstance2D" parent="ComplexPlanet/StaticBody2D" unique_id=1984436515]
+visible = false
+script = ExtResource("4_1u2s8")
+_points = SubResource("Resource_ryyjf")
+shape_material = ExtResource("8_1u2s8")
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")
+metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ComplexPlanet/StaticBody2D" unique_id=552756828]
+visible = false
+modulate = Color(1, 1, 1, 0.3)
+polygon = PackedVector2Array(-506.026, 341.1013, -498.026, -162.89871, 84.45593, -139.83618, 189.974, -170.89871, 285.974, -530.8987, 797.974, -250.89871, 589.974, 21.101288, 563.77966, 125.503784, 805.974, 373.1013, 453.974, 637.1013, 209.99316, 290.98462, 95.86841, 245.33472)
+
+[node name="NodeConnection" parent="ComplexPlanet" unique_id=758509858 instance=ExtResource("12_xyqkx")]
+position = Vector2(-615.0647, -661.0752)
+
+[node name="navNode0" type="Node2D" parent="ComplexPlanet" unique_id=1135128517 instance=ExtResource("10_31mqn")]
+position = Vector2(-506.026, 341.1013)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode0" unique_id=2043002356 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 8, -504)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode1")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode0" unique_id=2017476310 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 8, -504)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode1")
+
+[node name="navNode1" type="Node2D" parent="ComplexPlanet" unique_id=387509665 instance=ExtResource("10_31mqn")]
+position = Vector2(-498.026, -162.89871)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode1" unique_id=1491631681 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 582.48193, 23.06253)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode2")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode1" unique_id=804514917 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -8, 504)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode0")
+
+[node name="navNode2" type="Node2D" parent="ComplexPlanet" unique_id=577182612 instance=ExtResource("10_31mqn")]
+position = Vector2(84.45593, -139.83618)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode2" unique_id=150338070 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 105.51807, -31.06253)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode3")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode2" unique_id=1558156076 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -582.48193, -23.06253)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode1")
+
+[node name="navNode3" type="Node2D" parent="ComplexPlanet" unique_id=1372273833 instance=ExtResource("10_31mqn")]
+position = Vector2(189.974, -170.89871)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode3" unique_id=1352237252 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 96, -359.99997)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode4")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode3" unique_id=399780581 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -105.51807, 31.06253)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode2")
+
+[node name="navNode4" type="Node2D" parent="ComplexPlanet" unique_id=224642279 instance=ExtResource("10_31mqn")]
+position = Vector2(285.974, -530.8987)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode4" unique_id=1735841753 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 512, 279.99997)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode5")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode4" unique_id=318416241 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -96, 359.99997)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode3")
+
+[node name="navNode5" type="Node2D" parent="ComplexPlanet" unique_id=751544017 instance=ExtResource("10_31mqn")]
+position = Vector2(797.974, -250.89871)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode5" unique_id=1210177966 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -208, 272)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode6")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode5" unique_id=141057713 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -512, -279.99997)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode4")
+
+[node name="navNode6" type="Node2D" parent="ComplexPlanet" unique_id=263457291 instance=ExtResource("10_31mqn")]
+position = Vector2(589.974, 21.101288)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode6" unique_id=807315097 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -26.194336, 104.402466)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode7")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode6" unique_id=1461291189 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 208, -272)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode5")
+
+[node name="navNode7" type="Node2D" parent="ComplexPlanet" unique_id=407913494 instance=ExtResource("10_31mqn")]
+position = Vector2(563.77966, 125.503784)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode7" unique_id=1729408090 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 242.19434, 247.59753)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode8")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode7" unique_id=331811831 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 26.194336, -104.402466)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode6")
+
+[node name="navNode8" type="Node2D" parent="ComplexPlanet" unique_id=2080315770 instance=ExtResource("10_31mqn")]
+position = Vector2(805.974, 373.1013)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode8" unique_id=1228573063 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -352, 264)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode9")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode8" unique_id=486900963 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -242.19434, -247.59753)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode7")
+
+[node name="navNode9" type="Node2D" parent="ComplexPlanet" unique_id=414296090 instance=ExtResource("10_31mqn")]
+position = Vector2(453.974, 637.1013)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode9" unique_id=1840931438 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -243.98083, -346.1167)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode10")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode9" unique_id=960151380 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 352, -264)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode8")
+
+[node name="navNode10" type="Node2D" parent="ComplexPlanet" unique_id=1473359680 instance=ExtResource("10_31mqn")]
+position = Vector2(209.99316, 290.98462)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode10" unique_id=1260978020 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -114.124756, -45.649902)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode11")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode10" unique_id=199731353 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 243.98083, 346.1167)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode9")
+
+[node name="navNode11" type="Node2D" parent="ComplexPlanet" unique_id=495082011 instance=ExtResource("10_31mqn")]
+position = Vector2(95.86841, 245.33472)
+script = ExtResource("11_232tk")
+
+[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode11" unique_id=1029579129 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, -601.8944, 95.7666)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode0")
+
+[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode11" unique_id=2046492998 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+points = PackedVector2Array(0, 0, 114.124756, 45.649902)
+script = ExtResource("13_vqkae")
+destination = NodePath("../../navNode10")
+
+[node name="ComplexPlanet2" type="Node2D" parent="." unique_id=1460949143 node_paths=PackedStringArray("surface")]
+position = Vector2(1600, -704)
+script = ExtResource("3_7gxq4")
+surface = NodePath("Surface")
+metadata/_edit_group_ = true
+
+[node name="Surface" type="Line2D" parent="ComplexPlanet2" unique_id=1541519689]
+
+[node name="complexGravity" type="Area2D" parent="ComplexPlanet2" unique_id=452716188]
+collision_layer = 16
+script = ExtResource("4_bb516")
+behaviour = 2
+
+[node name="curve" type="Line2D" parent="ComplexPlanet2/complexGravity" unique_id=2088661684]
+points = PackedVector2Array(80, 152, -432, 648, -912, 408, -760, -144, -992, -712, -776, -1312, -96, -1608, 1062.6655, -1247.5383, 1296, -696, 864, 152)
+closed = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ComplexPlanet2/complexGravity" unique_id=1411192834]
+polygon = PackedVector2Array(-1064, 456, -1496, -24, -1464, -1680, 768, -2112, 2136, -208, 632, 792, -368, 768)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ComplexPlanet2" unique_id=1867513738]
+
+[node name="SS2D_Shape_Closed" type="MeshInstance2D" parent="ComplexPlanet2/StaticBody2D" unique_id=1658667777]
+script = ExtResource("4_1u2s8")
+_points = SubResource("Resource_io2w7")
+shape_material = ExtResource("8_1u2s8")
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")
+metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ComplexPlanet2/StaticBody2D" unique_id=176208307]
+visible = false
+modulate = Color(1, 1, 1, 0.3)
+polygon = PackedVector2Array(80, 152, -432, 648, -912, 408, -760, -144, -992, -712, -776, -1312, -96, -1608, 1062.6655, -1247.5383, 1296, -696, 864, 152)
+
+[node name="Pikmin" parent="." unique_id=287441968 instance=ExtResource("1_43pys")]
+position = Vector2(7.0951233, 69.01843)
+
+[node name="ComplexPlanet3" type="Node2D" parent="." unique_id=229873545 node_paths=PackedStringArray("surface")]
+position = Vector2(-1269.6322, 590.14026)
+script = ExtResource("3_7gxq4")
+surface = NodePath("Surface")
+metadata/_edit_group_ = true
+
+[node name="Surface" type="Line2D" parent="ComplexPlanet3" unique_id=1120169726]
+
+[node name="complexGravity" type="Area2D" parent="ComplexPlanet3" unique_id=1715315520]
+collision_layer = 16
+script = ExtResource("4_bb516")
+behaviour = 2
+
+[node name="curve" type="Line2D" parent="ComplexPlanet3/complexGravity" unique_id=1206463137]
+points = PackedVector2Array(458.3678, -265.85974, 458.3678, 262.14026, -445.6322, 118.14026, -437.6322, 438.14026, -693.6322, 646.14026, -1381.6322, 646.14026, -1789.6322, 278.14026, -1789.6322, -193.85974, -1381.6322, -593.85974, 18.367798, -705.85974)
+closed = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ComplexPlanet3/complexGravity" unique_id=254311972]
+visible = false
+polygon = PackedVector2Array(-1490.3678, -990.14026, 205.6322, -950.14026, 621.6322, -294.14026, 589.6322, 361.85974, -210.3678, 921.85974, -1906.3678, 1177.8597, -2170.3677, -14.140259)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ComplexPlanet3" unique_id=1603478692]
+
+[node name="SS2D_Shape_Closed" type="MeshInstance2D" parent="ComplexPlanet3/StaticBody2D" unique_id=702953447]
+script = ExtResource("4_1u2s8")
+_points = SubResource("Resource_v8x0y")
+shape_material = SubResource("Resource_qug4l")
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")
+metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ComplexPlanet3/StaticBody2D" unique_id=1676241277]
+modulate = Color(1, 1, 1, 0.3)
+polygon = PackedVector2Array(458.3678, -265.85974, 458.3678, 262.14026, -445.6322, 118.14026, -437.6322, 438.14026, -693.6322, 646.14026, -1381.6322, 646.14026, -1789.6322, 278.14026, -1789.6322, -193.85974, -1381.6322, -593.85974, 18.367798, -705.85974)

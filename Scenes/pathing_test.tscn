@@ -1,13 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnv0nu0l2egxb"]
+[gd_scene format=3 uid="uid://dnv0nu0l2egxb"]
 
-[ext_resource type="PackedScene" uid="uid://ci4rvxr586tjg" path="res://Scripts/Pathing/CarryNode.tscn" id="1_mbhsy"]
+[ext_resource type="PackedScene" path="res://Scripts/Pathing/NavNode.tscn" id="1_mbhsy"]
 
-[node name="pathingTest" type="Node"]
+[node name="pathingTest" type="Node" unique_id=1003909246]
 
-[node name="CarryNode" parent="." instance=ExtResource("1_mbhsy")]
-position = Vector2(-96, -8)
-nextPaths = []
+[node name="NavNode" parent="." unique_id=1135128517 instance=ExtResource("1_mbhsy")]
+position = Vector2(-112, -56)
 
-[node name="CarryNode2" parent="." instance=ExtResource("1_mbhsy")]
-position = Vector2(80, -48)
-nextPaths = []
+[node name="NavNode2" parent="." unique_id=721868823 instance=ExtResource("1_mbhsy")]
+position = Vector2(-13.581879, -89.8755)

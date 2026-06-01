@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://4w07ciedit0b"]
+[gd_scene format=3 uid="uid://4w07ciedit0b"]
 
 [ext_resource type="PackedScene" uid="uid://cxtdtr26mexlm" path="res://Scenes/gravity_area.tscn" id="1_yjuje"]
 
-[node name="curvedGravity" instance=ExtResource("1_yjuje")]
+[node name="complexGravity" unique_id=1355011008 instance=ExtResource("1_yjuje")]
 behaviour = 2
 
-[node name="curve" type="Line2D" parent="." index="0"]
+[node name="curve" type="Line2D" parent="." index="0" unique_id=573822331]
+closed = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
-position = Vector2(-8, 24)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1" unique_id=1450482869]
 polygon = PackedVector2Array(-376, -280, 392, -280, 392, 232, -376, 232)

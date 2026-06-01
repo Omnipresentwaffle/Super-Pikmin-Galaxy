@@ -30,12 +30,12 @@ public partial class Passive : Entity
 
 	public Captain leader = null;
 
-	public State followState = State.walk;
+	public FollowState followState = FollowState.walk;
 
 	public Line2D line = null;
 
 
-	public enum State
+	public enum FollowState
 	{
 		walk,
 		jump,
@@ -64,7 +64,7 @@ public partial class Passive : Entity
 		float speed = speedConst;
 		switch (followState)
 		{
-			case State.walk:
+			case FollowState.walk:
 				//in this state, the pikmin are grounded and follow the captain just by walking
 				line = GetNode<Line2D>("NormalDirection");
 				//distance = v * t = m/s * s = m
@@ -104,12 +104,12 @@ public partial class Passive : Entity
 
 					if (nextPath.Points.Length > targetIndex)
 					{
-						followState = State.jump;
+						followState = FollowState.jump;
 						break;
 					}
 					if (nextPath.complete)
 					{
-						followState = State.fall;
+						followState = FollowState.fall;
 						break;
 
 					}
@@ -121,7 +121,7 @@ public partial class Passive : Entity
 				velocityVector += normalDir * 500f;
 				return velocityVector;
 
-			case State.jump:
+			case FollowState.jump:
 				//in this state, a jump path has been created and the pikmin teleports to a certain position in the jumpPath
 				//this assumes that the captain is constantly creating points
 				targetPos = nextPath.GetPointPosition((int)targetIndex);
@@ -130,14 +130,14 @@ public partial class Passive : Entity
 
 				if (leader.state == 0)
 				{
-					followState = State.fall;
+					followState = FollowState.fall;
 
 				}
 
 
 				return Godot.Vector2.Zero;
 
-			case State.fall:
+			case FollowState.fall:
 				//in this state, the pikmin is on the jump path but the jump path has ended
 				targetIndex -= 1;
 				if (targetIndex >= nextPath.Points.Length)
@@ -147,7 +147,7 @@ public partial class Passive : Entity
 
 				if (targetIndex <= 0)
 				{
-					followState = State.walk;
+					followState = FollowState.walk;
 					nextPath = null;
 					nextPathIdx += 1;
 					return Godot.Vector2.Zero;
@@ -158,7 +158,7 @@ public partial class Passive : Entity
 				return Godot.Vector2.Zero;
 
 
-			case State.held:
+			case FollowState.held:
 				GlobalPosition = leader.GlobalPosition;
 				return Godot.Vector2.Zero;
 

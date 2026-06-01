@@ -18,6 +18,10 @@ public partial class Captain : Passive
 	public bool active = false;
 	public const float JumpVelocity = -700.0f;
 
+	public const float maxAirSpeed = 1000f;
+
+	
+
 	public bool throwHold = false;
 
 	public Area2D chainDetector = null;
@@ -404,6 +408,11 @@ public partial class Captain : Passive
 					followPath.addFollowPoint(GlobalPosition);
 				}
 
+				if(velocity.Length() >= maxAirSpeed)
+				{
+					velocity = velocity / velocity.Length() * maxAirSpeed;
+				}
+
 
 
 
@@ -504,7 +513,7 @@ public partial class Captain : Passive
 
 		}
 
-		GD.Print("platform: ", platform);
+		//GD.Print("platform: ", platform);
 		ApplyFloorSnap();
 
 		if (mainGravity != prevGrav)
@@ -686,7 +695,7 @@ public partial class Captain : Passive
 	public void grabFollower(Passive follower)
 	{
 		throwHold = true;
-		follower.followState = Passive.State.held;
+		follower.followState = Passive.FollowState.held;
 	}
 
 	public void handleAnimation()

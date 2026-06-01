@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cfba5odccldkw"]
+
+[ext_resource type="PackedScene" uid="uid://dmxeksskfliow" path="res://Scenes/Navigation/NavNode.tscn" id="1_h42v6"]
+
+[node name="Node" type="Node" unique_id=1025450064]
+
+[node name="NavNode2" parent="." unique_id=1135128517 node_paths=PackedStringArray("linkedNodes") instance=ExtResource("1_h42v6")]
+position = Vector2(312.7933, 20.317543)
+linkedNodes = [NodePath("../NavNode")]
+
+[node name="NavNode" parent="." unique_id=490619824 node_paths=PackedStringArray("linkedNodes") instance=ExtResource("1_h42v6")]
+position = Vector2(144, 0)
+linkedNodes = [NodePath("../NavNode2")]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://rqgjk45doaux"]
+[gd_scene format=3 uid="uid://rqgjk45doaux"]
 
-[ext_resource type="Script" uid="uid://baqekkue2hf6x" path="res://Scripts/Platform.cs" id="1_xehyc"]
+[ext_resource type="Script" uid="uid://fvul7uybkvfy" path="res://Scenes/Planet/Planet.cs" id="1_xehyc"]
 
-[node name="Platform" type="Node2D"]
+[node name="Planet" type="Node2D" unique_id=732938732 node_paths=PackedStringArray("surface", "surfaceLines")]
 script = ExtResource("1_xehyc")
+surface = NodePath("Surface")
+surfaceLines = NodePath("Surface")
 
-[node name="Surface" type="Line2D" parent="."]
+[node name="Surface" type="Line2D" parent="." unique_id=1964186194]

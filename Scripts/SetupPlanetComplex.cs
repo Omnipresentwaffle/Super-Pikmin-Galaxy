@@ -6,10 +6,10 @@ public partial class SetupPlanetComplex : Node
 {
 
 
-    public void setup()
-    {
-        
-    }
+	public void setup()
+	{
+		
+	}
 
 
 }

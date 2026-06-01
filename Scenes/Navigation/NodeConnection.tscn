@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cn8dkqh4rkhkl"]
+
+[ext_resource type="Script" uid="uid://bs4wh3tutsrqt" path="res://Scenes/Navigation/NodeConnection.cs" id="1_mbqqa"]
+
+[node name="NodeConnection" type="Line2D" unique_id=758509858]
+script = ExtResource("1_mbqqa")

@@ -30,4 +30,9 @@ public partial class Platform : Node2D
 		surface.Points = shape.Polygon;
 
 	}
+
+	public void BakeNav()
+	{
+		GD.Print("Running in editor!");
+	}
 }
