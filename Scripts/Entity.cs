@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text.RegularExpressions;
 
+
 public partial class Entity : CharacterBody2D
 {
 	//entites are moving bodies that are affected by gravity
 	//this is the base class for enemies, pikmin and captains
 
+	public int gravityIndex = 0;
+
+	public Planet residentPlanet = null;
 	public GravityArea mainGravity = null;
 	public bool newGravPriority = false;
 	public bool gravPriorityLocked = false;
@@ -64,12 +68,12 @@ public override void _Ready()
 		return tangent;
 
 	}
-	public float getProjection(Godot.Vector2 projected, Godot.Vector2 projDir)
+	public float getProjection(Godot.Vector2 projecting, Godot.Vector2 projDir)
 	{
-		//projected is the vector we want to project onto projDir
+		//projecting is the vector we want to project onto projDir
 		//this works
 		//trust me bro
-		return (projected.Dot(projDir)) / (projDir.Dot(projDir));
+		return (projecting.Dot(projDir)) / (projDir.Dot(projDir));
 	}
 
 	public (float, float) getMagnitudes(Godot.Vector2 velocity, Godot.Vector2 normalDir)
@@ -170,6 +174,100 @@ public override void _Ready()
 		}
 
 
+
+	}
+
+		public NodeConnection getValidConnection(NavNode navNode)
+	{
+		/*
+		Accepts a NavNode and return the first NodeConnection
+		that is of the walk type, otherwise returns null
+		*/
+
+		foreach(Node child in navNode.GetChildren())
+		{
+			if(child.GetType() != typeof(NodeConnection))
+			{
+				continue;
+			}
+			NodeConnection connection = (NodeConnection)child;
+			if(connection.type != NodeConnection.ConnectionType.walk)
+			{
+				continue;
+			}
+			return connection;
+			
+		}
+
+		return null;
+	}
+
+	public List<NodeConnection> getNextDestinations(NavNode prev, NavNode navNode)
+	{
+		/*
+		Accepts two navNodes, prev and current
+		prev is the navNode that was just iterated on
+		we include it so that this doesn't return a path back to itself
+		FIX THIS
+		*/
+
+		List<NodeConnection> connections = new List<NodeConnection>();
+		foreach(Node child in navNode.GetChildren())
+		{
+			if(child.GetType() != typeof(NodeConnection))
+			{
+				continue;
+			}
+			NodeConnection connection = (NodeConnection)child;
+			if(connection.type != NodeConnection.ConnectionType.walk)
+			{
+				continue;
+			}
+			return null;
+			
+		}
+
+		return null;
+	}
+
+	public NavNode getClosestNavNode(Godot.Vector2 pos)
+	{
+		residentPlanet = (Planet)((GravityArea)gravityAreas[gravityIndex]).GetParent();
+
+		NavNode closestNode = null;
+		float closestDist = Mathf.Inf;
+		foreach (Node child in residentPlanet.GetChildren())
+		{
+			if(child.GetType() != typeof(NavNode))
+			{
+				continue;
+				//go to next node
+			}
+			if(pos.DistanceSquaredTo(((NavNode)child).GlobalPosition) < closestDist)
+			{
+				
+			}
+			
+		
+
+		}
+
+
+
+		return null;
+	}
+
+
+	public NavPath getPathTo(NavNode startNode, NavNode destNode)
+	{
+		List<NavPath> paths = new List<NavPath>();
+
+
+		return null;
+	}
+	public List<NavPath> getPathHelper(List<NavPath> navPaths)
+	{
+		
 
 	}
 

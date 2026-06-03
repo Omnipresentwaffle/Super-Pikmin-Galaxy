@@ -13,7 +13,7 @@ public partial class NodeConnection : Line2D
 	public NavNode destination = null;
 
 	[Export]
-	ConnectionType type = ConnectionType.walk;
+	public ConnectionType type = ConnectionType.walk;
 	public enum ConnectionType
 	{
 		walk,

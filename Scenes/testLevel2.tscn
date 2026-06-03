@@ -11,11 +11,10 @@
 [ext_resource type="Script" uid="uid://bo5f7qe27jfje" path="res://addons/rmsmartshape/shapes/point_array.gd" id="7_31mqn"]
 [ext_resource type="Resource" uid="uid://jxwtcmsmfseb" path="res://SS2Dpresets/grassDef.tres" id="8_1u2s8"]
 [ext_resource type="PackedScene" uid="uid://dmxeksskfliow" path="res://Scenes/Navigation/NavNode.tscn" id="10_31mqn"]
-[ext_resource type="Script" uid="uid://3lqnjv7mjhcu" path="res://Scenes/Navigation/NavNode.cs" id="11_232tk"]
 [ext_resource type="PackedScene" uid="uid://cn8dkqh4rkhkl" path="res://Scenes/Navigation/NodeConnection.tscn" id="12_xyqkx"]
 [ext_resource type="Script" uid="uid://0lhxan4cqrc1" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="13_232tk"]
-[ext_resource type="Script" uid="uid://bs4wh3tutsrqt" path="res://Scenes/Navigation/NodeConnection.cs" id="13_vqkae"]
 [ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="14_xyqkx"]
+[ext_resource type="Texture2D" uid="uid://c2giessljalgn" path="res://Art/Test/7__leaf1.png" id="15_xyqkx"]
 
 [sub_resource type="Resource" id="Resource_xyqkx"]
 script = ExtResource("5_7gxq4")
@@ -447,172 +446,136 @@ polygon = PackedVector2Array(-506.026, 341.1013, -498.026, -162.89871, 84.45593,
 [node name="NodeConnection" parent="ComplexPlanet" unique_id=758509858 instance=ExtResource("12_xyqkx")]
 position = Vector2(-615.0647, -661.0752)
 
-[node name="navNode0" type="Node2D" parent="ComplexPlanet" unique_id=1135128517 instance=ExtResource("10_31mqn")]
+[node name="navNode0" parent="ComplexPlanet" unique_id=1135128517 instance=ExtResource("10_31mqn")]
 position = Vector2(-506.026, 341.1013)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode0" unique_id=2043002356 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode0" unique_id=2043002356 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 8, -504)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode1")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode0" unique_id=2017476310 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode0" unique_id=2017476310 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 8, -504)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode1")
 
-[node name="navNode1" type="Node2D" parent="ComplexPlanet" unique_id=387509665 instance=ExtResource("10_31mqn")]
+[node name="navNode1" parent="ComplexPlanet" unique_id=387509665 instance=ExtResource("10_31mqn")]
 position = Vector2(-498.026, -162.89871)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode1" unique_id=1491631681 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode1" unique_id=1491631681 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 582.48193, 23.06253)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode2")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode1" unique_id=804514917 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode1" unique_id=804514917 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -8, 504)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode0")
 
-[node name="navNode2" type="Node2D" parent="ComplexPlanet" unique_id=577182612 instance=ExtResource("10_31mqn")]
+[node name="navNode2" parent="ComplexPlanet" unique_id=577182612 instance=ExtResource("10_31mqn")]
 position = Vector2(84.45593, -139.83618)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode2" unique_id=150338070 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode2" unique_id=150338070 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 105.51807, -31.06253)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode3")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode2" unique_id=1558156076 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode2" unique_id=1558156076 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -582.48193, -23.06253)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode1")
 
-[node name="navNode3" type="Node2D" parent="ComplexPlanet" unique_id=1372273833 instance=ExtResource("10_31mqn")]
+[node name="navNode3" parent="ComplexPlanet" unique_id=1372273833 instance=ExtResource("10_31mqn")]
 position = Vector2(189.974, -170.89871)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode3" unique_id=1352237252 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode3" unique_id=1352237252 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 96, -359.99997)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode4")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode3" unique_id=399780581 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode3" unique_id=399780581 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -105.51807, 31.06253)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode2")
 
-[node name="navNode4" type="Node2D" parent="ComplexPlanet" unique_id=224642279 instance=ExtResource("10_31mqn")]
+[node name="navNode4" parent="ComplexPlanet" unique_id=224642279 instance=ExtResource("10_31mqn")]
 position = Vector2(285.974, -530.8987)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode4" unique_id=1735841753 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode4" unique_id=1735841753 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 512, 279.99997)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode5")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode4" unique_id=318416241 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode4" unique_id=318416241 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -96, 359.99997)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode3")
 
-[node name="navNode5" type="Node2D" parent="ComplexPlanet" unique_id=751544017 instance=ExtResource("10_31mqn")]
+[node name="navNode5" parent="ComplexPlanet" unique_id=751544017 instance=ExtResource("10_31mqn")]
 position = Vector2(797.974, -250.89871)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode5" unique_id=1210177966 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode5" unique_id=1210177966 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -208, 272)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode6")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode5" unique_id=141057713 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode5" unique_id=141057713 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -512, -279.99997)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode4")
 
-[node name="navNode6" type="Node2D" parent="ComplexPlanet" unique_id=263457291 instance=ExtResource("10_31mqn")]
+[node name="navNode6" parent="ComplexPlanet" unique_id=263457291 instance=ExtResource("10_31mqn")]
 position = Vector2(589.974, 21.101288)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode6" unique_id=807315097 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode6" unique_id=807315097 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -26.194336, 104.402466)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode7")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode6" unique_id=1461291189 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode6" unique_id=1461291189 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 208, -272)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode5")
 
-[node name="navNode7" type="Node2D" parent="ComplexPlanet" unique_id=407913494 instance=ExtResource("10_31mqn")]
+[node name="navNode7" parent="ComplexPlanet" unique_id=407913494 instance=ExtResource("10_31mqn")]
 position = Vector2(563.77966, 125.503784)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode7" unique_id=1729408090 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode7" unique_id=1729408090 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 242.19434, 247.59753)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode8")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode7" unique_id=331811831 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode7" unique_id=331811831 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 26.194336, -104.402466)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode6")
 
-[node name="navNode8" type="Node2D" parent="ComplexPlanet" unique_id=2080315770 instance=ExtResource("10_31mqn")]
+[node name="navNode8" parent="ComplexPlanet" unique_id=2080315770 instance=ExtResource("10_31mqn")]
 position = Vector2(805.974, 373.1013)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode8" unique_id=1228573063 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode8" unique_id=1228573063 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -352, 264)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode9")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode8" unique_id=486900963 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode8" unique_id=486900963 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -242.19434, -247.59753)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode7")
 
-[node name="navNode9" type="Node2D" parent="ComplexPlanet" unique_id=414296090 instance=ExtResource("10_31mqn")]
+[node name="navNode9" parent="ComplexPlanet" unique_id=414296090 instance=ExtResource("10_31mqn")]
 position = Vector2(453.974, 637.1013)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode9" unique_id=1840931438 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode9" unique_id=1840931438 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -243.98083, -346.1167)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode10")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode9" unique_id=960151380 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode9" unique_id=960151380 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 352, -264)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode8")
 
-[node name="navNode10" type="Node2D" parent="ComplexPlanet" unique_id=1473359680 instance=ExtResource("10_31mqn")]
+[node name="navNode10" parent="ComplexPlanet" unique_id=1473359680 instance=ExtResource("10_31mqn")]
 position = Vector2(209.99316, 290.98462)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode10" unique_id=1260978020 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode10" unique_id=1260978020 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -114.124756, -45.649902)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode11")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode10" unique_id=199731353 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode10" unique_id=199731353 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 243.98083, 346.1167)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode9")
 
-[node name="navNode11" type="Node2D" parent="ComplexPlanet" unique_id=495082011 instance=ExtResource("10_31mqn")]
+[node name="navNode11" parent="ComplexPlanet" unique_id=495082011 instance=ExtResource("10_31mqn")]
 position = Vector2(95.86841, 245.33472)
-script = ExtResource("11_232tk")
 
-[node name="ConnectionFwd" type="Line2D" parent="ComplexPlanet/navNode11" unique_id=1029579129 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionFwd" parent="ComplexPlanet/navNode11" unique_id=1029579129 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, -601.8944, 95.7666)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode0")
 
-[node name="ConnectionRev" type="Line2D" parent="ComplexPlanet/navNode11" unique_id=2046492998 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
+[node name="ConnectionRev" parent="ComplexPlanet/navNode11" unique_id=2046492998 node_paths=PackedStringArray("destination") instance=ExtResource("12_xyqkx")]
 points = PackedVector2Array(0, 0, 114.124756, 45.649902)
-script = ExtResource("13_vqkae")
 destination = NodePath("../../navNode10")
 
 [node name="ComplexPlanet2" type="Node2D" parent="." unique_id=1460949143 node_paths=PackedStringArray("surface")]
@@ -685,3 +648,7 @@ metadata/_custom_type_script = "uid://c6kxvfqr4ewu1"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ComplexPlanet3/StaticBody2D" unique_id=1676241277]
 modulate = Color(1, 1, 1, 0.3)
 polygon = PackedVector2Array(458.3678, -265.85974, 458.3678, 262.14026, -445.6322, 118.14026, -437.6322, 438.14026, -693.6322, 646.14026, -1381.6322, 646.14026, -1789.6322, 278.14026, -1789.6322, -193.85974, -1381.6322, -593.85974, 18.367798, -705.85974)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1808701421]
+position = Vector2(-301, 671)
+texture = ExtResource("15_xyqkx")

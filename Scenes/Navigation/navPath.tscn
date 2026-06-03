@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bjiihkiohkxqs"]
+
+[ext_resource type="Script" uid="uid://4be4g8qi61cm" path="res://Scenes/Navigation/NavPath.cs" id="1_i5jc7"]
+
+[node name="NavPath" type="Line2D" unique_id=84774928]
+script = ExtResource("1_i5jc7")

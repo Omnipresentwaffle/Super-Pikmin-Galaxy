@@ -13,6 +13,8 @@ public partial class Captain : Passive
 	//1 = louie
 	//2 = prez... etc
 
+	public Godot.Vector2 debugPikmPos = Godot.Vector2.Zero;
+
 	public StaticBody2D platform = null;
 
 	public bool active = false;
@@ -25,7 +27,6 @@ public partial class Captain : Passive
 	public bool throwHold = false;
 
 	public Area2D chainDetector = null;
-	public int gravityIndex = 0;
 
 	public const float walkSpeed = 500f;
 
@@ -81,6 +82,7 @@ public partial class Captain : Passive
 
 
 	public Chain chain = null;
+
 
 
 	public override void _Ready()
@@ -394,6 +396,7 @@ public partial class Captain : Passive
 					//enter walk
 					//just landed
 					landed = true;
+					onLanded();
 
 					state = 0;
 					break;
@@ -543,7 +546,13 @@ public partial class Captain : Passive
 	}
 
 
-
+	public void onLanded(){
+		
+		GD.Print("landed");
+		residentPlanet = (Planet)((GravityArea)gravityAreas[gravityIndex]).GetParent();
+		Godot.Vector2 groundCast = residentPlanet.getGroundCast(GlobalPosition);
+		GD.Print("grndCast: ", groundCast);
+	}
 
 
 

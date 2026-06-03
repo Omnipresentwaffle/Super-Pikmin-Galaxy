@@ -37,6 +37,7 @@ public partial class Passive : Entity
 
 	public enum FollowState
 	{
+		join,
 		walk,
 		jump,
 		fall,
@@ -64,109 +65,20 @@ public partial class Passive : Entity
 		float speed = speedConst;
 		switch (followState)
 		{
-			case FollowState.walk:
-				//in this state, the pikmin are grounded and follow the captain just by walking
-				line = GetNode<Line2D>("NormalDirection");
-				//distance = v * t = m/s * s = m
+			case FollowState.join:
 
-				targetPos = squadLine.GetPointPosition((int)(followerId) + 1) + squadLine.GlobalPosition;
-				dirVector = targetPos - GlobalPosition;
-				//add gravity
-				(normalDir, tangentDir, angle) = mainGravity.getDirections(GlobalPosition);
-				tangentDir = getPerp(normalDir);
-				GlobalRotationDegrees = angle;
-				//get the tangent direction
-				float t = getProjection(dirVector, tangentDir);
-				Godot.Vector2 targetVector = tangentDir * t;
-				Godot.Vector2 velocityVector = tangentDir * Math.Sign(t) * speed;
+				return Velocity;
 
 
-				Godot.Vector2 moveVector = velocityVector * delta;
-
-
-				if (moveVector.Length() > targetVector.Length())
-				{
-					speed = targetVector.Length() / delta;
-					velocityVector = tangentDir * Math.Sign(t) * speed;
-					//limit the moveVector so that the pikmin doesn't overshoot its destination
-				}
-				if (nextPath == null){
-					if (followPath.jumpPaths.Count > nextPathIdx){
-						//if the pikmin is not following a path
-						//and a new path appears, then queue that path
-						nextPathIdx = (ushort)((ushort)followPath.jumpPaths.Count - 1);
-						nextPath = followPath.jumpPaths[nextPathIdx];
-
-					}
-				}
-				else{
-					targetIndex = (uint)(5 * ((int)(followerId) + 1));
-
-					if (nextPath.Points.Length > targetIndex)
-					{
-						followState = FollowState.jump;
-						break;
-					}
-					if (nextPath.complete)
-					{
-						followState = FollowState.fall;
-						break;
-
-					}
-					else
-					{
-					}
-
-				}
-				velocityVector += normalDir * 500f;
-				return velocityVector;
-
-			case FollowState.jump:
-				//in this state, a jump path has been created and the pikmin teleports to a certain position in the jumpPath
-				//this assumes that the captain is constantly creating points
-				targetPos = nextPath.GetPointPosition((int)targetIndex);
-
-				GlobalPosition = targetPos;
-
-				if (leader.state == 0)
-				{
-					followState = FollowState.fall;
-
-				}
-
-
-				return Godot.Vector2.Zero;
-
-			case FollowState.fall:
-				//in this state, the pikmin is on the jump path but the jump path has ended
-				targetIndex -= 1;
-				if (targetIndex >= nextPath.Points.Length)
-				{
-					return Godot.Vector2.Zero;
-				}
-
-				if (targetIndex <= 0)
-				{
-					followState = FollowState.walk;
-					nextPath = null;
-					nextPathIdx += 1;
-					return Godot.Vector2.Zero;
-				}
-				targetPos = nextPath.GetPointPosition((int)targetIndex);
-				GlobalPosition = targetPos;
-
-				return Godot.Vector2.Zero;
-
-
-			case FollowState.held:
-				GlobalPosition = leader.GlobalPosition;
-				return Godot.Vector2.Zero;
-
-
-
-		}
-
-		return Velocity;
 		
+		}
+			return Velocity;
+
+	}
+
+
+	public Godot.Vector2 stateJoin()
+	{
+		return Godot.Vector2.Zero;
 	}
 }

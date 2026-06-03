@@ -187,7 +187,7 @@ public partial class FollowPath : Line2D
 	public void newPath()
 	{
 		jumpPaths.Add(new JumpPath());
-		GD.Print("jumpPathsLength: ", jumpPaths.Count);
+		//GD.Print("jumpPathsLength: ", jumpPaths.Count);
 	}
 	
 }
