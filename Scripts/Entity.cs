@@ -202,7 +202,7 @@ public override void _Ready()
 		return null;
 	}
 
-	public List<NodeConnection> getNextDestinations(NavNode prev, NavNode navNode)
+	public List<NodeConnection> getNeighbours(NavNode prev, NavNode navNode)
 	{
 		/*
 		Accepts two navNodes, prev and current
@@ -223,6 +223,10 @@ public override void _Ready()
 			{
 				continue;
 			}
+			if(connection.destination == navNode)
+			{
+				continue;
+			}
 			return null;
 			
 		}
@@ -230,8 +234,11 @@ public override void _Ready()
 		return null;
 	}
 
-	public NavNode getClosestNavNode(Godot.Vector2 pos)
+	public NavNode getClosestNavNode()
 	{
+		/// <summary>
+		///  resident planet
+		/// </summary>
 		residentPlanet = (Planet)((GravityArea)gravityAreas[gravityIndex]).GetParent();
 
 		NavNode closestNode = null;
@@ -243,14 +250,18 @@ public override void _Ready()
 				continue;
 				//go to next node
 			}
-			if(pos.DistanceSquaredTo(((NavNode)child).GlobalPosition) < closestDist)
+			float checkDist = GlobalPosition.DistanceSquaredTo(((NavNode)child).GlobalPosition);
+			if(checkDist < closestDist)
 			{
-				
+				closestNode = (NavNode)child;
+				closestDist = checkDist;
+
 			}
 			
 		
 
 		}
+		GD.Print("ClosestNode: ", closestNode.Name);
 
 
 
@@ -267,7 +278,7 @@ public override void _Ready()
 	}
 	public List<NavPath> getPathHelper(List<NavPath> navPaths)
 	{
-		
+		return new List<NavPath>(navPaths);
 
 	}
 

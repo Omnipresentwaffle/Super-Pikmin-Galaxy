@@ -105,6 +105,10 @@ public partial class Captain : Passive
 	{
 		Godot.Vector2 velocity = Velocity;
 		GravityArea prevGrav = mainGravity;
+		if (Input.IsKeyPressed(Key.P))
+		{
+			getClosestNavNode();
+		}
 
 
 
